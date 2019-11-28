@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Tabs, WhiteSpace } from "antd-mobile";
-import { StickyContainer, Sticky } from "react-sticky";
+// import { Tabs, WhiteSpace } from "antd-mobile";
 
 class New extends Component {
   state = {
@@ -8,7 +7,7 @@ class New extends Component {
     activeKey: ""
   };
   render() {
-    let { menu, activeKey } = this.state;
+    // let { menu, activeKey } = this.state;
     return (
       <div>
         353 62

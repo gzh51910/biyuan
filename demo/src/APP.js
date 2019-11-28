@@ -1,22 +1,14 @@
 import React, { Component } from "react";
 // import {render} from 'react-dom';
-import {
-  HashRouter,
-  Route,
-  withRouter,
-  Switch,
-  Redirect
-} from "react-router-dom";
+import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 
 // 引入的模块
 import "./App.scss";
-import Home from "./pages/Home";
-import New from "~/New";
-
-import msg from "./pages/msg";
-import data from "./pages/data";
-import forum from "./pages/forum";
-import mine from "./pages/mine";
+import Home from "~/Home";
+import News from "~/News";
+import data from "~/data";
+import forum from "~/forum";
+import mine from "~/mine";
 
 import { Menu, Icon } from "antd";
 
@@ -32,8 +24,8 @@ class App extends Component {
       },
       {
         icon: "profile",
-        name: "msg",
-        path: "/msg",
+        name: "news",
+        path: "/news",
         text: "资讯"
       },
       {
@@ -77,8 +69,7 @@ class App extends Component {
       <div>
         <Switch>
           <Route path="/home" component={Home} />
-          <Route path="/new" component={New} />
-          <Route path="/msg" component={msg} />
+          <Route path="/news" component={News} />
           <Route path="/data" component={data} />
           <Route path="/forum" component={forum} />
           <Route path="/mine" component={mine} />
