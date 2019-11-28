@@ -1,0 +1,1 @@
+config 里面的dbUrl需要记得改自己的ip地址
