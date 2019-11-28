@@ -11,7 +11,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                
+               欢迎管理员登陆，
             </div>
         );
     }
