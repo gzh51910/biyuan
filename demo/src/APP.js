@@ -18,7 +18,6 @@ import data from './pages/data';
 import forum from './pages/forum';
 import mine from './pages/mine';
 
-
 import { Menu, Icon } from 'antd';
 
 class App extends Component {
@@ -79,10 +78,10 @@ class App extends Component {
 
                 <Switch>
                     <Route path="/home" component={Home} />
-                    <Route path="msg" component={msg}/>
-                    <Route path="data" component={data}/>
-                    <Route path="forum" component={forum}/>
-                    <Route path="mine" component={mine}/>
+                    <Route path="/msg" component={msg}/>
+                    <Route path="/data" component={data}/>
+                    <Route path="/forum" component={forum}/>
+                    <Route path="/mine" component={mine}/>
                     <Route path="/notfound" render={() => <div>404页面</div>} />
                     <Redirect from="/" to="/home" exact />
                     <Redirect to="/notfound" />
