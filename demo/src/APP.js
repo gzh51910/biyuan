@@ -13,7 +13,10 @@ import {
 // 引入的模块
 import './App.scss';
 import Home from './pages/Home';
-
+import msg from './pages/msg';
+import data from './pages/data';
+import forum from './pages/forum';
+import mine from './pages/mine';
 
 
 import { Menu, Icon } from 'antd';
@@ -26,23 +29,31 @@ class App extends Component {
             name: 'home',
             path: '/home',
             text: '首页'
-        }, {
-            icon: 'compass',
-            name: 'list',
-            path: '/list',
-            text: '发现'
+        }, 
+        {
+            icon: 'profile',
+            name: 'msg',
+            path: '/msg',
+            text: '资讯'
         },
         {
-            icon: 'shopping-cart',
-            name: 'cart',
-            path: '/cart',
-            text: '购物车'
-        }, {
+            icon: 'line-chart',
+            name: 'data',
+            path: '/data',
+            text: '币数据'
+        },
+        {
+            icon: 'message',
+            name: 'forum',
+            path: '/forum',
+            text: '论坛'
+        },
+        {
             icon: 'user',
             name: 'mine',
             path: '/mine',
             text: '我的'
-        },
+        }
         ]
     }
     // 方法
@@ -60,14 +71,18 @@ class App extends Component {
         this.setState({
             currentPath: this.props.location.pathname
         })
-        
+
     }
     render() {
         return (
             <div >
-             
+
                 <Switch>
                     <Route path="/home" component={Home} />
+                    <Route path="msg" component={msg}/>
+                    <Route path="data" component={data}/>
+                    <Route path="forum" component={forum}/>
+                    <Route path="mine" component={mine}/>
                     <Route path="/notfound" render={() => <div>404页面</div>} />
                     <Redirect from="/" to="/home" exact />
                     <Redirect to="/notfound" />
