@@ -1,6 +1,7 @@
 @function vw($px) {
     @return ($px / 750) * 100vw;
 }
+<<<<<<< HEAD
 
 $activeColor: #ffc600;
 
@@ -9,6 +10,16 @@ div {
 }
 
 .ant-menu {
+=======
+body{
+    height: 100%;
+    overflow: scroll;
+}
+.container{
+    margin-bottom: 34px;
+}
+.ant-menu{
+>>>>>>> 408b352303642910a6065a2b79412aa75caf3fd4
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -17,9 +28,15 @@ div {
     bottom: 0;
     left: 0;
     right: 0;
+<<<<<<< HEAD
     background-color: #fafafa;
     &-item {
         display: flex !important;
+=======
+    background: #fff;
+    &-item{
+        display: flex!important;
+>>>>>>> 408b352303642910a6065a2b79412aa75caf3fd4
         flex-flow: column nowrap;
         align-items: center;
         justify-content: end;
