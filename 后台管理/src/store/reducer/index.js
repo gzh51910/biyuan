@@ -1,10 +1,9 @@
 import {combineReducers} from 'redux';
 
-
+import admin from './admin'
 
 
 let rootReducer = combineReducers({
-    // cart:cartReducer,
-    // common:commonReducer
+    admin
 })
 export default rootReducer;

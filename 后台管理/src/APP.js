@@ -9,12 +9,12 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom'
-
+import {connect} from 'react-redux';
 // 引入的模块
-import './App.scss';
+import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
-
+import HeaderState from './pages/HeaderState'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -109,10 +109,12 @@ class App extends Component {
         this.setState({ collapsed: !this.state.collapsed, });
     };
     render() {
-        return (<Layout >
+        return (
+        <Layout >
             <Header style={{
-                background: "red"
+                background: "#58bc58"
             }}>
+                <HeaderState></HeaderState>
             </Header>
             <Layout>
                 <Sider collapsed={this.state.collapsed}

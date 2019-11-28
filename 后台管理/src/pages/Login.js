@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Input, DatePicker, TimePicker, Select, Cascader, InputNumber } from 'antd';
 const { Option } = Select;
+import {connect} from 'react-redux';
 
+// 映射属性（获取）
+const mapStateToProps = (state)=>{
+  let ss= state.admin;
+  return {
+     ss
+  }
+}
 const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -12,12 +20,17 @@ const formItemLayout = {
       sm: { span: 12 },
     },
   };
+@connect(mapStateToProps)
+
+
+
 class Login extends Component {
  
 
     
     render() {
- 
+      console.log(this.props);
+      
         return (
             <Form {...formItemLayout}>
             <Form.Item
