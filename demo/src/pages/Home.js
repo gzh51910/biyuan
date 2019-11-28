@@ -81,7 +81,24 @@ class Home extends Component {
                         }
                     </Carousel>
                 </section>
-                
+                <section className="menu">
+                    {
+                        menu.map(item=>{
+                            return <figure key={item.text}>
+                                <img src={item.src}/>
+                                <figcaption>{item.text}</figcaption>
+                            </figure>
+                        })
+                    }
+                </section>
+                <section className="tip">
+                    <i></i>
+                    <div>币源社区最新入住名单</div>
+                    <i></i>
+                </section>
+                <main>
+                    
+                </main>
             </div>
         );
     }
