@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { biyuan } from '../api'
 import { connect } from 'react-redux';
 
 function mapStateToProps(state) {
@@ -7,11 +8,11 @@ function mapStateToProps(state) {
     };
 }
 
-class Home extends Component {
+class mine extends Component {
     render() {
         return (
             <div>
-                首页
+                我的
             </div>
         );
     }
@@ -19,4 +20,4 @@ class Home extends Component {
 
 export default connect(
     mapStateToProps,
-)(Home);
+)(mine);
