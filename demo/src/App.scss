@@ -1,6 +1,16 @@
 @function vw($px) {
     @return ($px / 750) * 100vw;
 }
+<<<<<<< HEAD
+
+$activeColor: #ffc600;
+
+div {
+    background-color: #ffffff;
+}
+
+.ant-menu {
+=======
 body{
     height: 100%;
     overflow: scroll;
@@ -9,6 +19,7 @@ body{
     margin-bottom: 34px;
 }
 .ant-menu{
+>>>>>>> 408b352303642910a6065a2b79412aa75caf3fd4
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
@@ -17,23 +28,37 @@ body{
     bottom: 0;
     left: 0;
     right: 0;
+<<<<<<< HEAD
+    background-color: #fafafa;
+    &-item {
+        display: flex !important;
+=======
     background: #fff;
     &-item{
         display: flex!important;
+>>>>>>> 408b352303642910a6065a2b79412aa75caf3fd4
         flex-flow: column nowrap;
         align-items: center;
         justify-content: end;
         width: 20%;
-        border: 0!important;
-        i{
-            margin-right: 0!important;
+        border: 0 !important;
+        i {
+            margin-right: 0 !important;
         }
     }
-    &-item-selected{
-        color: #ffc600!important;
-        border: 0!important;
+    &-item-selected {
+        color: $activeColor !important;
+        border: 0 !important;
     }
-    &-horizontal{
+    &-horizontal {
         line-height: 34px;
     }
+}
+
+.am-tabs-default-bar-tab-active {
+    color: $activeColor !important;
+}
+
+.am-tabs-default-bar-underline {
+    border-color: $activeColor !important;
 }

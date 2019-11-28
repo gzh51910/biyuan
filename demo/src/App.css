@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+div {
+  background-color: #ffffff;
+=======
 body {
   height: 100%;
   overflow: scroll;
@@ -5,6 +9,7 @@ body {
 
 .container {
   margin-bottom: 34px;
+>>>>>>> 408b352303642910a6065a2b79412aa75caf3fd4
 }
 
 .ant-menu {
@@ -16,7 +21,11 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
+<<<<<<< HEAD
+  background-color: #fafafa;
+=======
   background: #fff;
+>>>>>>> 408b352303642910a6065a2b79412aa75caf3fd4
 }
 
 .ant-menu-item {
@@ -39,4 +48,12 @@ body {
 
 .ant-menu-horizontal {
   line-height: 34px;
+}
+
+.am-tabs-default-bar-tab-active {
+  color: #ffc600 !important;
+}
+
+.am-tabs-default-bar-underline {
+  border-color: #ffc600 !important;
 }
