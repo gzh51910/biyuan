@@ -1,3 +1,7 @@
+div {
+  background-color: #ffffff;
+}
+
 .ant-menu {
   display: flex;
   flex-flow: row nowrap;
@@ -7,7 +11,7 @@
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #e6e6e6;
+  background-color: #fafafa;
 }
 
 .ant-menu-item {
@@ -30,4 +34,12 @@
 
 .ant-menu-horizontal {
   line-height: 34px;
+}
+
+.am-tabs-default-bar-tab-active {
+  color: #ffc600 !important;
+}
+
+.am-tabs-default-bar-underline {
+  border-color: #ffc600 !important;
 }
