@@ -13,6 +13,7 @@ import {
 // 引入的模块
 import './App.scss';
 import Home from './pages/Home';
+import New from '~/New';
 
 
 
@@ -68,6 +69,7 @@ class App extends Component {
              
                 <Switch>
                     <Route path="/home" component={Home} />
+                    <Route path="/new" component={New} />
                     <Route path="/notfound" render={() => <div>404页面</div>} />
                     <Redirect from="/" to="/home" exact />
                     <Redirect to="/notfound" />
