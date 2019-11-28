@@ -1,6 +1,13 @@
 @function vw($px) {
     @return ($px / 750) * 100vw;
 }
+body{
+    height: 100%;
+    overflow: scroll;
+}
+.container{
+    margin-bottom: 34px;
+}
 .ant-menu{
     display: flex;
     flex-flow: row nowrap;
@@ -10,7 +17,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #e6e6e6;
+    background: #fff;
     &-item{
         display: flex!important;
         flex-flow: column nowrap;

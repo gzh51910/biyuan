@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 // import {render} from 'react-dom';
 import {
-    HashRouter,
     Route,
     withRouter,
     Switch,
@@ -12,7 +11,7 @@ import {
 
 // 引入的模块
 import './App.scss';
-import Home from './pages/Home';
+import home from './pages/home';
 import msg from './pages/msg';
 import data from './pages/data';
 import forum from './pages/forum';
@@ -74,10 +73,10 @@ class App extends Component {
     }
     render() {
         return (
-            <div >
+            <div className="container">
 
                 <Switch>
-                    <Route path="/home" component={Home} />
+                    <Route path="/home" component={home} />
                     <Route path="/msg" component={msg}/>
                     <Route path="/data" component={data}/>
                     <Route path="/forum" component={forum}/>
