@@ -11,16 +11,13 @@ export function withTest(InnerComponent) {
     class OuterComponent extends Component {
         constructor(props) {
             super(props);
-            this.state = {
-                Authorization: ''
-            }
         }
-
         componentDidMount() {
+            let Authorization = JSON.parse(localStorage.getItem('Authorization'));
             let user = JSON.parse(localStorage.getItem('user'));
-            let {
-                Authorization
-            } = user
+           this.props.LOGIN(user)
+           console.log(this.props);
+           console.log(user);
             if (Authorization) {
                 // 登录则放行
 
@@ -33,28 +30,19 @@ export function withTest(InnerComponent) {
                 }).then(({
                     data
                 }) => {
-                    console.log('校验结果：', data)
-                    console.log('校验结果：', this.props)
+                  console.log(data);
                     if (data.status === 0) {
                         //   this.props.history.
-                        this.props.LOGIN()
+                     console.log("data.status === 0");
+                     localStorage.removeItem('user');
+                     localStorage.removeItem('Authorization');
                           let { history } = this.props;
-                          this.setState({
-                            Authorization: 11
-                          })
-                        //   history.push(path)
+                          history.push("/")
                     }
-                })
-                // this.props.
-
-                this.setState({
-                    Authorization
                 })
             }
         }
         render() {
-            console.log("withtest", this.state);
-            // return <InnerComponent Authorization={this.state.Authorization}/>
             return <InnerComponent {
                 ...this.props
             } {

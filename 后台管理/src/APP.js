@@ -14,20 +14,27 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import HeaderState from './pages/HeaderState'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+import {
+    withTest
+} from "./utils/withTest"
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
-
-
-const mapStateToProps = (state) => {
-    let {Authorization} = JSON.parse(localStorage.getItem('user')) 
-    state.admin.Authorization=Authorization
+let mapState = (state) => {
+    let admin = state.admin
+    return admin
+}
+let mapDispatch = (dispatch) => {
     return {
-   admin: state.admin
+        LOGIN(user) {
+            dispatch({ type: 'LOGIN' ,payload:{user}})
+        },
+        LOGOUT(state){
+            dispatch({ type: 'LOGOUT' ,payload:{user}})
+        }
     }
 }
-@connect(mapStateToProps)
-
-
+@connect(mapState,mapDispatch)
+@withTest
 class App extends Component {
     state = {
         currentPath: '/home',
@@ -111,14 +118,14 @@ class App extends Component {
         history.push(path)
     }
     // 左边菜单栏显示隐藏
-
     onCollapse = collapsed => {
         this.setState({ collapsed: !this.state.collapsed, });
     };
     render() {  
-        console.log(this.props);
+        let Authorization=localStorage.Authorization
+       console.log("Authorization1111",Authorization);
         return (
-            this.props.admin.Authorization?
+            Authorization?
                 <Layout >
                     <Header style={{
                         background: "#58bc58"

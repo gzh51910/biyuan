@@ -24,22 +24,7 @@ const formItemLayout = {
     },
   },
 };
-const mapState = (state) => {
-  let admin = state.admin
-  return admin
-}
-// const mapDispatch = (dispatch) => {
-
-//   return {
-//     loginadmin(isLogin) {
-//       dispatch({ type: 'LOGINADMIN', payload:  isLogin  })
-//     }
-//   }
-// }
-@connect(mapState
-  ,
-  //  mapDispatch
-   )
+@connect()
 @Form.create()
 class Login extends Component {
   gettoken = async (values) => {
@@ -49,11 +34,9 @@ class Login extends Component {
     let { data, headers } = result;
     let user = data.data[0]
     user.Authorization = headers.authorization;
-    
     localStorage.setItem('user',JSON.stringify(user))
-    let isLogin = user.isLogin
-    console.log(user);
-    
+    localStorage.setItem('Authorization',JSON.stringify(user.Authorization))
+    this.props.history.push('/')
   }
   handleSubmit = e => {
     e.preventDefault();
@@ -64,11 +47,10 @@ class Login extends Component {
     })
   }
   render() {
-    console.log(this.props);
     const { getFieldDecorator } = this.props.form;
     return (
  
-       <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
+       <Form className="loginForm" {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
         <Row>
           <Col {...tailFormItemLayout.wrapperCol}><h3>登录吧 勇者</h3></Col>
         </Row>
@@ -94,7 +76,6 @@ class Login extends Component {
         })(
           <Input.Password placeholder="input password" id="psw" visibilityToggle={false} />
         )}
-
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" className="login-form-button"

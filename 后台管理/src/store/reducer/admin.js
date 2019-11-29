@@ -18,8 +18,6 @@ const reducer = function (state = initState, {
 
         // 登录
         case "LOGIN":
-            console.log(465465);
-            
             return {
                 ...state,
                 user:payload
