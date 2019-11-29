@@ -1,8 +1,8 @@
 import axios from 'axios';
-// 预创建本地所以暂时还不能用
+// 只是预创建对方接口
 // 创建axios实例
 const local = axios.create({
-    baseURL: 'http://localhost:3435'
+    baseURL: 'http://m.coingogo.com/ajax'
 });
 
 function get(path,params,config={}){

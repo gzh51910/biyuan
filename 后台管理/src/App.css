@@ -1,3 +1,17 @@
 .ant-layout-sider-trigger {
   position: relative;
 }
+
+.ant-layout-header > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  height: 100%;
+}
+
+.logo img {
+  width: auto;
+  height: 100%;
+}

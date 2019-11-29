@@ -9,16 +9,27 @@ import {
     Switch,
     Redirect
 } from 'react-router-dom'
-import {connect} from 'react-redux';
-// 引入的模块
+import { connect } from 'react-redux';
 import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import HeaderState from './pages/HeaderState'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
-
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
+
+
+const mapStateToProps = (state) => {
+    let Authorization = localStorage.getItem('Authorization');
+    if(!Authorization==""){
+    state.admin.isLogin=true
+    }
+    return {
+        isLogin:state.admin.isLogin,
+    }
+}
+@connect(mapStateToProps)
+
 
 class App extends Component {
     state = {
@@ -94,7 +105,6 @@ class App extends Component {
 
         ]
     }
-  
     // 跳转组件
     goto = ({ key: path }) => {
         let { history } = this.props;
@@ -108,60 +118,57 @@ class App extends Component {
     onCollapse = collapsed => {
         this.setState({ collapsed: !this.state.collapsed, });
     };
-    render() {
+    render() {  
+        console.log(this.props);
         return (
-        <Layout >
-            <Header style={{
-                background: "#58bc58"
-            }}>
-                <HeaderState></HeaderState>
-            </Header>
-            <Layout>
-                <Sider collapsed={this.state.collapsed}
-                    collapsible
-                    onCollapse={this.onCollapse}
-                >
-                    <Menu theme="dark"
-                        defaultSelectedKeys={['1']}
-                        mode="inline"
-                        onClick={this.goto}
-                        ref="mymenu"
-                    >
-                        {
-                            this.state.menu.map((ele, index) => {
-                                if (ele.list2 == undefined) {
-                                    return <Menu.Item key={ele.path}>
-                                        <Icon type={ele.Icon} />
-                                        <span>{ele.text}</span>
-                                    </Menu.Item>
-                                } else {
-                                    return <SubMenu key={index}
-                                        title={
-                                            <span>
+            this.props.isLogin ?
+                <Layout >
+                    <Header style={{
+                        background: "#58bc58"
+                    }}>
+                        <HeaderState />
+                    </Header>
+                    <Layout>
+                        <Sider collapsed={this.state.collapsed}
+                            collapsible
+                            onCollapse={this.onCollapse}>
+                            <Menu theme="dark"
+                                defaultSelectedKeys={['1']}
+                                mode="inline"
+                                onClick={this.goto}
+                                ref="mymenu" >
+                                {
+                                    this.state.menu.map((ele, index) => {
+                                        if (ele.list2 == undefined) {
+                                            return <Menu.Item key={ele.path}>
                                                 <Icon type={ele.Icon} />
                                                 <span>{ele.text}</span>
-                                            </span>
-                                        }>  {ele.list2.map(item => <Menu.Item key={item.type}>{item.name}</Menu.Item>)}
-                                    </SubMenu>
-                                }
-                            })
-                        }
-                    </Menu>
-                </Sider>
-                <Content style={{ margin: '0 16px' }}>
-                    <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-                        <Switch>
-                            <Route path="/home" component={Home} />
-                            <Route path="/login" component={Login} />
-                            <Route path="/notfound" render={() => <div>404页面</div>} />
-                            <Redirect from="/" to="/login" exact />
-                            <Redirect to="/notfound" />
-                        </Switch>
-                    </div>
-                </Content>
-            </Layout>
-            <Footer style={{ textAlign: 'center', background: "red" }}> Design ©2019-11-28 Created by SSR</Footer>
-        </Layout>
+                                            </Menu.Item>
+                                        } else {
+                                            return <SubMenu key={index}
+                                                title={
+                                                    <span>
+                                                        <Icon type={ele.Icon} />
+                                                        <span>{ele.text}</span>
+                                                    </span>
+                                                }>  {ele.list2.map(item => <Menu.Item key={item.type}>{item.name}</Menu.Item>)}
+                                            </SubMenu>
+                                        } }) }
+                            </Menu>
+                        </Sider>
+                        <Content style={{ margin: '0 16px' }}>
+                            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                                <Switch>
+                                    <Route path="/home" component={Home} />
+                                    <Route path="/notfound" render={() => <div>404页面</div>} />
+                                    <Redirect to="/notfound" />
+                                </Switch>
+                            </div>
+                        </Content>
+                    </Layout>
+                    <Footer style={{ textAlign: 'center', background: "red" }}> Design ©2019-11-28 Created by SSR</Footer>
+                </Layout>
+                : <><Redirect to='/login' /> <Route path="/login" component={Login} /></>
         )
     }
 }
