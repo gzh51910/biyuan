@@ -3,12 +3,12 @@ body {
   overflow: scroll;
 }
 
-.container {
+.container-app {
   margin-bottom: 34px;
   background-color: #ffffff;
 }
 
-.ant-menu {
+.footer .ant-menu {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -21,7 +21,7 @@ body {
   border-bottom: 2px solid #e6e6e6;
 }
 
-.ant-menu-item {
+.footer .ant-menu-item {
   display: flex !important;
   flex-flow: column nowrap;
   align-items: center;
@@ -31,23 +31,23 @@ body {
   top: 5px !important;
 }
 
-.ant-menu-item i {
+.footer .ant-menu-item i {
   margin-right: 0 !important;
 }
 
-.ant-menu-item-selected {
+.footer .ant-menu-item-selected {
   color: #ffc600 !important;
   border: 0 !important;
 }
 
-.ant-menu-horizontal {
+.footer .ant-menu-horizontal {
   line-height: 34px;
 }
 
-.am-tabs-default-bar-tab-active {
+.footer .am-tabs-default-bar-tab-active {
   color: #ffc600 !important;
 }
 
-.am-tabs-default-bar-underline {
+.footer .am-tabs-default-bar-underline {
   border-color: #ffc600 !important;
 }
