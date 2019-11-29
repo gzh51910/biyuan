@@ -41,18 +41,18 @@ class forum extends Component {
                 second: ["公告版规", "活动中心", "模拟交易"]
             }
         ],
-        current:"1",
+        current: "1",
     }
     componentDidMount() {
     }
     handleClick = e => {
-        console.log("click",e);
+        console.log("click", e);
         this.setState({
-            current:e.key
+            current: e.key
         })
     };
     render() {
-        let { forumBanner, forumMenu } = this.state;
+        let { forumBanner, forumMenu ,current} = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -84,7 +84,30 @@ class forum extends Component {
                         ))}
                     </Carousel>
                 </div>
-                
+                <div className="forum-menu">
+                    <Menu
+                        onClick={this.handleClick}
+                        style={{  }}
+                        defaultSelectedKeys={['1']}
+                        selectedKeys={[current]}
+                        mode="horizontal"
+                    >
+                        <Menu.Item key="1"><span>最新</span></Menu.Item>
+                        {forumMenu.map(item => {
+                            return (
+                                <SubMenu
+                                    key={item.first}
+                                    title={
+                                        <span>{item.first}</span>
+                                    }
+                                    popupClassName="forumMenuSecond"
+                                >
+                                    {item.second.map(val => { return <Menu.Item key={val} ><span>{val}</span></Menu.Item> })}
+                                </SubMenu>
+                            )
+                        })}
+                    </Menu>
+                </div>
             </div>
         );
     }

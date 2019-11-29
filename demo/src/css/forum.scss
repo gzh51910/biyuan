@@ -6,6 +6,8 @@ $activeColor: #ffc600;
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+    width: 100%;
+    overflow: hidden;
     .forum-header{
         display: flex;
         flex-flow: row nowrap;
@@ -64,15 +66,73 @@ $activeColor: #ffc600;
     .forum-banner{
         padding: 0 1rem 1rem 1rem;
         overflow: hidden;
-        height: 8.03rem;
         .slider-list{
             .slider-slide{
                 img{
                     width: 100%!important;
-                    height: 7.03rem!important;
+                    height: vw(226)!important;
                     border-radius: 5px;
                 }
             }
         }
     }
+    .forum-menu{
+        overflow: auto;
+        .ant-menu{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: start;
+            align-items: center;
+            background: #fff;
+            border-bottom: 2px solid #e6e6e6;
+            width: 592px;
+            &-item{
+                display: flex!important;
+                flex-flow: column nowrap;
+                align-items: center;
+                justify-content: end;
+                border: 0!important;
+            }
+            &-item-selected {
+                color: $activeColor !important;
+                border: 0 !important;
+            }
+            &-horizontal {
+                line-height: 34px;
+            }
+        }
+        .ant-menu-submenu-active{
+            color: $activeColor !important;
+            border: 0 !important;
+        }
+        .ant-menu-submenu-selected{
+            color: $activeColor !important;
+            border: 0 !important;
+        }
+        .ant-menu-submenu-title:hover{
+            color: $activeColor !important;
+        }
+        .ant-menu-submenu-title{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+    }
+    .forum-menu::-webkit-scrollbar{
+        display: none;
+    }
 }
+.forumMenuSecond{
+    overflow: scroll!important;
+    width: 100%;
+    .ant-menu-sub{
+        width: 1000px;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: start;
+        align-items: center;
+    }
+}
+
+
