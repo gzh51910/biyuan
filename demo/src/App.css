@@ -17,6 +17,7 @@ body {
   left: 0;
   right: 0;
   background: #fff;
+  border-bottom: 2px solid #e6e6e6;
 }
 
 .ant-menu-item {
@@ -26,6 +27,7 @@ body {
   justify-content: end;
   width: 20%;
   border: 0 !important;
+  top: 5px !important;
 }
 
 .ant-menu-item i {

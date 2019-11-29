@@ -86,8 +86,7 @@ header .header-center img {
   width: 16px;
   height: 16px;
   color: #ffc600;
-  padding: 0 0.5rem;
-  background: #ffc600;
+  margin: 0 0.5rem;
 }
 
 .tip div {
