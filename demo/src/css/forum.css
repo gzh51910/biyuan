@@ -141,6 +141,7 @@
 .forumMenuSecond {
   overflow: scroll !important;
   width: 100%;
+  top: 265px !important;
 }
 
 .forumMenuSecond .ant-menu-sub {
@@ -149,4 +150,19 @@
   flex-flow: row nowrap;
   justify-content: start;
   align-items: center;
+  background-color: #FFF1BF;
+}
+
+.forumMenuSecond .ant-menu-item {
+  margin: 0 !important;
+}
+
+.forumMenuSecond .ant-menu-item-selected {
+  color: #ffc600 !important;
+  border-bottom: 2px solid #ffc600 !important;
+  background-color: #FFF1BF !important;
+}
+
+.forumMenuSecond::-webkit-scrollbar {
+  display: none;
 }
