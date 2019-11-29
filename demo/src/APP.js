@@ -66,31 +66,35 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
-        <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/news" component={News} />
-          <Route path="/data" component={data} />
-          <Route path="/forum" component={forum} />
-          <Route path="/mine" component={mine} />
-          <Route path="/notfound" render={() => <div>404页面</div>} />
-          <Redirect from="/" to="/home" exact />
-          <Redirect to="/notfound" />
-        </Switch>
-        <Menu
-          onClick={this.goto}
-          selectedKeys={[this.state.currentPath]}
-          mode="horizontal"
-        >
-          {this.state.menu.map(item => {
-            return (
-              <Menu.Item key={item.path}>
-                <Icon type={item.icon} />
-                {item.text}
-              </Menu.Item>
-            );
-          })}
-        </Menu>
+      <div className="container-app">
+        
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route path="/news" component={News} />
+            <Route path="/data" component={data} />
+            <Route path="/forum" component={forum} />
+            <Route path="/mine" component={mine} />
+            <Route path="/notfound" render={() => <div>404页面</div>} />
+            <Redirect from="/" to="/home" exact />
+            <Redirect to="/notfound" />
+          </Switch>
+          <div className="footer">
+          <Menu
+            onClick={this.goto}
+            selectedKeys={[this.state.currentPath]}
+            mode="horizontal"
+          >
+            {this.state.menu.map(item => {
+              return (
+                <Menu.Item key={item.path}>
+                  <Icon type={item.icon} />
+                  {item.text}
+                </Menu.Item>
+              );
+            })}
+          </Menu>
+        </div>
+
       </div>
     );
   }
