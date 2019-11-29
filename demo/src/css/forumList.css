@@ -1,0 +1,90 @@
+.forumList {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  overflow: scroll;
+}
+
+.forumList ul {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.forumList ul li {
+  padding: 1rem 0;
+  margin: 0 1rem;
+  border-bottom: 1px solid #EBEBEB;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.forumList ul li .forumList-title .ding, .forumList ul li .forumList-title .jing {
+  font-size: 0.7rem;
+  height: 1.4rem;
+  width: 1.4rem;
+  margin-right: 0.5rem;
+  padding: 0 0.2rem;
+  border-radius: 3px;
+}
+
+.forumList ul li .forumList-title .ding {
+  color: #f7a010;
+  border: 1px solid #f7a010;
+}
+
+.forumList ul li .forumList-title .jing {
+  color: #f35959;
+  border: 1px solid #f35959;
+}
+
+.forumList ul li .forumList-title span {
+  line-height: 1.4rem;
+  color: #252525;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.forumList ul li .forumList-msg {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #999;
+  padding-top: 1.6rem;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.forumList ul li .forumList-msg-time {
+  margin-right: 1rem;
+}
+
+.forumList ul li .forumList-msg-source {
+  flex: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: start;
+  align-items: center;
+}
+
+.forumList ul li .forumList-msg-source-active {
+  margin: 0.2rem;
+}
+
+.forumList ul li .forumList-msg-source-value {
+  color: #ffcb17;
+}
+
+.forumList ul li .forumList-msg-seen {
+  margin-right: 1rem;
+}
+
+.forumList ul li .forumList-msg i {
+  margin-right: 0.2rem;
+  font-size: 12px;
+}

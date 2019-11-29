@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import '../css/forum.css';
 import { Menu, Icon } from "antd";
 import { Carousel } from 'antd-mobile';
-import { MenuItem } from 'rc-menu';
+import ForumList from './forumList';
 const { SubMenu } = Menu;
 function mapStateToProps(state) {
     return {
@@ -108,6 +108,7 @@ class forum extends Component {
                         })}
                     </Menu>
                 </div>
+                <ForumList/>
             </div>
         );
     }
