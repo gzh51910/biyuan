@@ -1,8 +1,3 @@
-body {
-  display: flex;
-  flex-direction: column;
-}
-
 html, body {
   overflow-y: scroll;
 }
@@ -11,7 +6,7 @@ header {
   width: 100%;
   height: 3rem;
   border-bottom: 2px solid #e1e1e1;
-  display: flex;
+  display: flex !important;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
@@ -31,8 +26,7 @@ header .header-left svg, header .header-right svg {
 }
 
 header .header-center {
-  width: 100%;
-  height: 100%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +38,8 @@ header .header-center img {
 }
 
 .menu {
-  display: flex;
+  width: 100%;
+  display: flex !important;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
@@ -55,9 +50,10 @@ header .header-center img {
   width: 20%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 0.5rem;
+  margin: 0 !important;
 }
 
 .menu figure img {
@@ -86,8 +82,7 @@ header .header-center img {
   width: 16px;
   height: 16px;
   color: #ffc600;
-  padding: 0 0.5rem;
-  background: #ffc600;
+  margin: 0 0.5rem;
 }
 
 .tip div {
