@@ -3,7 +3,6 @@ import React, {
 } from 'react';
 // import {render} from 'react-dom';
 import {
-
     Route,
     withRouter,
     Switch,
@@ -20,12 +19,10 @@ const { SubMenu } = Menu;
 
 
 const mapStateToProps = (state) => {
-    let Authorization = localStorage.getItem('Authorization');
-    if(!Authorization==""){
-    state.admin.isLogin=true
-    }
+    let {Authorization} = JSON.parse(localStorage.getItem('user')) 
+    state.admin.Authorization=Authorization
     return {
-        isLogin:state.admin.isLogin,
+   admin: state.admin
     }
 }
 @connect(mapStateToProps)
@@ -121,7 +118,7 @@ class App extends Component {
     render() {  
         console.log(this.props);
         return (
-            this.props.isLogin ?
+            this.props.admin.Authorization?
                 <Layout >
                     <Header style={{
                         background: "#58bc58"

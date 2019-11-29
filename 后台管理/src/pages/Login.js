@@ -28,15 +28,18 @@ const mapState = (state) => {
   let admin = state.admin
   return admin
 }
-const mapDispatch = (dispatch) => {
+// const mapDispatch = (dispatch) => {
 
-  return {
-    loginadmin(isLogin) {
-      dispatch({ type: 'LOGINADMIN', payload:  isLogin  })
-    }
-  }
-}
-@connect(mapState, mapDispatch)
+//   return {
+//     loginadmin(isLogin) {
+//       dispatch({ type: 'LOGINADMIN', payload:  isLogin  })
+//     }
+//   }
+// }
+@connect(mapState
+  ,
+  //  mapDispatch
+   )
 @Form.create()
 class Login extends Component {
   gettoken = async (values) => {
@@ -47,12 +50,9 @@ class Login extends Component {
     let user = data.data[0]
     user.Authorization = headers.authorization;
     
-    localStorage.setItem('Authorization', JSON.stringify(user.Authorization))
+    localStorage.setItem('user',JSON.stringify(user))
     let isLogin = user.isLogin
-    console.log(isLogin);
-    
-    this.props.loginadmin(isLogin)
-    console.log(this.props);
+    console.log(user);
     
   }
   handleSubmit = e => {
@@ -64,10 +64,11 @@ class Login extends Component {
     })
   }
   render() {
-
+    console.log(this.props);
     const { getFieldDecorator } = this.props.form;
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
+ 
+       <Form {...formItemLayout} onSubmit={this.handleSubmit} className="login-form">
         <Row>
           <Col {...tailFormItemLayout.wrapperCol}><h3>登录吧 勇者</h3></Col>
         </Row>
