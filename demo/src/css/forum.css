@@ -1,0 +1,28 @@
+.container-forum {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-forum header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-forum header .header-home {
+  width: 3rem;
+}
+
+.container-forum header .header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-forum header i {
+  width: 2rem;
+  text-align: center;
+}
