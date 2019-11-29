@@ -71,7 +71,7 @@ class Home extends Component {
                         <img src="http://m.coingogo.com/wap/image/login_logo.png"/>
                     </div>
                     <div className="header-right">
-                        <img/>
+                        <Icon type="search" />
                     </div>
                 </header>
                 <section className="banner">
@@ -92,9 +92,9 @@ class Home extends Component {
                     }
                 </section>
                 <section className="tip">
-                    <i></i>
+                    <Icon type="sound" />
                     <div>币源社区最新入住名单</div>
-                    <i></i>
+                    <Icon type="right" />
                 </section>
                 <main>
                     
