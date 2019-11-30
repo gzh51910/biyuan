@@ -1,0 +1,56 @@
+@function vw($px) {
+    @return ($px / 750) * 100vw;
+}
+
+.logina {
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    margin: vw(50);
+
+    // .xb {
+
+
+
+    //     width: vw(80);
+    //     height: vw(80);
+
+    // }
+
+
+    .loginhead {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: vw(50);
+
+        .touxiang {
+            width: vw(60);
+            height: vw(60);
+        }
+
+        .zhuce {
+            font-size: vw(40);
+            font-weight: bold;
+        }
+
+        .dakai {
+            font-size: vw(32);
+        }
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        .yonghu {
+            color: #ffc600;
+        }
+
+        .yanzhengma {
+            color: #ffc600;
+        }
+    }
+
+}
