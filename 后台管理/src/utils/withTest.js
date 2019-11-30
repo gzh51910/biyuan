@@ -12,15 +12,19 @@ export function withTest(InnerComponent) {
         constructor(props) {
             super(props);
         }
+        state = {
+            Authorization: ''
+        }
         componentDidMount() {
-            let Authorization = JSON.parse(localStorage.getItem('Authorization'));
+            this.setState({
+                Authorization : JSON.parse(localStorage.getItem('Authorization'))
+            })
             let user = JSON.parse(localStorage.getItem('user'));
-           this.props.LOGIN(user)
-           console.log(this.props);
-           console.log(user);
-            if (Authorization) {
+            this.props.LOGIN(user)
+            console.log(this.props);
+            //    console.log(user);
+            if (this.state.Authorization) {
                 // 登录则放行
-
                 // 验证
                 let baseURL = local.baseURL
                 let data = axios.get(`${baseURL}/verify`, {
@@ -30,16 +34,23 @@ export function withTest(InnerComponent) {
                 }).then(({
                     data
                 }) => {
-                  console.log(data);
+                    console.log(data);
                     if (data.status === 0) {
                         //   this.props.history.
-                     console.log("data.status === 0");
-                     localStorage.removeItem('user');
-                     localStorage.removeItem('Authorization');
-                          let { history } = this.props;
-                          history.push("/")
+                        console.log("data.status === 0");
+                        localStorage.removeItem('user');
+                        localStorage.removeItem('Authorization');
+                        let {
+                            history
+                        } = this.props;
+                        history.push("/")
                     }
                 })
+            } else {
+                let {
+                    history
+                } = this.props;
+                history.push("/login")
             }
         }
         render() {

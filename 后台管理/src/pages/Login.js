@@ -24,6 +24,7 @@ const formItemLayout = {
     },
   },
 };
+
 @connect()
 @Form.create()
 class Login extends Component {
@@ -36,7 +37,7 @@ class Login extends Component {
     user.Authorization = headers.authorization;
     localStorage.setItem('user',JSON.stringify(user))
     localStorage.setItem('Authorization',JSON.stringify(user.Authorization))
-    this.props.history.push('/')
+    window.location.reload()
   }
   handleSubmit = e => {
     e.preventDefault();
@@ -47,6 +48,7 @@ class Login extends Component {
     })
   }
   render() {
+    console.log( window.location.href);
     const { getFieldDecorator } = this.props.form;
     return (
  

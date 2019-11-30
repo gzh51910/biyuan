@@ -4,7 +4,7 @@ import React, {
 import {
     connect
 } from 'react-redux';
-
+import UserList from '../../components/UserList'
 // function mapStateToProps(state) {
 //     return {
 
@@ -19,7 +19,9 @@ class Reader extends Component {
         console.log(this.props);
         
         return (<div >
-            普通用户 </div>
+            普通用户 
+            <UserList></UserList>
+            </div>
         );
     }
 }
