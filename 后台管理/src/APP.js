@@ -13,6 +13,11 @@ import './App.css';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import HeaderState from './pages/HeaderState'
+import Reader from './pages/user/Reader'
+import Writers from './pages/user/Writers'
+import FNews from './pages/AM/FNews'
+import News from './pages/AM/News'
+import WeiBo from './pages/AM/WeiBo'
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import {
     withTest
@@ -60,13 +65,16 @@ class App extends Component {
                 path: '/home5',
                 list2: [{
                     name: "普通用户",
-                    type: "reader"
+                    type: "reader",
+                    path:'/Reader'
                 }, {
                     name: "新媒体人",
-                    type: "author"
+                    type: "/author",
+                    path:'Writers'
                 }, {
                     name: "文章审核员",
-                    type: "inspector"
+                    type: "inspector",
+                    path:'Reader5'
                 }]
             },
             {
@@ -75,38 +83,43 @@ class App extends Component {
                 path: '1',
                 list2: [{
                     name: "资讯",
-                    type: "msg"
+                    type: "News",
+                    path:'/News'
                 }, {
                     name: "快讯",
-                    type: "Fmge"
+                    type: "FNews",
+                    path:'/FNews'
                 }, {
                     name: "微博",
-                    type: "wb"
+                    type: "WeiBo",
+                    path:'/WeiBo'
                 }]
             }
 
         ],
-        textType: [
+      
+        Routelist:[
             {
-                type: "自媒体"
-            }, {
-                type: "数字币"
-            }, {
-                type: "区块链"
-            }, {
-                type: "行情"
-            }, {
-                type: "交易所"
-            }, {
-                type: "挖矿区"
-            }, {
-                type: "钱包区"
-            }, {
-                type: "综合区"
-            }, {
-                type: "项目评级"
+                path:"/home",
+                component:Home,   
             },
-
+            {
+                path:'/Reader',
+                component:Reader
+            },
+            {
+                path:'/Writers',
+                component:Writers
+            }, {
+                path:'/FNews',
+                component:FNews
+            }, {
+                path:'/News',
+                component:News
+            }, {
+                path:'/WeiBo',
+                component:WeiBo
+            }
         ]
     }
     // 跳转组件
@@ -114,8 +127,10 @@ class App extends Component {
         let { history } = this.props;
         this.setState({
             currentPath: path
-        })
+        })  
         history.push(path)
+        console.log(11);
+        
     }
     // 左边菜单栏显示隐藏
     onCollapse = collapsed => {
@@ -123,7 +138,6 @@ class App extends Component {
     };
     render() {  
         let Authorization=localStorage.Authorization
-       console.log("Authorization1111",Authorization);
         return (
             Authorization?
                 <Layout >
@@ -155,7 +169,7 @@ class App extends Component {
                                                         <Icon type={ele.Icon} />
                                                         <span>{ele.text}</span>
                                                     </span>
-                                                }>  {ele.list2.map(item => <Menu.Item key={item.type}>{item.name}</Menu.Item>)}
+                                                }>  {ele.list2.map(item => <Menu.Item key={item.path}>{item.name}</Menu.Item>)}
                                             </SubMenu>
                                         } }) }
                             </Menu>
@@ -163,7 +177,9 @@ class App extends Component {
                         <Content style={{ margin: '0 16px' }}>
                             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
                                 <Switch>
-                                    <Route path="/home" component={Home} />
+                                 {this.state.Routelist.map(ele=>{
+                                     return ( <Route {...ele} key={ele.path} />)
+                                 })}
                                     <Route path="/notfound" render={() => <div>404页面</div>} />
                                     <Redirect to="/notfound" />
                                 </Switch>
