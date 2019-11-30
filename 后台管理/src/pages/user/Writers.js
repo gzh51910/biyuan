@@ -12,14 +12,15 @@ import {
 // }
 
 
-class Home extends Component {
+class Writers extends Component {
+
     render() {
-      
+        console.log(this.props);
         
         return (<div >
-            欢迎管理员登陆， </div>
+            媒体人 </div>
         );
     }
 }
 
-export default Home;
+export default Writers;
