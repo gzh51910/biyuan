@@ -50,6 +50,11 @@ module.exports = {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
                 include: path.join(__dirname, './src')
+            },
+            // 本地图片
+            {
+                test: /.(jpg|png)$/,
+                use: ['url-loader']
             }
         ]
     },

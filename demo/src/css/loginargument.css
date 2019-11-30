@@ -1,0 +1,35 @@
+.bxiyi {
+  margin: 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bxiyi .xieyi {
+  font-weight: 2.66667vw;
+  font-weight: bold;
+  line-height: 10.66667vw;
+}
+
+.bxiyi .line {
+  margin-bottom: 5.33333vw;
+  width: 9.33333vw;
+  height: 1.33333vw;
+  background-color: #FFC600;
+  border-radius: 0.4vw;
+}
+
+.bxiyi .text p {
+  color: #000000;
+}
+
+.bxiyi .text .tit {
+  font-size: 4.4vw;
+}
+
+.bxiyi .statement {
+  text-align: right;
+  height: 26.66667vw;
+  color: #999;
+  font-size: 4vw;
+}

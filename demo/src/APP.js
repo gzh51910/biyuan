@@ -17,7 +17,8 @@ import msg from './pages/msg';
 import data from './pages/data';
 import forum from './pages/forum';
 import mine from './pages/mine';
-
+import Login from './pages/Login';
+import loginargument from './pages/loginargument';
 import { Menu, Icon } from 'antd';
 
 class App extends Component {
@@ -28,7 +29,7 @@ class App extends Component {
             name: 'home',
             path: '/home',
             text: '首页'
-        }, 
+        },
         {
             icon: 'profile',
             name: 'msg',
@@ -78,10 +79,12 @@ class App extends Component {
 
                 <Switch>
                     <Route path="/home" component={Home} />
-                    <Route path="/msg" component={msg}/>
-                    <Route path="/data" component={data}/>
-                    <Route path="/forum" component={forum}/>
-                    <Route path="/mine" component={mine}/>
+                    <Route path="/msg" component={msg} />
+                    <Route path="/data" component={data} />
+                    <Route path="/forum" component={forum} />
+                    <Route path="/mine" component={mine} />
+                    <Route path="/Login" component={Login} />
+                    <Route path="/loginargument" component={loginargument} />
                     <Route path="/notfound" render={() => <div>404页面</div>} />
                     <Redirect from="/" to="/home" exact />
                     <Redirect to="/notfound" />
