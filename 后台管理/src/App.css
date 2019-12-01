@@ -15,3 +15,12 @@
   width: auto;
   height: 100%;
 }
+
+.listTitle .ant-col {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.userlist .gutter-row {
+  text-align: center;
+}

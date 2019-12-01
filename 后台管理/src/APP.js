@@ -42,28 +42,14 @@ let mapDispatch = (dispatch) => {
 @withTest
 class App extends Component {
     state = {
-        currentPath: '/home',
+        currentPath: localStorage.currentPath?localStorage.currentPath:'/home',
         collapsed: false,
         // Authorization : localStorage.Authorization,
         menu: [
             {
-                text: "主页",
-                Icon: "home",
-                path: '/home'
-            },
-            {
-                text: "新闻公告",
-                Icon: "read",
-                path: '/home2'
-            },
-            {
-                text: "论坛管理",
-                Icon: "desktop",
-                path: '/home3'
-            }, {
                 text: "用户管理",
                 Icon: "usergroup-delete",
-                path: '/home5',
+                path: '/home',
                 list2: [{
                     name: "普通用户",
                     type: "reader",
@@ -71,11 +57,11 @@ class App extends Component {
                 }, {
                     name: "新媒体人",
                     type: "/author",
-                    path: 'Writers'
+                    path: '/Writers'
                 }, {
                     name: "文章审核员",
                     type: "inspector",
-                    path: 'Reader5'
+                    path: 'Reade124r'
                 }]
             },
             {
@@ -95,6 +81,20 @@ class App extends Component {
                     type: "WeiBo",
                     path: '/WeiBo'
                 }]
+            }, {
+                text: "主页",
+                Icon: "home",
+                path: '/home'
+            },
+            {
+                text: "新闻公告",
+                Icon: "read",
+                path: '/home2'
+            },
+            {
+                text: "论坛管理",
+                Icon: "desktop",
+                path: '/home3'
             }
 
         ],
@@ -126,19 +126,16 @@ class App extends Component {
         this.setState({
             currentPath: path
         })
+        localStorage.setItem("currentPath",path);
         history.push(path)
-        console.log(11);
-
     }
     // 左边菜单栏显示隐藏
     onCollapse = collapsed => {
         this.setState({ collapsed: !this.state.collapsed, });
-    };
-    
+    };  
     render() {
         console.log(this.props);
-        
-       
+      let  {currentPath}=this.state
         return (
             this.props.Authorization?
                 <Layout >
@@ -152,7 +149,7 @@ class App extends Component {
                             collapsible
                             onCollapse={this.onCollapse}>
                             <Menu theme="dark"
-                                defaultSelectedKeys={['1']}
+                                defaultSelectedKeys={[currentPath]}
                                 mode="inline"
                                 onClick={this.goto}
                                 ref="mymenu" >
@@ -177,11 +174,12 @@ class App extends Component {
                             </Menu>
                         </Sider>
                         <Content style={{ margin: '0 16px' }}>
-                            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                            <div style={{ padding: 8, background: '#fff', minHeight: 360 }}>
                                 <Switch>
+                                     <Route path="/notfound" render={() => <div>404页面</div>} />
                                     {this.state.Routelist.map(ele => <Route {...ele} key={ele.path} />)}
-                                    <Route path="/notfound" render={() => <div>404页面</div>} />
-                                    <Redirect to="/notfound" />
+                                    {/* <Redirect to="/notfound" /> */}
+                                    <Redirect to={currentPath?currentPath:"/home"} exact/>
                                 </Switch>
                             </div>
                         </Content>
