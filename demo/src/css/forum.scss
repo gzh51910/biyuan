@@ -77,75 +77,26 @@ $activeColor: #ffc600;
         }
     }
     .forum-menu{
-        overflow: auto;
-        .ant-menu{
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: start;
-            align-items: center;
-            background: #fff;
-            border-bottom: 2px solid #e6e6e6;
-            width: 592px;
-            &-item{
+        .ant-tabs-tabpane{
+            overflow: scroll;
+            width: 100%!important;
+            .ant-radio-group{
                 display: flex!important;
-                flex-flow: column nowrap;
-                align-items: center;
-                justify-content: end;
-                border: 0!important;
+                flex-flow: row nowrap;
+                text-align: center;
+                .ant-radio-button-wrapper{
+                    display: flex!important;
+                    .ant-radio-button{
+                        display: none!important;
+                    }
+                    span{
+                        display: flex!important;
+                        white-space: nowrap!important;
+                    }
+                }
             }
-            &-item-selected {
-                color: $activeColor !important;
-                border: 0 !important;
-            }
-            &-horizontal {
-                line-height: 34px;
-            }
-        }
-        .ant-menu-submenu-active{
-            color: $activeColor !important;
-            border: 0 !important;
-        }
-        .ant-menu-submenu-selected{
-            color: $activeColor !important;
-            border: 0 !important;
-        }
-        .ant-menu-submenu-title:hover{
-            color: $activeColor !important;
-        }
-        .ant-menu-submenu-title{
-            display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-around;
-            align-items: center;
         }
     }
-    .forum-menu::-webkit-scrollbar{
-        display: none;
-    }
-}
-.forumMenuSecond{
-    overflow: scroll!important;
-    width: 100%;
-    top:265px!important;
-    .ant-menu-sub{
-        width: 1000px;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: start;
-        align-items: center;
-        background-color: #FFF1BF;
-    }
-    .ant-menu-item{
-        margin: 0!important;
-    }
-    .ant-menu-item-selected{
-        color: $activeColor !important;
-        border-bottom: 2px solid  $activeColor !important;
-        background-color: #FFF1BF !important;
-    }
-}
-.forumMenuSecond::-webkit-scrollbar{
-    display: none;
 }
 
 

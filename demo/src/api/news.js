@@ -7,10 +7,13 @@ const news = axios.create({
 
 // 二次封装(简化操作,维护方便)
 
-function post(data, config = {}) {
-    return news.post("", data, config);
+function get(params, config = {}) {
+    return news.get("", {
+        ...config,
+        params
+    });
 }
 
 export default {
-    post
+    get
 };
