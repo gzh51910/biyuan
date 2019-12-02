@@ -54,7 +54,7 @@ class TableForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let {msg}=this.RegSend(values)
-        
+        // alert
       }
     })
   }
@@ -64,29 +64,16 @@ class TableForm extends Component {
     console.log({Rpsw,email,name,phone,psw,username});
     let { data } = await local.post("/goods", {
       Rpsw,email,name,phone,psw,username
-    })
-    // console.log(data);
+    })   
+    alert(data.msg)
+    return data
   }
-
-  handleOk = () => {
-    this.setState({
-      confirmLoading: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        visible: false,
-        confirmLoading: false,
-      });
-    }, 2000);
-  };
-
   handleCancel = () => {
     console.log('Clicked cancel button');
     this.setState({
       visible: false,
     });
   };
-
   render() {
     const { visible, confirmLoading, } = this.state;
     const { getFieldDecorator, getFieldValue } = this.props.form;
@@ -98,16 +85,14 @@ class TableForm extends Component {
         <Modal
           title={this.props.text}
           visible={visible}
-          onOk={this.handleOk}
+   
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
-        >
+          footer ={null}>
           <Form className="loginForm" {...formItemLayout} onSubmit={this.handleSubmit}>
             <Form.Item
               label="用户id"
               hasFeedback
-            // extra="Should be combination of numbers & alphabets"
-            // validateStatus="validating"
             >
               {getFieldDecorator('username', {
                 rules: [{ required: true, max: 11, message: "大爷写一个" }]
