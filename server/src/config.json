@@ -1,5 +1,6 @@
 {
-    "PORT": 1910,
+    "PORT": 3435,
     "dbUrl": "mongodb://localhost:27017",
-    "dbName": "biyuan"
+    "dbName": "BiYuan"
 }
+

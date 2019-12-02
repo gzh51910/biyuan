@@ -4,7 +4,8 @@ import {Row,Col} from 'antd';
 function HeaderState({datalist,history}){
     
     return (
-       <div>456465</div>
+        <div className="logo"><img src="http://m.coingogo.com/wap/image/login_logo.png" alt=""/></div>
+
     )
 }
 

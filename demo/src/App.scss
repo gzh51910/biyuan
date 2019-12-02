@@ -9,46 +9,48 @@ body {
 img {
     width: 100%;
 }
-.container {
+.container-app {
     margin-bottom: 34px;
     background-color: #ffffff;
 }
-.ant-menu {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-around;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: #fff;
-    border-bottom: 2px solid #e6e6e6;
-    &-item {
-        display: flex !important;
-        flex-flow: column nowrap;
+.footer {
+    .ant-menu {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-around;
         align-items: center;
-        justify-content: end;
-        width: 20%;
-        border: 0 !important;
-        top: 5px !important;
-        i {
-            margin-right: 0 !important;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 2px solid #e6e6e6;
+        &-item {
+            display: flex !important;
+            flex-flow: column nowrap;
+            align-items: center;
+            justify-content: end;
+            width: 20%;
+            border: 0 !important;
+            top: 5px !important;
+            i {
+                margin-right: 0 !important;
+            }
+        }
+        &-item-selected {
+            color: $activeColor !important;
+            border: 0 !important;
+        }
+        &-horizontal {
+            line-height: 34px;
         }
     }
-    &-item-selected {
+
+    .am-tabs-default-bar-tab-active {
         color: $activeColor !important;
-        border: 0 !important;
     }
-    &-horizontal {
-        line-height: 34px;
+
+    .am-tabs-default-bar-underline {
+        border-color: $activeColor !important;
     }
-}
-
-.am-tabs-default-bar-tab-active {
-    color: $activeColor !important;
-}
-
-.am-tabs-default-bar-underline {
-    border-color: $activeColor !important;
 }

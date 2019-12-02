@@ -1,3 +1,4 @@
+
 import React, {
     Component
 } from 'react';
@@ -12,14 +13,15 @@ import {
 // }
 
 
-class Home extends Component {
+class FNews extends Component {
+  
     render() {
-      
+        console.log(this.props);
         
         return (<div >
-            欢迎管理员登陆， </div>
+            fnew </div>
         );
     }
 }
 
-export default Home;
+export default FNews;
