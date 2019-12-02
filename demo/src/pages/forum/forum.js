@@ -46,18 +46,26 @@ class forum extends Component {
                 second: ["公告版规", "活动中心", "模拟交易"]
             }
         ],
-        tabStyle: {
-
-        }
+        datalist:"最新"
     }
     componentDidMount() {
     }
-    callback = key => {
-        console.log(key);
-
+    callback=key=>{
+        if(key==1){
+            console.log("最新");
+            this.setState({
+                datalist:"最新"
+            })
+        }
+    }
+    getDatalist=e=>{
+        console.log("value",e.target.value);
+        this.setState({
+            datalist:e.target.value
+        })
     }
     render() {
-        let { forumBanner, forumMenu, tabStyle } = this.state;
+        let { forumBanner, forumMenu,datalist } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -90,21 +98,23 @@ class forum extends Component {
                     </Carousel>
                 </div>
                 <div className="forum-menu">
-                    <Tabs defaultActiveKey="2" tabBarStyle={tabStyle} onChange={this.callback}>
+                    <Tabs defaultActiveKey="1" onChange={this.callback}>
                         {forumMenu.map((item, i) => {
                             return (
-                                <TabPane tab={item.first} key={i + 1}>
+                                <TabPane tab={item.first} key={i + 1} >
                                     {
                                         i == 0
                                             ?
                                             ""
                                             :
-                                            <Radio.Group  defaultValue="a">
+                                            <Radio.Group  defaultValue="1" onChange={this.getDatalist}>
                                                 {item.second.map((val,j)=>{
                                                     return (
                                                         <Radio.Button value={val} key={j+1}>{val}</Radio.Button>  
                                                     )})}
+                                                    
                                             </Radio.Group>
+                                            
                                         // <Tabs  >
                                         // {item.second.map((val,j)=>{
                                         //     return (
@@ -112,13 +122,13 @@ class forum extends Component {
                                         //     )})}
                                         // </Tabs>
                                     }
-
+                                    
                                 </TabPane>
                             )
                         })}
                     </Tabs>
                 </div>
-                {/* <ForumList/> */}
+                <ForumList datalist={datalist}/>
             </div>
         );
     }
