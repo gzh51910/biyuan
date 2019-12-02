@@ -7,7 +7,7 @@ import "./App.scss";
 import Home from "~/Home";
 import News from "~/News";
 import data from "~/data";
-import forum from "~/forum";
+import forum from "~/forum/forum";
 import mine from "~/mine";
 
 import { Menu, Icon } from "antd";
