@@ -16,6 +16,10 @@
   height: 100%;
 }
 
+.listTitle {
+  font-size: 16px;
+}
+
 .listTitle .ant-col {
   font-weight: bold;
   font-size: 16px;

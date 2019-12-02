@@ -62,11 +62,11 @@ class Login extends Component {
           // validateStatus="validating"
           help=""
         >
-          {getFieldDecorator('user', {
+          {getFieldDecorator('username', {
             rules: [
               { required: true, max: 11, pattern: /^[1][3,4,5,7,8][0-9]{9}$/ }],
           })(
-            <Input placeholder="账户" id="user" />)}
+            <Input placeholder="账户" id="username" />)}
         </Form.Item>
         <Form.Item
           label="密码" hasFeedback

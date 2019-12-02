@@ -1,21 +1,5 @@
 const initState = {
-    list: [{
-            name: "daboashu",
-            phone: "13246466649",
-            id: "w65465",
-            level: "1",
-            status: '正常',
-            email: '478219876@qq.com'
-        },
-        {
-            name: "ak888",
-            phone: "13246466644",
-            id: "qq65456465",
-            level: "2",
-            status: '正2常',
-            email: '478219876@q1.com'
-        }
-    ]
+    list:[]
 }
 
 const reducer = function (state = initState, {
@@ -31,7 +15,7 @@ const reducer = function (state = initState, {
             return {
                 ...state,
                 list: state.list.map(item => {
-                    if (item.id == payload.id) {
+                    if (item.username == payload.username) {
                         // 动态判断之三元运算
                         item.name = payload.name == item.name ? item.name : payload.name
                         item.phone = payload.phone == item.phone ? item.phone : payload.phone
@@ -40,18 +24,24 @@ const reducer = function (state = initState, {
                         item.email = payload.email == item.email ? item.email : payload.email
                     }
                 })
-            }
+            };
 
             // 删除
-            case "REMOVE_READER_USER":
-                    // 这里的payload为一个对象
-                    // payload:{id}
-                return {
-                    ...state,
-                    list: state.goodslist.filter(item => item.id != payload.id)
-                }
-                default:
-                    return state;
+        case "REMOVE_READER_USER":
+            // 这里的payload为一个对象
+            // payload:{id}
+            return {
+                ...state,
+                list: state.goodslist.filter(item => item.id != payload.id)
+            };
+            // 获取所有reader
+        case "GERALL_READER_USER":
+            return {
+                ...state,
+                list:payload
+            }
+        default:
+            return state;
     }
 
 }

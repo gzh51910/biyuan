@@ -1,6 +1,6 @@
 const initState = {
     writerlist: [{
-            name: "64646",
+        username: "64646",
             phone: "13246466649",
             id: "w65465",
             level: "1",
@@ -8,7 +8,7 @@ const initState = {
             email: '478219876@qq.com'
         },
         {
-            name: "5667",
+            username: "5667",
             phone: "13246466644",
             id: "qq65456465",
             level: "2",
@@ -33,7 +33,7 @@ const reducer = function (state = initState, {
                 writerlist: state.writerlist.map(item => {
                     if (item.id == payload.id) {
                         // 动态判断之三元运算
-                        item.name = payload.name == item.name ? item.name : payload.name
+                        item.username = payload.username == item.username ? item.username : payload.username
                         item.phone = payload.phone == item.phone ? item.phone : payload.phone
                         item.level = payload.level == item.level ? item.level : payload.level
                         item.status = payload.status == item.status ? item.status : payload.status
