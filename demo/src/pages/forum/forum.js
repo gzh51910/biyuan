@@ -5,6 +5,7 @@ import '../../css/forum.css';
 import { Menu, Icon, Tabs, Radio } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
+import { StickyContainer, Sticky } from 'react-sticky';
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -20,6 +21,7 @@ class forum extends Component {
             "https://statics.coingogo.com/uploads/setting/banner/20190522105947_5ce4bb2351604.jpg",
             "https://statics.coingogo.com/uploads/setting/banner/20190522105947_5ce4bb2351604.jpg"
         ],
+        //菜单
         forumMenu: [
             {
                 first: "最新",
@@ -46,26 +48,79 @@ class forum extends Component {
                 second: ["公告版规", "活动中心", "模拟交易"]
             }
         ],
-        datalist:"最新"
+        //菜单默认值
+        datalist: "最新",
+        //吸顶效果
+        menuStyle: {
+            position: "static"
+        },
+        forumListStyle: {}
+
     }
     componentDidMount() {
+        window.addEventListener('scroll', this.handleScroll, true);
     }
-    callback=key=>{
-        if(key==1){
-            console.log("最新");
+    //一级菜单获取值
+    callback = key => {
+        if (key == 1) {
             this.setState({
-                datalist:"最新"
+                datalist: "最新"
+            })
+            this.setState({
+                forumListStyle: { 'marginTop': 0 }
+            })
+        }else{
+            this.setState({
+                forumListStyle: { 'marginTop': "33px" }
             })
         }
+        document.body.scrollTop = 230;
     }
-    getDatalist=e=>{
-        console.log("value",e.target.value);
+    //二级菜单获取值
+    getDatalist = e => {
+        console.log("value", e.target.value);
         this.setState({
-            datalist:e.target.value
+            datalist: e.target.value
         })
     }
+    //吸顶效果
+    changePosition = () => {
+        this.setState({
+            menuStyle: { position: "fixed" },
+            forumListStyle: { 'marginTop': "33px" }
+        })
+    }
+    //滚动监听
+    handleScroll = (event) => {
+        let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        if (scrollTop >= 230) {
+            this.changePosition();
+        } else {
+            this.setState({
+                menuStyle: { position: "static" },
+                forumListStyle: { 'marginTop': 0 }
+            })
+        }
+        console.log(scrollTop);
+    }
+    //吸顶组件
+    renderTabBar = (props, DefaultTabBar) => (
+        <Sticky bottomOffset={80}>
+            {({ style }) => (
+                <DefaultTabBar {...props} style={{ ...style, zIndex: 99, background: '#fff', top: 0 }} />
+            )}
+        </Sticky>
+    )
+    //页面滚动
+    // goScroll=()=>{
+    //     if(this.state.datalist=="最新"){
+    //         document.body.scrollTop = 230;
+    //     }else{
+    //         document.body.scrollTop = 300;
+    //     }
+    // }
     render() {
-        let { forumBanner, forumMenu,datalist } = this.state;
+        let { forumBanner, forumMenu, datalist, menuStyle, forumListStyle } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -97,38 +152,36 @@ class forum extends Component {
                         ))}
                     </Carousel>
                 </div>
-                <div className="forum-menu">
-                    <Tabs defaultActiveKey="1" onChange={this.callback}>
-                        {forumMenu.map((item, i) => {
-                            return (
-                                <TabPane tab={item.first} key={i + 1} >
-                                    {
-                                        i == 0
-                                            ?
-                                            ""
-                                            :
-                                            <Radio.Group  defaultValue="1" onChange={this.getDatalist}>
-                                                {item.second.map((val,j)=>{
-                                                    return (
-                                                        <Radio.Button value={val} key={j+1}>{val}</Radio.Button>  
-                                                    )})}
-                                                    
-                                            </Radio.Group>
-                                            
-                                        // <Tabs  >
-                                        // {item.second.map((val,j)=>{
-                                        //     return (
-                                        //         <TabPane tab={val} key={val}></TabPane>  
-                                        //     )})}
-                                        // </Tabs>
-                                    }
-                                    
-                                </TabPane>
-                            )
-                        })}
-                    </Tabs>
+                <div className="forum-menu" >
+                    <StickyContainer>
+                        <Tabs defaultActiveKey="1" onChange={this.callback}  renderTabBar={this.renderTabBar}>
+                            {forumMenu.map((item, i) => {
+                                return (
+                                    <TabPane tab={item.first} key={i + 1} style={menuStyle}>
+                                        {
+                                            i == 0
+                                                ?
+                                                ""
+                                                :
+                                                <Radio.Group defaultValue="1" onChange={this.getDatalist} >
+                                                    {item.second.map((val, j) => {
+                                                        return (
+                                                            <Radio.Button value={val} key={j + 1}>{val}</Radio.Button>
+                                                        )
+                                                    })}
+
+                                                </Radio.Group>
+                                        }
+
+                                    </TabPane>
+                                )
+                            })}
+                        </Tabs>
+                    </StickyContainer>
                 </div>
-                <ForumList datalist={datalist}/>
+                <div className="forumListWrap" style={forumListStyle}>
+                    <ForumList datalist={datalist} />
+                </div>
             </div>
         );
     }
