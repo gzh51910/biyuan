@@ -82,87 +82,26 @@
   border-radius: 5px;
 }
 
-.container-forum .forum-menu {
-  overflow: auto;
+.container-forum .forum-menu .ant-tabs-tabpane {
+  overflow: scroll;
+  width: 100% !important;
 }
 
-.container-forum .forum-menu .ant-menu {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
-  background: #fff;
-  border-bottom: 2px solid #e6e6e6;
-  width: 592px;
-}
-
-.container-forum .forum-menu .ant-menu-item {
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group {
   display: flex !important;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: end;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-item-selected {
-  color: #ffc600 !important;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-horizontal {
-  line-height: 34px;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-active {
-  color: #ffc600 !important;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-selected {
-  color: #ffc600 !important;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-title:hover {
-  color: #ffc600 !important;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-title {
-  display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
+  text-align: center;
 }
 
-.container-forum .forum-menu::-webkit-scrollbar {
-  display: none;
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper {
+  display: flex !important;
 }
 
-.forumMenuSecond {
-  overflow: scroll !important;
-  width: 100%;
-  top: 265px !important;
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper .ant-radio-button {
+  display: none !important;
 }
 
-.forumMenuSecond .ant-menu-sub {
-  width: 1000px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
-  background-color: #FFF1BF;
-}
-
-.forumMenuSecond .ant-menu-item {
-  margin: 0 !important;
-}
-
-.forumMenuSecond .ant-menu-item-selected {
-  color: #ffc600 !important;
-  border-bottom: 2px solid #ffc600 !important;
-  background-color: #FFF1BF !important;
-}
-
-.forumMenuSecond::-webkit-scrollbar {
-  display: none;
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper span {
+  display: flex !important;
+  white-space: nowrap !important;
 }

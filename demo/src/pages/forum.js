@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { biyuan } from '../api'
 import { connect } from 'react-redux';
 import '../css/forum.css';
-import { Menu, Icon } from "antd";
+import { Menu, Icon, Tabs, Radio } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
-const { SubMenu } = Menu;
+const { TabPane } = Tabs;
+// const { SubMenu } = Menu;
 function mapStateToProps(state) {
     return {
 
@@ -20,6 +21,10 @@ class forum extends Component {
             "https://statics.coingogo.com/uploads/setting/banner/20190522105947_5ce4bb2351604.jpg"
         ],
         forumMenu: [
+            {
+                first: "最新",
+                second: []
+            },
             {
                 first: "数字货币",
                 second: ["比特币", "区块链", "竞争币", "消息爆料", "O撸社", "以太坊", "量子链", "NEO", "莱特币", "LEDU", "区块链项目评级"]
@@ -41,18 +46,18 @@ class forum extends Component {
                 second: ["公告版规", "活动中心", "模拟交易"]
             }
         ],
-        current: "1",
+        tabStyle: {
+
+        }
     }
     componentDidMount() {
     }
-    handleClick = e => {
-        console.log("click", e);
-        this.setState({
-            current: e.key
-        })
-    };
+    callback = key => {
+        console.log(key);
+
+    }
     render() {
-        let { forumBanner, forumMenu ,current} = this.state;
+        let { forumBanner, forumMenu, tabStyle } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -85,30 +90,35 @@ class forum extends Component {
                     </Carousel>
                 </div>
                 <div className="forum-menu">
-                    <Menu
-                        onClick={this.handleClick}
-                        style={{  }}
-                        defaultSelectedKeys={['1']}
-                        selectedKeys={[current]}
-                        mode="horizontal"
-                    >
-                        <Menu.Item key="1"><span>最新</span></Menu.Item>
-                        {forumMenu.map(item => {
+                    <Tabs defaultActiveKey="2" tabBarStyle={tabStyle} onChange={this.callback}>
+                        {forumMenu.map((item, i) => {
                             return (
-                                <SubMenu
-                                    key={item.first}
-                                    title={
-                                        <span>{item.first}</span>
+                                <TabPane tab={item.first} key={i + 1}>
+                                    {
+                                        i == 0
+                                            ?
+                                            ""
+                                            :
+                                            <Radio.Group  defaultValue="a">
+                                                {item.second.map((val,j)=>{
+                                                    return (
+                                                        <Radio.Button value={val} key={j+1}>{val}</Radio.Button>  
+                                                    )})}
+                                            </Radio.Group>
+                                        // <Tabs  >
+                                        // {item.second.map((val,j)=>{
+                                        //     return (
+                                        //         <TabPane tab={val} key={val}></TabPane>  
+                                        //     )})}
+                                        // </Tabs>
                                     }
-                                    popupClassName="forumMenuSecond"
-                                >
-                                    {item.second.map(val => { return <Menu.Item key={val} ><span>{val}</span></Menu.Item> })}
-                                </SubMenu>
+
+                                </TabPane>
                             )
                         })}
-                    </Menu>
+                    </Tabs>
                 </div>
-                <ForumList/>
+                {/* <ForumList/> */}
             </div>
         );
     }
