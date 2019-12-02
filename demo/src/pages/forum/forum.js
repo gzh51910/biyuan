@@ -6,6 +6,7 @@ import { Menu, Icon, Tabs, Radio } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
 import { StickyContainer, Sticky } from 'react-sticky';
+import axios from 'axios';
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -55,10 +56,16 @@ class forum extends Component {
             position: "static"
         },
         forumListStyle: {}
-
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
+        // this.getmsg();
+    }
+    async getmsg() {
+        let data = await axios.post("http://m.coingogo.com/ajax/article/latest.ashx", { 'catid': 0, 'page': 0, 'psize': 6 });
+        console.log(data);
+        //
+        
     }
     //一级菜单获取值
     callback = key => {
@@ -69,7 +76,7 @@ class forum extends Component {
             this.setState({
                 forumListStyle: { 'marginTop': 0 }
             })
-        }else{
+        } else {
             this.setState({
                 forumListStyle: { 'marginTop': "33px" }
             })
@@ -78,16 +85,8 @@ class forum extends Component {
     }
     //二级菜单获取值
     getDatalist = e => {
-        console.log("value", e.target.value);
         this.setState({
             datalist: e.target.value
-        })
-    }
-    //吸顶效果
-    changePosition = () => {
-        this.setState({
-            menuStyle: { position: "fixed" },
-            forumListStyle: { 'marginTop': "33px" }
         })
     }
     //滚动监听
@@ -95,13 +94,16 @@ class forum extends Component {
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= 230) {
             this.changePosition();
+            this.setState({
+                menuStyle: { position: "fixed" },
+                forumListStyle: { 'marginTop': "33px" }
+            })
         } else {
             this.setState({
                 menuStyle: { position: "static" },
                 forumListStyle: { 'marginTop': 0 }
             })
         }
-        console.log(scrollTop);
     }
     //吸顶组件
     renderTabBar = (props, DefaultTabBar) => (
@@ -111,14 +113,6 @@ class forum extends Component {
             )}
         </Sticky>
     )
-    //页面滚动
-    // goScroll=()=>{
-    //     if(this.state.datalist=="最新"){
-    //         document.body.scrollTop = 230;
-    //     }else{
-    //         document.body.scrollTop = 300;
-    //     }
-    // }
     render() {
         let { forumBanner, forumMenu, datalist, menuStyle, forumListStyle } = this.state;
         return (
@@ -154,7 +148,7 @@ class forum extends Component {
                 </div>
                 <div className="forum-menu" >
                     <StickyContainer>
-                        <Tabs defaultActiveKey="1" onChange={this.callback}  renderTabBar={this.renderTabBar}>
+                        <Tabs defaultActiveKey="1" onChange={this.callback} renderTabBar={this.renderTabBar}>
                             {forumMenu.map((item, i) => {
                                 return (
                                     <TabPane tab={item.first} key={i + 1} style={menuStyle}>
