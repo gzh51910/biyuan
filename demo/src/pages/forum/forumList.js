@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { biyuan } from '../api'
+import { biyuan } from '../../api'
 import { connect } from 'react-redux';
 import { Icon } from "antd";
-import '../css/forumList.css';
+import '../../css/forumList.css';
 function mapStateToProps(state) {
     return {
 

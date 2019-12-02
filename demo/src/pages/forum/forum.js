@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { biyuan } from '../api'
+import { biyuan } from '../../api'
 import { connect } from 'react-redux';
-import '../css/forum.css';
+import '../../css/forum.css';
 import { Menu, Icon, Tabs, Radio } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
