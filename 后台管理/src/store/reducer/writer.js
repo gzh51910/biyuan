@@ -48,7 +48,7 @@ const reducer = function (state = initState, {
                     // payload:{id}
                 return {
                     ...state,
-                    writerlist: state.goodslist.filter(item => item.id != payload.id)
+                    writerlist: state.writerlist.filter(item => item.id != payload.id)
                 }
                 default:
                     return state;

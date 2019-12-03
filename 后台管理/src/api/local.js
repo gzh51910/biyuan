@@ -11,14 +11,29 @@ function get(path,params,config={}){
         ...config,
         params
     })
-}
+};
 
 function post(path,data={},config={}){
     return local.post(path,data,config)
+};
+
+function remove(path,params,config={} ){
+    return local.delete(path,{
+        ...config,
+        params
+    })
+}
+function patch(path,params,config={}){
+    return local.patch(path,{
+        ...config,
+        params
+    })
 }
 
 export default {
     get,
     post
-    ,baseURL
+    ,baseURL,
+    remove,
+    patch
 }

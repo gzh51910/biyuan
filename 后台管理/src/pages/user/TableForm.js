@@ -3,7 +3,7 @@ import { Form, Input, Row, Col } from 'antd';
 import React, {
   Component
 } from 'react';
-import local from '../api/local';
+import local from '../../api/local';
 
 const formItemLayout = {
   labelCol: {
@@ -28,7 +28,6 @@ const formItemLayout = {
 @Form.create()
 class TableForm extends Component {
   state = {
-
     visible: false,
     confirmLoading: false,
   };
@@ -54,7 +53,6 @@ class TableForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let {msg}=this.RegSend(values)
-        // alert
       }
     })
   }
@@ -76,7 +74,7 @@ class TableForm extends Component {
   };
   render() {
     const { visible, confirmLoading, } = this.state;
-    const { getFieldDecorator, getFieldValue } = this.props.form;
+    const { getFieldDecorator } = this.props.form;
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>

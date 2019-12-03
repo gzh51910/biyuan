@@ -1,5 +1,44 @@
 const initState = {
-    list:[]
+    list:[],
+    menulist: [
+        {
+            span: 1,
+            text: "#",
+            type: "#"
+        }, {
+            span: 2,
+            text: "用户头像",
+            type: "avatar"
+        }, {
+            span: 2,
+            text: "用户Id",
+            type: "id"
+        }, {
+            span: 2,
+            text: "用户名称",
+            type: "name"
+        }, {
+            span: 2,
+            text: "用户等级",
+            type: "level"
+        }, {
+            span: 3,
+            text: "使用状态",
+            type: "status"
+        }, {
+            span: 3,
+            text: "注册手机",
+            type: "phone"
+        }, {
+            span: 3,
+            text: "注册邮箱",
+            type: "email"
+        }, {
+            span: 3,
+            text: "操作",
+            type: "control"
+        },
+    ]
 }
 
 const reducer = function (state = initState, {
@@ -32,7 +71,7 @@ const reducer = function (state = initState, {
             // payload:{id}
             return {
                 ...state,
-                list: state.goodslist.filter(item => item.id != payload.id)
+                list: state.list.filter(item => item._id !== payload._id)
             };
             // 获取所有reader
         case "GERALL_READER_USER":
