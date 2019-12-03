@@ -5,7 +5,7 @@ import {
     connect
 } from 'react-redux';
 
-import UserList from '../../components/UserList'
+// import UserList from '../../components/UserList'
 import { Row, Col, Button ,PageHeader } from 'antd';
 // function mapStateToProps(state) {
 //     return {
@@ -67,7 +67,7 @@ class Writers extends Component {
                     操作
              </Col>
             </Row>
-          <UserList list={this.props.writerlist} />
+          {/* <UserList list={this.props.writerlist} /> */}
 
          
             </main>

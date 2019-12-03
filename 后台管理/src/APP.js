@@ -134,7 +134,6 @@ class App extends Component {
         this.setState({ collapsed: !this.state.collapsed, });
     };  
     render() {
-        console.log(this.props);
       let  {currentPath}=this.state
         return (
             this.props.Authorization?
