@@ -5,6 +5,7 @@ const {token,formatData} = require('../utils')
 let loginRouter = require('./login');
 let goodsRouter = require('./goods');
 let homeRouter = require('./home');
+let forumRouter = require('./forum');
 // let userRouter = require('./user');
 // let regRouter = require('./reg');
 
@@ -42,6 +43,7 @@ Router.use(express.json(),express.urlencoded({extended:false}));
 Router.use('/goods',goodsRouter)
 Router.use('/home',homeRouter)
 Router.use('/login',loginRouter)
+Router.use('/forum',forumRouter)
 // token验证
 Router.get('/verify',(req,res)=>{
     // 获取请求头上的token

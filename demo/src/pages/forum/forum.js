@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { biyuan } from '../../api'
+import { fapi } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Menu, Icon, Tabs, Radio } from "antd";
@@ -50,28 +50,35 @@ class forum extends Component {
             }
         ],
         //菜单默认值
-        datalist: "最新",
+        fname: "最新",
+        //分类列表
+        flist:[],
         //吸顶效果
         menuStyle: {
             position: "static"
         },
-        forumListStyle: {}
+        forumListStyle: {},
+    }
+    getmsg = async (fname)=> {
+        let {data:[{flist}]} = await fapi.get({ 
+            fname
+        });
+        this.setState({
+            flist
+        })
+        console.log(flist);
+        
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
-        // this.getmsg();
+        this.getmsg(this.state.fname);
     }
-    async getmsg() {
-        let data = await axios.post("http://m.coingogo.com/ajax/article/latest.ashx", { 'catid': 0, 'page': 0, 'psize': 6 });
-        console.log(data);
-        //
-        
-    }
+    
     //一级菜单获取值
     callback = key => {
         if (key == 1) {
             this.setState({
-                datalist: "最新"
+                fname: "最新"
             })
             this.setState({
                 forumListStyle: { 'marginTop': 0 }
@@ -86,14 +93,18 @@ class forum extends Component {
     //二级菜单获取值
     getDatalist = e => {
         this.setState({
-            datalist: e.target.value
+            fname: e.target.value
         })
+    }
+    componentDidUpdate(prevProps,prevState){
+        if(prevState.fname!=this.state.fname){
+            this.getmsg(this.state.fname);
+        }
     }
     //滚动监听
     handleScroll = (event) => {
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= 230) {
-            this.changePosition();
             this.setState({
                 menuStyle: { position: "fixed" },
                 forumListStyle: { 'marginTop': "33px" }
@@ -114,7 +125,7 @@ class forum extends Component {
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, datalist, menuStyle, forumListStyle } = this.state;
+        let { forumBanner, forumMenu, fname, menuStyle, forumListStyle ,flist} = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -174,7 +185,7 @@ class forum extends Component {
                     </StickyContainer>
                 </div>
                 <div className="forumListWrap" style={forumListStyle}>
-                    <ForumList datalist={datalist} />
+                    <ForumList flist={flist} />
                 </div>
             </div>
         );
