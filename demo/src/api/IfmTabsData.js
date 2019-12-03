@@ -1,4 +1,4 @@
-var IfmTabsData = {
+let IfmTabsData = {
     state: { cd: 1 },
     data: [
         {

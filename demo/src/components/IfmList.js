@@ -1,10 +1,12 @@
 import React from "react";
 import { Card, WhiteSpace, Flex } from "antd-mobile";
+import { Icon } from "antd";
+
+import "../css/IfmList.scss";
 
 function IfmList({ datalist }) {
     return (
         <div>
-            {console.log(datalist)}
             {datalist.map(item => {
                 return (
                     <div key={item.id}>
@@ -13,12 +15,21 @@ function IfmList({ datalist }) {
                             <Flex
                                 justify="around"
                                 align="center"
-                                style={{ paddingTop: "15px" }}
+                                className="card"
                             >
-                                <div style={{ width: "60%" }}>
-                                    <h3>{item.title}</h3>
+                                <div className="tit">
+                                    <h3>
+                                        <strong>{item.title}</strong>{" "}
+                                    </h3>
+                                    <p>
+                                        <span>{item.username}</span>
+                                        <span>
+                                            <Icon type="eye" />
+                                            &nbsp;{item.view_count}
+                                        </span>
+                                    </p>
                                 </div>
-                                <div style={{ width: "30%" }}>
+                                <div className="titImg">
                                     <img src={item.image} />
                                 </div>
                             </Flex>
@@ -31,23 +42,3 @@ function IfmList({ datalist }) {
 }
 
 export default IfmList;
-
-{
-    /* <div>
-    <WhiteSpace size="xs" />
-    <Card full>
-        <Card.Header
-            title="This is title"
-            thumb="https://gw.alipayobjects.com/zos/rmsportal/MRhHctKOineMbKAZslML.jpg"
-            extra={<span>this is extra</span>}
-        />
-        <Card.Body>
-            <div>This is content of `Card`</div>
-        </Card.Body>
-        <Card.Footer
-            content="footer content"
-            extra={<div>extra footer content</div>}
-        />
-    </Card>
-</div>; */
-}

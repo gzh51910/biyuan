@@ -1,4 +1,4 @@
-var IfmListData = [
+let IfmListData = [
     {
         id: "40053",
         type: "blog",

@@ -25,7 +25,7 @@ class IfmTabs extends Component {
                 <Tabs
                     tabs={tabs}
                     renderTabBar={props => (
-                        <Tabs.DefaultTabBar {...props} page={5.5} />
+                        <Tabs.DefaultTabBar {...props} page={5} />
                     )}
                 >
                     <IfmList datalist={datalist} />

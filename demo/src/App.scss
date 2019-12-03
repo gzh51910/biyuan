@@ -45,12 +45,11 @@ img {
             line-height: 34px;
         }
     }
+}
+.am-tabs-default-bar-tab-active {
+    color: $activeColor !important;
+}
 
-    .am-tabs-default-bar-tab-active {
-        color: $activeColor !important;
-    }
-
-    .am-tabs-default-bar-underline {
-        border-color: $activeColor !important;
-    }
+.am-tabs-default-bar-underline {
+    border-color: $activeColor !important;
 }
