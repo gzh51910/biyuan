@@ -26,7 +26,6 @@ class Userlist extends Component {
     remove = async (id) => {
         this.props.REMOVE_READER_USER(id)
         let { data } = await local.remove(`/goods/${id}`)
-
     }
     render() {
         let { list, menulist } = this.props

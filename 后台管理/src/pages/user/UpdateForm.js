@@ -54,19 +54,17 @@ class UpdateForm extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         let res={}
+        let {ele}=this.props
         for (let key in values) {
           if (!values[key] == (undefined || "")) {
               res[key]=values[key]
+          }else{
+            res[key]=ele[key]
           }
         }
         console.log(res);
-        console.log(this.props.ele);
-        
-        res._id=this.props.ele._id
-        // console.log("res",res);
-        // console.log(values);
         // console.log(this.props.ele);
-        
+        res._id=this.props.ele._id    
         let { msg } = this.updateSend(res)
       }
     })

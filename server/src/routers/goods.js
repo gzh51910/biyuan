@@ -41,10 +41,6 @@ Router.get('/', async (req, res) => {
 })
 
 
-
-
-
-
 // 后台用户注册
 Router.post('/', async (req, res) => {
     const colName = 'user'
@@ -55,15 +51,26 @@ Router.post('/', async (req, res) => {
         username,
         name
     } = req.body;
-    let data = await mongodb.find(colName, {
-        email,
-        phone,
+    let msg = '失败，';
+    let emailData = await mongodb.find(colName, {
+        email
+    })
+    if (emailData.length > 0) {
+        msg += "邮箱已被人注册"
+    }
+    let phoneData = await mongodb.find(colName, {
+        phone
+    })
+    if (phoneData.length > 0) {
+        msg += "手机已被人注册"
+    }
+    let usernameData = await mongodb.find(colName, {
         username
-    });
-    console.log("req.body", req.body);
-    console.log("data", data);
-    if (!data.length > 0) {
-        console.log(11);
+    })
+    if (usernameData.length > 0) {
+        msg += "账号被人使用"
+    }
+    if (!(emailData.length && phoneData.length && usernameData.length) > 0) {
         let level = "1"
         let status = '正常',
             avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
@@ -81,28 +88,10 @@ Router.post('/', async (req, res) => {
             msg: "注册成功"
         })
     } else {
-        let msg = '失败，';
-        let emailData = await mongodb.find(colName, {
-            email
-        })
-        let phoneData = await mongodb.find(colName, {
-            phone
-        })
-        let usernameData = await mongodb.find(colName, {
-            username
-        })
-        if (emailData.length > 0) {
-            msg += "邮箱已被人注册"
-        }
-        if (phoneData.length > 0) {
-            msg += "手机已被人注册"
-        }
-        if (usernameData.length > 0) {
-            msg += "账号被人使用"
-        }
         res.send({
             msg
         })
+
     }
 })
 
@@ -134,29 +123,29 @@ Router.patch('/:_id', async (req, res) => {
         _id
     } = req.params;
     let {
-        email, name, phone, psw, username,level,status
-    } = req.body
-    console.log("req.params",req.params);
-    console.log("req.body",req.body);
-    
-    let ssr={}
-        let s={email, name, phone, psw, username,_id,level,status}
-        for (let key in s) {
-            if (!s[key] == (undefined || "")) {
-                ssr[key]=s[key]
-            }
-        }
-
+        email,
+        name,
+        phone,
+        psw,
+        username,
+        level,
+        status
+    } = req.body.params
     let data = await mongodb.update(colName, {
         _id
     }, {
-       ...ssr
-    });
-    console.log(data);
-    
+        email,
+        name,
+        phone,
+        psw,
+        username,
+        level,
+        status
+    })
     res.send(formatData({
         data
     }))
+
 })
 
 
