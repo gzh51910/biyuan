@@ -43,6 +43,9 @@ class Writers extends Component {
                     #
                 </Col>
                 <Col className="gutter-row" span={2}>
+                    用户头像
+                </Col>
+                <Col className="gutter-row" span={2}>
                 用户Id
                 </Col>
                 <Col className="gutter-row" span={2}>

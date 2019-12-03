@@ -77,9 +77,19 @@ $activeColor: #ffc600;
         }
     }
     .forum-menu{
+        background-color: #fff;
+        .ant-tabs-nav-scroll{
+            overflow: scroll!important;
+        }
+        .ant-tabs-bar{
+            margin: 0!important;
+        }
         .ant-tabs-tabpane{
             overflow: scroll;
             width: 100%!important;
+            top:45px;
+            z-index:999;
+            left:0;
             .ant-radio-group{
                 display: flex!important;
                 flex-flow: row nowrap;
@@ -96,6 +106,9 @@ $activeColor: #ffc600;
                 }
             }
         }
+    }
+    .forumListWrap{
+        transition: 0.3s;
     }
 }
 

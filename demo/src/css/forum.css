@@ -82,9 +82,24 @@
   border-radius: 5px;
 }
 
+.container-forum .forum-menu {
+  background-color: #fff;
+}
+
+.container-forum .forum-menu .ant-tabs-nav-scroll {
+  overflow: scroll !important;
+}
+
+.container-forum .forum-menu .ant-tabs-bar {
+  margin: 0 !important;
+}
+
 .container-forum .forum-menu .ant-tabs-tabpane {
   overflow: scroll;
   width: 100% !important;
+  top: 45px;
+  z-index: 999;
+  left: 0;
 }
 
 .container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group {
@@ -104,4 +119,8 @@
 .container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper span {
   display: flex !important;
   white-space: nowrap !important;
+}
+
+.container-forum .forumListWrap {
+  transition: 0.3s;
 }
