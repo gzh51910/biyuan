@@ -10,7 +10,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: start;
-  align-items: center;
+  align-items: start;
 }
 
 .forumList ul li {
@@ -20,7 +20,7 @@
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
 }
 
 .forumList ul li .forumList-title .ding, .forumList ul li .forumList-title .jing {
