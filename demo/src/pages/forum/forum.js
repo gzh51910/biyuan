@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { fapi } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
-import {  Icon, Tabs, Radio,Spin  } from "antd";
+import { Icon, Tabs, Radio, Spin } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
-import { StickyContainer, Sticky } from 'react-sticky';     
+import { StickyContainer, Sticky } from 'react-sticky';
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -51,31 +51,31 @@ class forum extends Component {
         //菜单默认值
         fname: "最新",
         //分类列表
-        flist:[],
+        flist: [],
         //吸顶效果
         menuStyle: {
             position: "static"
         },
         forumListStyle: {},
-        loading:true
+        loading: true
     }
-    getmsg = async (fname)=> {
+    getmsg = async (fname) => {
         this.setState({
-            loading:true
+            loading: true
         })
-        let {data:[{flist}]} = await fapi.get({ 
+        let { data: [{ flist }] } = await fapi.get({
             fname
         });
         this.setState({
             flist,
-            loading:false
+            loading: false
         })
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
         this.getmsg(this.state.fname);
     }
-    
+
     //一级菜单获取值
     callback = key => {
         if (key == 1) {
@@ -98,8 +98,8 @@ class forum extends Component {
             fname: e.target.value
         })
     }
-    componentDidUpdate(prevProps,prevState){
-        if(prevState.fname!=this.state.fname){
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.fname != this.state.fname) {
             this.getmsg(this.state.fname);
         }
     }
@@ -127,7 +127,7 @@ class forum extends Component {
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, menuStyle, forumListStyle ,flist,loading} = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist, loading } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -187,11 +187,9 @@ class forum extends Component {
                     </StickyContainer>
                 </div>
                 <div className="forumListWrap" style={forumListStyle}>
-                    {loading?
-                    <Spin></Spin>
-                    :<ForumList flist={flist} />
-                    }
-                    
+
+                    <ForumList flist={flist} />
+
                 </div>
             </div>
         );
