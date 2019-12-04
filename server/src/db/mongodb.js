@@ -170,10 +170,7 @@ async function find(colName, query = {}, options = {}) {
 
     return result;
 }
-
-module.exports = {
-    create,
-    remove,
-    update,
-    find
+module.exports ={
+    find,update,remove,create
 }
+
