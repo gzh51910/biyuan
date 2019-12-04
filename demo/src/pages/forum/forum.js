@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { fapi } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
-import { Menu, Icon, Tabs, Radio } from "antd";
+import {  Icon, Tabs, Radio,Spin  } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
-import { StickyContainer, Sticky } from 'react-sticky';
-import axios from 'axios';
+import { StickyContainer, Sticky } from 'react-sticky';     
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -58,16 +57,19 @@ class forum extends Component {
             position: "static"
         },
         forumListStyle: {},
+        loading:true
     }
     getmsg = async (fname)=> {
+        this.setState({
+            loading:true
+        })
         let {data:[{flist}]} = await fapi.get({ 
             fname
         });
         this.setState({
-            flist
+            flist,
+            loading:false
         })
-        console.log(flist);
-        
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
@@ -102,7 +104,7 @@ class forum extends Component {
         }
     }
     //滚动监听
-    handleScroll = (event) => {
+    handleScroll = () => {
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= 230) {
             this.setState({
@@ -125,7 +127,7 @@ class forum extends Component {
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, fname, menuStyle, forumListStyle ,flist} = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle ,flist,loading} = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -185,7 +187,11 @@ class forum extends Component {
                     </StickyContainer>
                 </div>
                 <div className="forumListWrap" style={forumListStyle}>
-                    <ForumList flist={flist} />
+                    {loading?
+                    <Spin></Spin>
+                    :<ForumList flist={flist} />
+                    }
+                    
                 </div>
             </div>
         );
