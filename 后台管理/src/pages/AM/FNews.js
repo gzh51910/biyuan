@@ -11,6 +11,7 @@ import {
 
 //     };
 // }
+import { Empty } from 'antd';
 
 
 class FNews extends Component {
@@ -18,9 +19,8 @@ class FNews extends Component {
     render() {
         console.log(this.props);
         
-        return (<div >
-            fnew </div>
-        );
+        return (<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+            );
     }
 }
 

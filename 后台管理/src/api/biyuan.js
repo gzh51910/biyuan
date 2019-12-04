@@ -1,7 +1,7 @@
 import axios from 'axios';
 // 只是预创建对方接口
 // 创建axios实例
-const local = axios.create({
+const biyuan = axios.create({
     baseURL: 'http://m.coingogo.com/ajax'
 });
 
@@ -20,3 +20,5 @@ export default {
     get,
     post
 }
+
+

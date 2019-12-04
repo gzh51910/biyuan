@@ -9,17 +9,15 @@ import {
 //     return {
 
 //     };
-// }
-
+// }    
+import { Empty } from 'antd';
 
 class WeiBo extends Component {
  
     render() {
         console.log(this.props);
         
-        return (<div >
-            普通用户 </div>
-        );
+        return (<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />)
     }
 }
 

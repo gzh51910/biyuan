@@ -1,4 +1,4 @@
-import { Row, Col, Button, Avatar } from 'antd';
+import { Row, Col, Button, Avatar,Pagination,Divider  } from 'antd';
 import UpdateForm from './UpdateForm'
 const ButtonGroup = Button.Group;
 import React, {
@@ -27,10 +27,17 @@ class Userlist extends Component {
         this.props.REMOVE_READER_USER(id)
         let { data } = await local.remove(`/goods/${id}`)
     }
+
+    onChange = page => {
+        console.log(page);
+        this.setState({
+          current: page,
+        });
+      }
     render() {
         let { list, menulist } = this.props
         return (
-            <div className="userlist">
+            <div className="userlist" >
                 <Row gutter={8} className="listTitle" type="flex" align="middle">
                     {menulist.map(item => <Col key={item.text} className="gutter-row" span={item.span}> {item.text}</Col>)}
                 </Row>
@@ -58,6 +65,8 @@ class Userlist extends Component {
                         )
                     })
                 }
+                <Divider></Divider>
+                <Pagination onChange={(page)=>this.onChange(page)} total={list.length} hideOnSinglePage={true} />
             </div>
         )
     }
