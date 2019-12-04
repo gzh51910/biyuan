@@ -57,7 +57,7 @@ class forum extends Component {
             position: "static"
         },
         forumListStyle: {},
-        loading: true
+        loading: true,
     }
     getmsg = async (fname) => {
         this.setState({
@@ -78,11 +78,11 @@ class forum extends Component {
 
     //一级菜单获取值
     callback = key => {
+        console.log(key);
+        document.body.scrollTop = 230;
         if (key == 1) {
             this.setState({
-                fname: "最新"
-            })
-            this.setState({
+                fname: "最新",
                 forumListStyle: { 'marginTop': 0 }
             })
         } else {
@@ -90,12 +90,13 @@ class forum extends Component {
                 forumListStyle: { 'marginTop': "33px" }
             })
         }
-        document.body.scrollTop = 230;
     }
     //二级菜单获取值
     getDatalist = e => {
+        document.body.scrollTop = 230;
         this.setState({
-            fname: e.target.value
+            fname: e.target.value,
+            forumListStyle: { 'marginTop': "33px" }
         })
     }
     componentDidUpdate(prevProps, prevState) {
@@ -109,25 +110,24 @@ class forum extends Component {
         if (scrollTop >= 230) {
             this.setState({
                 menuStyle: { position: "fixed" },
-                forumListStyle: { 'marginTop': "33px" }
             })
         } else {
             this.setState({
                 menuStyle: { position: "static" },
-                forumListStyle: { 'marginTop': 0 }
+                forumListStyle: { 'marginTop': "0px" }
             })
         }
     }
     //吸顶组件
     renderTabBar = (props, DefaultTabBar) => (
-        <Sticky bottomOffset={80}>
+        <Sticky bottomOffset={1000}>
             {({ style }) => (
                 <DefaultTabBar {...props} style={{ ...style, zIndex: 99, background: '#fff', top: 0 }} />
             )}
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist, loading } = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -159,9 +159,12 @@ class forum extends Component {
                         ))}
                     </Carousel>
                 </div>
-                <div className="forum-menu" >
+                <div className="forum-menu" style={menuwrapStyle}>
                     <StickyContainer>
-                        <Tabs defaultActiveKey="1" onChange={this.callback} renderTabBar={this.renderTabBar}>
+                        <Tabs defaultActiveKey="1" 
+                        onChange={this.callback} 
+                        renderTabBar={this.renderTabBar}
+                        >
                             {forumMenu.map((item, i) => {
                                 return (
                                     <TabPane tab={item.first} key={i + 1} style={menuStyle}>
@@ -187,9 +190,12 @@ class forum extends Component {
                     </StickyContainer>
                 </div>
                 <div className="forumListWrap" style={forumListStyle}>
-
+                    {/* {
+                        loading?
+                        <Spin></Spin>
+                        :<ForumList flist={flist} />
+                    } */}
                     <ForumList flist={flist} />
-
                 </div>
             </div>
         );

@@ -6,33 +6,6 @@ import '../../css/forumList.css';
 // function forumList({ flist }) {
 //     // console.log("datalist",datalist);
 //     return (
-//         <div className="forumList">
-//             {
-//                 flist.map(item => {
-//                     return (
-//                         <ul key={item.f_id}>
-//                             <li>
-//                                 <div className="forumList-title">
-//                                     {item.f_id <= 1 ?
-//                                         <span><i className="ding">顶</i><i className="jing">精</i></span> : ""}
-
-//                                     <span>{item.f_title}</span>
-//                                 </div>
-//                                 <div className="forumList-msg">
-//                                     <span className="forumList-msg-time">{item.f_time}</span>
-//                                     <div className="forumList-msg-source">
-//                                         <span className="forumList-msg-source-active">{item.f_active}</span>
-//                                         <span className="forumList-msg-source-value"><Icon type="money-collect" />{item.f_value}</span>
-//                                     </div>
-//                                     <span className="forumList-msg-seen"><Icon type="eye" />{item.f_seen}</span>
-//                                     <span className="forumList-msg-discuss"><Icon type="message" />{item.f_discuss}</span>
-//                                 </div>
-//                             </li>
-//                         </ul>
-//                     )
-//                 })
-//             }
-//         </div>
 //     )
 // }
 
