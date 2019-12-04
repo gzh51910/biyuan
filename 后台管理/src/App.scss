@@ -1,4 +1,11 @@
 
+// loginForm 登录后台的login
+.login-form{
+    min-width: 100%;
+    position: fixed;
+    top: 50%;
+    transform: translate3d(0,-50%,0);
+}
 .ant-layout-sider-trigger {
     position: relative;
 

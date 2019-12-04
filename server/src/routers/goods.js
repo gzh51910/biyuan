@@ -34,7 +34,7 @@ Router.get('/', async (req, res) => {
         limit: pagesize
     });
     // let data = await mongodb.find(colName,{type});
-    console.log(data);
+    // console.log(data);
     res.send(formatData({
         data
     }))
@@ -149,83 +149,30 @@ Router.patch('/:_id', async (req, res) => {
 })
 
 
-// 增加商品
-Router.post('/', async (req, res) => {
+// 根据类型查询使用匹配正则查询 {key string}
 
+Router.get('/:key', async (req, res) => {
     let {
-        type,
-        imgsrc,
-        name,
-        id,
-        desc,
-        level,
-        price
-    } = req.body
-    // 写入数据：
-
-    let data = await mongodb.create(colName, {
-        type,
-        imgsrc,
-        name,
-        id,
-        desc,
-        level,
-        price
-    });
-
-    res.send(formatData({
-        data
-    }))
-})
-
-
-
-
-//  查询单个商品
-Router.get('/:id', async (req, res) => {
-
-    let {
-        id
+        key
     } = req.params;
-    // console.log(typeof(id));
-    // 查询数据：
-    //  看数据库的id是否为数字  id=id*1
+    let {
+        FindText
+    } = req.query
 
-    let data = await mongodb.find(colName, {
-        id
-    });
-    // if (data.data) {
-    console.log(data);
-    if (data.length > 0) {
-        res.send(formatData({
-            data
-        }))
-    } else {
-        id = id * 1
-        data = await mongodb.find(colName, {
-            id
-        });
-    }
-    res.send(formatData({
+
+    // if (key = "username") {
+        let result = {};
+
+        result[`${key}`] = RegExp(FindText)
+        console.log("RegExp(FindText)",RegExp(FindText));
+        var data = await mongodb.find(colName, result)
+    // }
+  
+
+    res.send({
         data
-    }))
+    })
 })
-
-
-// const colName = 'xixi';
-
-// 更新商品
-// 根据id或者名字修改修改
-// 只能用谗言字符串传id然后用post 一样从发送数据
-// {type,imgsrc,desc,level,price}需要全部传否则没传的值会变null
-
-
-
-
-
-
-
-
 
 
 module.exports = Router

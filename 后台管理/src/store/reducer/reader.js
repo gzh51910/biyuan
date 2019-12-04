@@ -54,14 +54,16 @@ const reducer = function (state = initState, {
             return {
                 ...state,
                 list: state.list.map(item => {
-                    if (item.username == payload.username) {
+                    if (item._id == payload._id) {
                         // 动态判断之三元运算
-                        item.name = payload.name == item.name ? item.name : payload.name
-                        item.phone = payload.phone == item.phone ? item.phone : payload.phone
-                        item.level = payload.level == item.level ? item.level : payload.level
-                        item.status = payload.status == item.status ? item.status : payload.status
-                        item.email = payload.email == item.email ? item.email : payload.email
+                        item.name = (payload.name == item.name?'true':false) ? item.name : payload.name
+                        item.username = (payload.username == item.username?'true':false) ? item.username : payload.username
+                        item.phone =( payload.phone == item.phone?'true':false) ? item.phone : payload.phone
+                        item.level = (payload.level == item.level?'true':false) ? item.level : payload.level
+                        item.status = (payload.status == item.status?'true':false) ? item.status : payload.status
+                        item.email =( payload.email == item.email?'true':false) ? item.email : payload.email
                     }
+                    return item
                 })
             };
 
@@ -74,11 +76,12 @@ const reducer = function (state = initState, {
                 list: state.list.filter(item => item._id !== payload._id)
             };
             // 获取所有reader
-        case "GERALL_READER_USER":
+        case "GETALL_READER_USER":
             return {
                 ...state,
                 list:payload
             }
+        
         default:
             return state;
     }

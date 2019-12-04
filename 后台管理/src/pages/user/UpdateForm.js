@@ -4,7 +4,9 @@ import React, {
   Component
 } from 'react';
 import local from '../../api/local';
-
+import {
+  connect
+} from 'react-redux';
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
@@ -26,6 +28,23 @@ const tailFormItemLayout = {
     },
   },
 };
+
+let mapState = (state) => {
+  let reader = state.reader
+  return reader
+}
+let mapDispatch = (dispatch) => {
+  return {
+    DIPATCH_READER_USER(payload) {
+          dispatch({
+              type: "DIPATCH_READER_USER", payload
+                  
+          })
+      }
+  }
+}
+
+@connect(mapState, mapDispatch)
 @Form.create()
 class UpdateForm extends Component {
   state = {
@@ -38,7 +57,6 @@ class UpdateForm extends Component {
       visible: true,
     });
   };
-
   // 检查密码
   checkPsd(rule, value, callback) {
     let psw = this.props.form.getFieldValue('psw');
@@ -62,22 +80,20 @@ class UpdateForm extends Component {
             res[key]=ele[key]
           }
         }
-        console.log(res);
-        // console.log(this.props.ele);
-        res._id=this.props.ele._id    
-        let { msg } = this.updateSend(res)
+        res._id=this.props.ele._id   
+         this.props.DIPATCH_READER_USER(res)
+        let msg = this.updateSend(res)
       }
     })
   }
   // 更新
   updateSend = async (values) => {
     let {  email, name, phone, psw, username,_id,level,status } = values
-
     let { data } = await local.patch(`/goods/${_id}`, {
       email, name, phone, psw, username,level,status,_id
     })
     alert(data.msg)
-    return data
+    // return data
   }
   handleCancel = () => {
     console.log('Clicked cancel button');
