@@ -8,15 +8,13 @@
         display: flex;
         flex-flow: column nowrap;
         justify-content: start;
-        align-items: center;
+        align-items: start;
+        width: 100%;
+        padding: 0 1rem;
         li{
             padding: 1rem 0;
-            margin: 0 1rem;
             border-bottom: 1px solid #EBEBEB;
-            display: flex;
-            flex-flow: column nowrap;
-            justify-content: space-between;
-            align-items: center;
+            width: 100%;
             .forumList-title{
                 .ding,.jing{
                     font-size: 0.7rem;
