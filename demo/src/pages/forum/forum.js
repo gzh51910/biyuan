@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fapi } from '../../api'
+import { fapi,biyuan } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Icon, Tabs, Radio, Spin } from "antd";
@@ -29,32 +29,25 @@ class forum extends Component {
             },
             {
                 first: "数字货币",
-                second: ["比特币", "区块链", "竞争币", "消息爆料", "O撸社", "以太坊", "量子链", "NEO", "莱特币", "LEDU", "区块链项目评级"]
+                second: [{text:"比特币",id:"2"} ,{text:"区块链",id:"3"} ,{text:"竞争币",id:"4"} ,{text:"消息爆料",id:"14"} ,{text:"O撸社",id:"20"} ,{text:"以太坊",id:"26"} ,{text:"量子链",id:"27"} ,{text:"NEO",id:"28"} ,{text:"莱特币",id:"29"} ,{text:"LEDU",id:"33"} ,{text:"区块链项目评级",id:"36"}]
             },
             {
                 first: "区块链讨论区",
-                second: ["区块链综合讨论", "区块链项目", "Nuls", "ASCH", "瀚德FinTech创新学院", "DDN数据分发网络", "区块链文学"]
+                second: [{text:"区块链综合讨论",id:"15"} ,{text:"区块链项目",id:"17"} ,{text:"Nuls",id:"18"} ,{text:"ASCH",id:"19"} ,{text:"瀚德FinTech创新学院",id:"21"} ,{text:"DDN数据分发网络",id:"32"} ,{text:"区块链文学",id:"39"}]
             },
             {
                 first: "交易平台",
-                second: ["出海交易平台", "国外交易所", "CoinBene", "ALLCOIN"]
+                second: [{text:"出海交易平台",id:"5"} ,{text:"国外交易所",id:"16"} ,{text:"CoinBene",id:"22"} ,{text:"ALLCOIN",id:"31"}]
             },
             {
                 first: "综合讨论区",
-                second: ["挖矿区", "钱包区", "综合", "言币于此", "数字币交易理论"]
+                second: [{text:"挖矿区",id:"6"} ,{text:"钱包区",id:"7"} ,{text:"综合",id:"8"} ,{text:"言币于此",id:"34"} ,{text:"数字币交易理论",id:"37"}]
             },
             {
                 first: "论坛管理",
-                second: ["公告版规", "活动中心", "模拟交易"]
+                second: [{text:"公告版规",id:"24" },{text:"活动中心",id:"25"} ,{text:"模拟交易",id:"38"}]
             }
         ],
-        catidList:{
-            "最新":0,"比特币":2,"区块链":3,"竞争币":4,"消息爆料":14, "O撸社":20, "以太坊":26, "量子链":27, "NEO":28, "莱特币":29, "LEDU":33, "区块链项目评级":36,
-            "区块链综合讨论":15, "区块链项目":17, "Nuls":18, "ASCH":19, "瀚德FinTech创新学院":21, "DDN数据分发网络":32, "区块链文学":39,
-            "出海交易平台":5, "国外交易所":16, "CoinBene":22, "ALLCOIN":31,
-            "挖矿区":6, "钱包区":7, "综合":8, "言币于此":34, "数字币交易理论":37,
-            "公告版规":24, "活动中心":25, "模拟交易":38
-            },
         //菜单默认值
         fname: "最新",
         catid:0,
@@ -77,6 +70,11 @@ class forum extends Component {
         this.setState({
             flist,
             loading: false
+        })
+    }
+    getforum = async (catid)=>{
+        let data=await biyuan.get({
+            
         })
     }
     componentDidMount() {
