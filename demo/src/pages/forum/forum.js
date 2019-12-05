@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { fapi } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
-import { Menu, Icon, Tabs, Radio } from "antd";
+import { Icon, Tabs, Radio, Spin } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
 import { StickyContainer, Sticky } from 'react-sticky';
-import axios from 'axios';
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -52,35 +51,41 @@ class forum extends Component {
         //菜单默认值
         fname: "最新",
         //分类列表
-        flist:[],
+        flist: [],
         //吸顶效果
         menuStyle: {
             position: "static"
         },
         forumListStyle: {},
+        loading: true,
     }
-    getmsg = async (fname)=> {
-        let {data:[{flist}]} = await fapi.get({ 
+    getmsg = async (fname) => {
+        this.setState({
+            loading: true
+        })
+        let { data: [{ flist }] } = await fapi.get({
             fname
         });
         this.setState({
-            flist
+            flist,
+            loading: false
         })
-        console.log(flist);
-        
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
         this.getmsg(this.state.fname);
     }
-    
+    componentWillUnmount(){
+        this.setState=(this.state,callback=>{
+            return;
+        })
+    }
     //一级菜单获取值
     callback = key => {
+        document.body.scrollTop = 230;
         if (key == 1) {
             this.setState({
-                fname: "最新"
-            })
-            this.setState({
+                fname: "最新",
                 forumListStyle: { 'marginTop': 0 }
             })
         } else {
@@ -88,44 +93,44 @@ class forum extends Component {
                 forumListStyle: { 'marginTop': "33px" }
             })
         }
-        document.body.scrollTop = 230;
     }
     //二级菜单获取值
     getDatalist = e => {
+        document.body.scrollTop = 230;
         this.setState({
-            fname: e.target.value
+            fname: e.target.value,
+            forumListStyle: { 'marginTop': "33px" }
         })
     }
-    componentDidUpdate(prevProps,prevState){
-        if(prevState.fname!=this.state.fname){
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.fname != this.state.fname) {
             this.getmsg(this.state.fname);
         }
     }
     //滚动监听
-    handleScroll = (event) => {
+    handleScroll = () => {
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= 230) {
             this.setState({
                 menuStyle: { position: "fixed" },
-                forumListStyle: { 'marginTop': "33px" }
             })
         } else {
             this.setState({
                 menuStyle: { position: "static" },
-                forumListStyle: { 'marginTop': 0 }
+                forumListStyle: { 'marginTop': "0px" }
             })
         }
     }
     //吸顶组件
     renderTabBar = (props, DefaultTabBar) => (
-        <Sticky bottomOffset={80}>
+        <Sticky bottomOffset={1000}>
             {({ style }) => (
                 <DefaultTabBar {...props} style={{ ...style, zIndex: 99, background: '#fff', top: 0 }} />
             )}
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, fname, menuStyle, forumListStyle ,flist} = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle,fname } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -157,9 +162,12 @@ class forum extends Component {
                         ))}
                     </Carousel>
                 </div>
-                <div className="forum-menu" >
+                <div className="forum-menu" style={menuwrapStyle}>
                     <StickyContainer>
-                        <Tabs defaultActiveKey="1" onChange={this.callback} renderTabBar={this.renderTabBar}>
+                        <Tabs defaultActiveKey="1" 
+                        onChange={this.callback} 
+                        renderTabBar={this.renderTabBar}
+                        >
                             {forumMenu.map((item, i) => {
                                 return (
                                     <TabPane tab={item.first} key={i + 1} style={menuStyle}>
@@ -185,7 +193,12 @@ class forum extends Component {
                     </StickyContainer>
                 </div>
                 <div className="forumListWrap" style={forumListStyle}>
-                    <ForumList flist={flist} />
+                    {/* {
+                        loading?
+                        <Spin></Spin>
+                        :<ForumList flist={flist} />
+                    } */}
+                    <ForumList flist={flist} fname={fname}/>
                 </div>
             </div>
         );
