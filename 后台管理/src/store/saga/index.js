@@ -1,6 +1,5 @@
 // 需要根据实际来修改
 import {takeEvery,takeLatest,call,apply,put} from 'redux-saga/effects'
-import {biyuan} from '../../api';
 
 
 function* getInventory({payload}){
@@ -8,7 +7,7 @@ function* getInventory({payload}){
     // const {data} = yield my.get('/goods/inventory',{id:10086})
 
     // 为了方便单元测试，使用以下写法（由于使用yield，saga会等待异步请求的结果，结果返回后内部制动执行next()）
-    const {data:kc} = yield call(biyuan.get,'/goods/inventory',{id:10086});
+    // const {data:kc} = yield call(biyuan.get,'/goods/inventory',{id:10086});
 
     // 把商品数量与库存进行对比
     if(payload.goods_qty>kc){

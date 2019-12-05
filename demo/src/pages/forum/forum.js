@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { fapi } from '../../api'
+import { local } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Icon, Tabs, Radio, Spin } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
 import { StickyContainer, Sticky } from 'react-sticky';
+import { log } from 'util';
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -29,27 +30,28 @@ class forum extends Component {
             },
             {
                 first: "数字货币",
-                second: ["比特币", "区块链", "竞争币", "消息爆料", "O撸社", "以太坊", "量子链", "NEO", "莱特币", "LEDU", "区块链项目评级"]
+                second: [{text:"比特币",id:"2"} ,{text:"区块链",id:"3"} ,{text:"竞争币",id:"4"} ,{text:"消息爆料",id:"14"} ,{text:"O撸社",id:"20"} ,{text:"以太坊",id:"26"} ,{text:"量子链",id:"27"} ,{text:"NEO",id:"28"} ,{text:"莱特币",id:"29"} ,{text:"LEDU",id:"33"} ,{text:"区块链项目评级",id:"36"}]
             },
             {
                 first: "区块链讨论区",
-                second: ["区块链综合讨论", "区块链项目", "Nuls", "ASCH", "瀚德FinTech创新学院", "DDN数据分发网络", "区块链文学"]
+                second: [{text:"区块链综合讨论",id:"15"} ,{text:"区块链项目",id:"17"} ,{text:"Nuls",id:"18"} ,{text:"ASCH",id:"19"} ,{text:"瀚德FinTech创新学院",id:"21"} ,{text:"DDN数据分发网络",id:"32"} ,{text:"区块链文学",id:"39"}]
             },
             {
                 first: "交易平台",
-                second: ["出海交易平台", "国外交易所", "CoinBene", "ALLCOIN"]
+                second: [{text:"出海交易平台",id:"5"} ,{text:"国外交易所",id:"16"} ,{text:"CoinBene",id:"22"} ,{text:"ALLCOIN",id:"31"}]
             },
             {
                 first: "综合讨论区",
-                second: ["挖矿区", "钱包区", "综合", "言币于此", "数字币交易理论"]
+                second: [{text:"挖矿区",id:"6"} ,{text:"钱包区",id:"7"} ,{text:"综合",id:"8"} ,{text:"言币于此",id:"34"} ,{text:"数字币交易理论",id:"37"}]
             },
             {
                 first: "论坛管理",
-                second: ["公告版规", "活动中心", "模拟交易"]
+                second: [{text:"公告版规",id:"24" },{text:"活动中心",id:"25"} ,{text:"模拟交易",id:"38"}]
             }
         ],
         //菜单默认值
         fname: "最新",
+        catid:0,
         //分类列表
         flist: [],
         //吸顶效果
@@ -59,21 +61,60 @@ class forum extends Component {
         forumListStyle: {},
         loading: true,
     }
-    getmsg = async (fname) => {
-        this.setState({
-            loading: true
+    // getmsg = async (fname) => {
+    //     this.setState({
+    //         loading: true
+    //     })
+    //     let { data: [{ flist }] } = await local.get('/home/article',{
+    //         fname
+    //     });
+    //     this.setState({
+    //         flist,
+    //         loading: false
+    //     })
+    // }
+    //转化时间戳
+    getTime = (time) => {
+        let date = new Date().getTime();
+        let offset=date/1000-time;
+        let d = parseInt(offset  / 60 / 60 / 24);
+        let h = parseInt(offset  / 60 / 60 % 24);
+        let f = parseInt(offset  / 60 % 60);
+        let s = parseInt(offset  % 60);
+        let res = "";
+        if(d!=0){
+            res=d+"天";
+        }else{
+            if(h!=0){
+                res=h+"小时"
+            }else{
+                if(f!=0){
+                    res=f+"分钟"
+                }else{
+                    res=s+"秒"
+                }
+            }
+        }
+        res+="前";
+        return res;
+    }
+    getforum = async (catid)=>{
+        let {data:{data}}=await local.get('/home/article/',{
+            page:0,
+            catid
         })
-        let { data: [{ flist }] } = await fapi.get({
-            fname
-        });
-        this.setState({
-            flist,
-            loading: false
+        data.map(item=>{
+            item.created_at=this.getTime(item.created_at);
         })
+        this.setState({
+            flist:data
+        })
+        console.log("数据",data);
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
-        this.getmsg(this.state.fname);
+        // this.getmsg(this.state.fname);
+        this.getforum(0);
     }
     componentWillUnmount(){
         this.setState=(this.state,callback=>{
@@ -93,6 +134,7 @@ class forum extends Component {
                 forumListStyle: { 'marginTop': "33px" }
             })
         }
+        // this.getCatid(this.state.fname);
     }
     //二级菜单获取值
     getDatalist = e => {
@@ -101,11 +143,19 @@ class forum extends Component {
             fname: e.target.value,
             forumListStyle: { 'marginTop': "33px" }
         })
+        this.getCatid(this.state.fname);
+    }
+    //获取catid
+    getCatid=(fname)=>{
+        var catid=this.state.catidList.fname;
+        this.setState({
+            catid
+        })
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.fname != this.state.fname) {
-            this.getmsg(this.state.fname);
-        }
+        // if (prevState.fname != this.state.fname) {
+        //     this.getmsg(this.state.fname);
+        // }
     }
     //滚动监听
     handleScroll = () => {
@@ -176,7 +226,9 @@ class forum extends Component {
                                                 ?
                                                 ""
                                                 :
-                                                <Radio.Group defaultValue="1" onChange={this.getDatalist} >
+                                                <Radio.Group 
+                                                    // defaultValue={0} 
+                                                    onChange={this.getDatalist} >
                                                     {item.second.map((val, j) => {
                                                         return (
                                                             <Radio.Button value={val} key={j + 1}>{val}</Radio.Button>
@@ -198,7 +250,7 @@ class forum extends Component {
                         <Spin></Spin>
                         :<ForumList flist={flist} />
                     } */}
-                    <ForumList flist={flist} fname={fname}/>
+                    <ForumList flist={flist} />
                 </div>
             </div>
         );

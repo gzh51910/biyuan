@@ -5,15 +5,15 @@ const local = axios.create({
     baseURL: 'http://m.coingogo.com/ajax'
 });
 
-function get(path,params,config={}){
-    return local.get(path,{
+function get(path, params, config = {}) {
+    return local.get(path, {
         ...config,
         params
     })
 }
 
-function post(path,data={},config={}){
-    return local.post(path,data,config)
+function post(path, data = {}, config = {}) {
+    return local.post(path, data, config)
 }
 
 export default {
