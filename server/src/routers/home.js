@@ -187,7 +187,7 @@ Router.get('/weibo', async (req, qqq) => {
 // last_comment_time
 // 论坛
 // 传 page,catid,
-Router.get('/article', async (req, qqq) => {
+Router.get('/forumlist', async (req, qqq) => {
     let {
         page,
         catid,
@@ -244,11 +244,10 @@ Router.get('/article', async (req, qqq) => {
 
 Router.get('/article', async (req, qqq) => {
     let {
-        page,
-        catid,
+        id
     } = req.query
     request({
-        url: 'http://m.coingogo.com/ajax/article/q2ndlist.ashx',
+        url: 'http://m.coingogo.com/ajax/article/detail.ashx',
         method: 'post',
         // timeout: 100,
         headers: {
@@ -256,41 +255,24 @@ Router.get('/article', async (req, qqq) => {
             'User-Agent': 'PostmanRuntime/7.20.1'
         },
         formData: {
-            page,
-            catid,
-            psize: 6
+            id
         }
     }, function (err, res, body) {
         body2 = JSON.parse(body)
         let {
             data
         } = body2
-        let datalist = data.map(ele => {
-            let {
-                avatar,
-                content,
-                title,
-                id,
-                username,
-                updated_at,
-                view_count,
-                comment_count,
-                rmb
-            } = ele
-            avatar = `https://statics.coingogo.com/uploads/avatars/${avatar}`
-            result = {
-                avatar,
-                content,
-                title,
-                id,
-                username,
-                updated_at,
-                view_count,
-                comment_count,
-                rmb
-            }
-            return result
-        })
+        let datalist ={};
+        let {author,cate_names,detail}=data;
+        datalist.username=author.username;
+        datalist.img=author.MemberAvatar;
+        datalist.title=detail.title;
+        datalist.time=detail.created_at;
+        datalist.cate_names=cate_names[1];
+        datalist.view_count=detail.view_count;
+        datalist.like_count=detail.like_count;
+        datalist.comment_count=detail.comment_count;
+        datalist.content=detail.content;
         qqq.send(formatData({
             data: datalist
         }))

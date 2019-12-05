@@ -50,7 +50,6 @@ class forum extends Component {
             }
         ],
         //菜单默认值
-        fname: "最新",
         catid:0,
         //分类列表
         flist: [],
@@ -61,18 +60,6 @@ class forum extends Component {
         forumListStyle: {},
         loading: true,
     }
-    // getmsg = async (fname) => {
-    //     this.setState({
-    //         loading: true
-    //     })
-    //     let { data: [{ flist }] } = await local.get('/home/article',{
-    //         fname
-    //     });
-    //     this.setState({
-    //         flist,
-    //         loading: false
-    //     })
-    // }
     //转化时间戳
     getTime = (time) => {
         let date = new Date().getTime();
@@ -99,7 +86,7 @@ class forum extends Component {
         return res;
     }
     getforum = async (catid)=>{
-        let {data:{data}}=await local.get('/home/article/',{
+        let {data:{data}}=await local.get('/home/forumlist/',{
             page:0,
             catid
         })
@@ -109,7 +96,6 @@ class forum extends Component {
         this.setState({
             flist:data
         })
-        console.log("数据",data);
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
@@ -126,36 +112,27 @@ class forum extends Component {
         document.body.scrollTop = 230;
         if (key == 1) {
             this.setState({
-                fname: "最新",
-                forumListStyle: { 'marginTop': 0 }
+                forumListStyle: { 'marginTop': 0 },
+                catid:0
             })
         } else {
             this.setState({
                 forumListStyle: { 'marginTop': "33px" }
             })
         }
-        // this.getCatid(this.state.fname);
     }
     //二级菜单获取值
     getDatalist = e => {
         document.body.scrollTop = 230;
         this.setState({
-            fname: e.target.value,
-            forumListStyle: { 'marginTop': "33px" }
-        })
-        this.getCatid(this.state.fname);
-    }
-    //获取catid
-    getCatid=(fname)=>{
-        var catid=this.state.catidList.fname;
-        this.setState({
-            catid
+            forumListStyle: { 'marginTop': "33px" },
+            catid:e.target.value
         })
     }
     componentDidUpdate(prevProps, prevState) {
-        // if (prevState.fname != this.state.fname) {
-        //     this.getmsg(this.state.fname);
-        // }
+        if (prevState.catid != this.state.catid) {
+            this.getforum(this.state.catid);
+        }
     }
     //滚动监听
     handleScroll = () => {
@@ -180,7 +157,7 @@ class forum extends Component {
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle,fname } = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -231,7 +208,7 @@ class forum extends Component {
                                                     onChange={this.getDatalist} >
                                                     {item.second.map((val, j) => {
                                                         return (
-                                                            <Radio.Button value={val} key={j + 1}>{val}</Radio.Button>
+                                                            <Radio.Button value={val.id} key={val.id}>{val.text}</Radio.Button>
                                                         )
                                                     })}
 
