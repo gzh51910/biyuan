@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fapi,biyuan } from '../../api'
+import { local } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Icon, Tabs, Radio, Spin } from "antd";
@@ -61,28 +61,59 @@ class forum extends Component {
         forumListStyle: {},
         loading: true,
     }
-    getmsg = async (fname) => {
-        this.setState({
-            loading: true
-        })
-        let { data: [{ flist }] } = await fapi.get({
-            fname
-        });
-        this.setState({
-            flist,
-            loading: false
-        })
+    // getmsg = async (fname) => {
+    //     this.setState({
+    //         loading: true
+    //     })
+    //     let { data: [{ flist }] } = await local.get('/home/article',{
+    //         fname
+    //     });
+    //     this.setState({
+    //         flist,
+    //         loading: false
+    //     })
+    // }
+    //转化时间戳
+    getTime = (time) => {
+        let date = new Date().getTime();
+        let offset=date/1000-time;
+        let d = parseInt(offset  / 60 / 60 / 24);
+        let h = parseInt(offset  / 60 / 60 % 24);
+        let f = parseInt(offset  / 60 % 60);
+        let s = parseInt(offset  % 60);
+        let res = "";
+        if(d!=0){
+            res=d+"天";
+        }else{
+            if(h!=0){
+                res=h+"小时"
+            }else{
+                if(f!=0){
+                    res=f+"分钟"
+                }else{
+                    res=s+"秒"
+                }
+            }
+        }
+        res+="前";
+        return res;
     }
     getforum = async (catid)=>{
-        let data=await biyuan.get({
+        let {data:{data}}=await local.get('/home/article/',{
             page:0,
             catid
+        })
+        data.map(item=>{
+            item.created_at=this.getTime(item.created_at);
+        })
+        this.setState({
+            flist:data
         })
         console.log("数据",data);
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
-        this.getmsg(this.state.fname);
+        // this.getmsg(this.state.fname);
         this.getforum(0);
     }
     componentWillUnmount(){
@@ -122,9 +153,9 @@ class forum extends Component {
         })
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.fname != this.state.fname) {
-            this.getmsg(this.state.fname);
-        }
+        // if (prevState.fname != this.state.fname) {
+        //     this.getmsg(this.state.fname);
+        // }
     }
     //滚动监听
     handleScroll = () => {
@@ -219,7 +250,7 @@ class forum extends Component {
                         <Spin></Spin>
                         :<ForumList flist={flist} />
                     } */}
-                    <ForumList flist={flist} fname={fname}/>
+                    <ForumList flist={flist} />
                 </div>
             </div>
         );
