@@ -70,7 +70,7 @@ Router.get('/news', async (req, qqq) => {
             return result
         })
         qqq.send(formatData({
-            data:datalist
+            data: datalist
         }))
     })
 })
@@ -143,33 +143,42 @@ Router.get('/weibo', async (req, qqq) => {
             data
         } = body2
         console.log(data);
-        
+
         let datalist = data.map(ele => {
-            let {text,pic_urls,created_at}=ele
-            let {avatar_large,
+            let {
+                text,
+                pic_urls,
+                created_at
+            } = ele
+            let {
+                avatar_large,
                 cover_image,
                 cover_image_phone,
-              
+
                 description,
-                id,name,
-                verified_reason
-                ,idstr
+                id,
+                name,
+                verified_reason,
+                idstr
 
             } = ele.user
-            result = {idstr,
-                text,pic_urls,
+            result = {
+                idstr,
+                text,
+                pic_urls,
                 avatar_large,
                 cover_image,
                 cover_image_phone,
                 created_at,
                 description,
-                id,name,
+                id,
+                name,
                 verified_reason
             }
             return result
         })
         qqq.send(formatData({
-            data:datalist
+            data: datalist
         }))
     })
 })
@@ -228,8 +237,129 @@ Router.get('/article', async (req, qqq) => {
             return result
         })
         qqq.send(formatData({
-            data:datalist
+            data: datalist
         }))
+    })
+})
+
+Router.get('/article', async (req, qqq) => {
+    let {
+        page,
+        catid,
+    } = req.query
+    request({
+        url: 'http://m.coingogo.com/ajax/article/q2ndlist.ashx',
+        method: 'post',
+        // timeout: 100,
+        headers: {
+            'Host': 'm.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        formData: {
+            page,
+            catid,
+            psize: 6
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+        let datalist = data.map(ele => {
+            let {
+                avatar,
+                content,
+                title,
+                id,
+                username,
+                updated_at,
+                view_count,
+                comment_count,
+                rmb
+            } = ele
+            avatar = `https://statics.coingogo.com/uploads/avatars/${avatar}`
+            result = {
+                avatar,
+                content,
+                title,
+                id,
+                username,
+                updated_at,
+                view_count,
+                comment_count,
+                rmb
+            }
+            return result
+        })
+        qqq.send(formatData({
+            data: datalist
+        }))
+    })
+})
+
+// 币数据之币指数
+// index_type: 1
+// name: 
+// page: 0
+// pagesize: 1000
+Router.get('/coin', async (req, qqq) => {
+    let {
+        name,
+        page,
+        index_type,
+    } = req.query
+    request({
+        url: 'http://m.coingogo.com/ajax/coin/coin_index.ashx',
+        method: 'post',
+        // timeout: 100,
+        headers: {
+            'Host': 'm.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        formData: {
+            index_type,
+            name,
+            page,
+            pagesize: 1000
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+        qqq.send(
+           body2
+       )
+    })
+})
+Router.get('/coin', async (req, qqq) => {
+    let {
+        name,
+        page,
+        index_type,
+    } = req.query
+    request({
+        url: 'http://m.coingogo.com/ajax/coin/coin_index.ashx',
+        method: 'post',
+        // timeout: 100,
+        headers: {
+            'Host': 'm.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        formData: {
+            index_type,
+            name,
+            page,
+            pagesize: 1000
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+        qqq.send(
+           body2
+       )
     })
 })
 

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-// import Api, { coinindex } from '@/api';
-// let { coinindex } = Api
-// console.log(coinindex, "qqq");
+
 import axios from 'axios'
 import pic from '../img/logo.png';
 import { connect } from 'react-redux';
 import { Row, Col, Icon, Spin } from "antd";
 import '../css/data.scss';
-// const DemoBox = props => <p className={`height-${props.value}`}>{props.children}</p>;
+
 
 function mapStateToProps(state) {
     return {
@@ -43,7 +41,6 @@ class data extends Component {
             this.setState({
                 coinlist: res.data.data
             })
-
         });
     }
     twocoinshuju() {
