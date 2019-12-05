@@ -65,7 +65,7 @@ Router.get('/news', async (req, qqq) => {
                 view_count,
                 right,
                 content,
-                created_atx
+                created_at
             }
             return result
         })
@@ -217,7 +217,7 @@ Router.get('/article', async (req, qqq) => {
                 title,
                 id,
                 username,
-                updated_at,
+                created_at,
                 view_count,
                 comment_count,
                 rmb
@@ -229,7 +229,7 @@ Router.get('/article', async (req, qqq) => {
                 title,
                 id,
                 username,
-                updated_at,
+                created_at,
                 view_count,
                 comment_count,
                 rmb
