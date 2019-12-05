@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter} from "react-router-dom";
 import { biyuan } from '../../api'
 import { connect } from 'react-redux';
 import { Icon } from "antd";
@@ -10,15 +11,19 @@ import '../../css/forumList.css';
 // }
 
 class forumList extends Component {
+    goto = (id) => {
+        var fname=this.props.fname;
+        this.props.history.push(`/foruminfo/${id}${fname}`)
+    }
     render() {
-        let {flist} = this.props;
+        let { flist } = this.props;
         return (
             <div className="forumList">
                 <ul>
                     {
                         flist.map(item => {
                             return (
-                                <li key={item.f_id}>
+                                <li key={item.f_id} onClick={this.goto.bind(this, item.f_id)}>
                                     <div className="forumList-title">
                                         {item.f_id <= 1 ?
                                             <span><i className="ding">顶</i><i className="jing">精</i></span> : ""}
@@ -38,12 +43,12 @@ class forumList extends Component {
                             )
                         })
                     }
-            </ul>
-        </div>
+                </ul>
+            </div>
         );
     }
 }
-
+forumList= withRouter(forumList);
 export default forumList;
 // export default connect(
 //     mapStateToProps,

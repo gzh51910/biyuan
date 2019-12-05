@@ -75,10 +75,13 @@ class forum extends Component {
         window.addEventListener('scroll', this.handleScroll, true);
         this.getmsg(this.state.fname);
     }
-
+    componentWillUnmount(){
+        this.setState=(this.state,callback=>{
+            return;
+        })
+    }
     //一级菜单获取值
     callback = key => {
-        console.log(key);
         document.body.scrollTop = 230;
         if (key == 1) {
             this.setState({
@@ -127,7 +130,7 @@ class forum extends Component {
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle } = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle,fname } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -195,7 +198,7 @@ class forum extends Component {
                         <Spin></Spin>
                         :<ForumList flist={flist} />
                     } */}
-                    <ForumList flist={flist} />
+                    <ForumList flist={flist} fname={fname}/>
                 </div>
             </div>
         );

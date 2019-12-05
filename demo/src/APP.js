@@ -9,6 +9,7 @@ import News from "~/News";
 import data from "~/data";
 import forum from "~/forum/forum";
 import mine from "~/mine";
+import forumArticle from "~/forum/forumArticle";
 
 import { Menu, Icon } from "antd";
 
@@ -74,6 +75,7 @@ class App extends Component {
             <Route path="/data" component={data} />
             <Route path="/forum" component={forum} />
             <Route path="/mine" component={mine} />
+            <Route path="/foruminfo/:id:fname" component={forumArticle}/>
             <Route path="/notfound" render={() => <div>404页面</div>} />
             <Redirect from="/" to="/home" exact />
             <Redirect to="/notfound" />
