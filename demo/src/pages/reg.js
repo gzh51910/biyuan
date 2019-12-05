@@ -12,7 +12,6 @@ class Login extends React.Component {
             yztime: 59,
         }
     }
-
     //倒计60s
     count = () => {
         let { yztime } = this.state;
@@ -33,6 +32,7 @@ class Login extends React.Component {
                 this.count();
                 console.log(this.getRandonNum());
             }
+
             let verify = { phone: values.accountname, gettype: 1 }
             this.props.dispatch({ type: '***/***', payload: { verify } });
         });
@@ -47,7 +47,6 @@ class Login extends React.Component {
         }
         return res;
     }
-
     // 发送验证码
     state = {
         btnText: '发送验证码',
