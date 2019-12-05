@@ -175,7 +175,7 @@ class App extends Component {
                         <Content style={{ margin: '0 16px' }}>
                             <div style={{ padding: 8, background: '#fff', minHeight: 360 }}>
                                 <Switch>
-                                     <Route path="/notfound" render={() => <div>404页面</div>} />
+                                     <Route path="/notfound"  render={() => <div>404页面</div>} />
                                     {this.state.Routelist.map(ele => <Route {...ele} key={ele.path} />)}
                                     {/* <Redirect to="/notfound" /> */}
                                     <Redirect to={currentPath?currentPath:"/home"} exact/>
