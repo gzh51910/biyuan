@@ -1,0 +1,43 @@
+@function vw($px) {
+    @return ($px / 750) * 100vw;
+}
+
+.bxiyi {
+    margin: vw(30);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .xieyi {
+        font-weight: vw(20);
+        font-weight: bold;
+        line-height: vw(80);
+    }
+
+    .line {
+        margin-bottom: vw(40);
+        width: vw(70);
+        height: vw(10);
+        background-color: #FFC600;
+        border-radius: vw(3);
+    }
+
+    .text {
+        p {
+            color: #000000;
+        }
+
+        .tit {
+            font-size: vw(33);
+
+        }
+    }
+
+
+    .statement {
+        text-align: right;
+        height: vw(200);
+        color: #999;
+        font-size: vw(30);
+    }
+}

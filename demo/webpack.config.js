@@ -1,8 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+// var proxy = require('http-proxy-middleware');
+// const context = [`/coinindex`]
 module.exports = {
     entry: './src/main.js',
+
     devServer: {
+
+
         contentBase: path.join(__dirname, './public'),
         port: 5858
     },
@@ -50,6 +55,11 @@ module.exports = {
                 test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
                 include: path.join(__dirname, './src')
+            },
+            // 本地图片
+            {
+                test: /.(jpg|png)$/,
+                use: ['url-loader']
             }
         ]
     },

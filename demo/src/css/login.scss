@@ -1,0 +1,74 @@
+@function vw($px) {
+    @return ($px / 750) * 100vw;
+}
+
+.logina {
+
+    // flex-direction: column;
+    // justify-content: space-between;
+    margin: vw(70);
+
+
+
+
+    .loginhead {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin: vw(50);
+
+        .touxiang {
+            width: vw(60);
+            height: vw(60);
+        }
+
+        .zhuce {
+            font-size: vw(40);
+            font-weight: bold;
+        }
+
+        .dakai {
+            font-size: vw(32);
+        }
+    }
+
+    .box {
+        display: flex;
+        flex-direction: column;
+        margin: auto;
+
+        .yonghu {
+            color: #ffc600;
+        }
+
+        .yanzhengma {
+            color: #ffc600;
+        }
+    }
+
+    .login {
+        background: #ffc600;
+        border: 1px solid #ffc600;
+        width: 95%;
+        height: vw(80);
+        border-radius: vw(40);
+    }
+
+    .tongyi {
+        display: inline-block;
+        margin-left: vw(40);
+        text-align: center;
+
+        .xieyi {
+
+            color: #ffc600;
+        }
+
+    }
+
+    .formdata {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
