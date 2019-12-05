@@ -12,7 +12,6 @@ import mine from "~/mine";
 import Login from '~/Login';
 import loginargument from '~/loginargument';
 import forumArticle from "~/forum/forumArticle";
-
 import { Menu, Icon } from "antd";
 
 class App extends Component {
@@ -70,7 +69,6 @@ class App extends Component {
   render() {
     return (
       <div className="container-app">
-
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/news" component={News} />
@@ -81,14 +79,10 @@ class App extends Component {
           <Route path="/loginargument" component={loginargument} />
           <Route path="/foruminfo/:id:fname" component={forumArticle} />
           <Route path="/notfound" render={() => <div>404页面</div>} />
-
           <Redirect from="/" to="/home" exact />
           <Redirect to="/notfound" />
         </Switch>
         <div className="footer">
-
-
-
           <Menu
             onClick={this.goto}
             selectedKeys={[this.state.currentPath]}

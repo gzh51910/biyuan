@@ -6,6 +6,7 @@ import { Icon, Tabs, Radio, Spin } from "antd";
 import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
 import { StickyContainer, Sticky } from 'react-sticky';
+import { log } from 'util';
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
 function mapStateToProps(state) {
@@ -74,12 +75,15 @@ class forum extends Component {
     }
     getforum = async (catid)=>{
         let data=await biyuan.get({
-            
+            page:0,
+            catid
         })
+        console.log("数据",data);
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
         this.getmsg(this.state.fname);
+        this.getforum(0);
     }
     componentWillUnmount(){
         this.setState=(this.state,callback=>{
