@@ -1,0 +1,107 @@
+.forumArticle-container {
+  width: 100%;
+}
+
+.forumArticle-container .forumArticle-header {
+  width: 100%;
+  height: 3rem;
+  color: #666;
+  line-height: 3rem;
+  background-color: #fff;
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.forumArticle-container .forumArticle-header-back, .forumArticle-container .forumArticle-header-share {
+  width: 3rem;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.forumArticle-container .forumArticle-box {
+  padding: 3rem 0;
+}
+
+.forumArticle-container .forumArticle-topinfo {
+  display: flex;
+  padding: 1rem 1rem 0;
+  background-color: #fff;
+}
+
+.forumArticle-container .forumArticle-topinfo img {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+.forumArticle-container .forumArticle-topinfo-msg {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.forumArticle-container .forumArticle-topinfo-msg p:nth-of-type(1) {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.forumArticle-container .forumArticle-topinfo-msg p:nth-of-type(2) {
+  color: #999;
+  font-size: 0.9rem;
+  padding-top: 0.2rem;
+}
+
+.forumArticle-container .forumArticle-content {
+  padding: 1.5rem 1rem;
+  background-color: #fff;
+}
+
+.forumArticle-container .forumArticle-content-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.forumArticle-container .forumArticle-content-msg {
+  font-size: 0.8rem;
+  color: #999;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.forumArticle-container .forumArticle-content-msg-menu {
+  margin: 0 1rem;
+  color: #ffc600;
+}
+
+.forumArticle-container .forumArticle-content-msg-num {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.forumArticle-container .forumArticle-content-msg-num-seen, .forumArticle-container .forumArticle-content-msg-num-good {
+  margin-right: 1rem;
+}
+
+.forumArticle-container .forumArticle-content-line {
+  overflow: hidden;
+}
+
+.forumArticle-container .forumArticle-content-line div {
+  width: 2rem;
+  height: 5px;
+  background-color: #ffc600;
+  border-radius: 5px;
+  float: left;
+}
+
+.forumArticle-container .forumArticle-content-text {
+  padding: 1.5rem 0;
+}

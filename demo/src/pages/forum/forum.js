@@ -48,8 +48,16 @@ class forum extends Component {
                 second: ["公告版规", "活动中心", "模拟交易"]
             }
         ],
+        catidList:{
+            "最新":0,"比特币":2,"区块链":3,"竞争币":4,"消息爆料":14, "O撸社":20, "以太坊":26, "量子链":27, "NEO":28, "莱特币":29, "LEDU":33, "区块链项目评级":36,
+            "区块链综合讨论":15, "区块链项目":17, "Nuls":18, "ASCH":19, "瀚德FinTech创新学院":21, "DDN数据分发网络":32, "区块链文学":39,
+            "出海交易平台":5, "国外交易所":16, "CoinBene":22, "ALLCOIN":31,
+            "挖矿区":6, "钱包区":7, "综合":8, "言币于此":34, "数字币交易理论":37,
+            "公告版规":24, "活动中心":25, "模拟交易":38
+            },
         //菜单默认值
         fname: "最新",
+        catid:0,
         //分类列表
         flist: [],
         //吸顶效果
@@ -93,6 +101,7 @@ class forum extends Component {
                 forumListStyle: { 'marginTop': "33px" }
             })
         }
+        // this.getCatid(this.state.fname);
     }
     //二级菜单获取值
     getDatalist = e => {
@@ -100,6 +109,14 @@ class forum extends Component {
         this.setState({
             fname: e.target.value,
             forumListStyle: { 'marginTop': "33px" }
+        })
+        this.getCatid(this.state.fname);
+    }
+    //获取catid
+    getCatid=(fname)=>{
+        var catid=this.state.catidList.fname;
+        this.setState({
+            catid
         })
     }
     componentDidUpdate(prevProps, prevState) {
@@ -176,7 +193,9 @@ class forum extends Component {
                                                 ?
                                                 ""
                                                 :
-                                                <Radio.Group defaultValue="1" onChange={this.getDatalist} >
+                                                <Radio.Group 
+                                                    // defaultValue={0} 
+                                                    onChange={this.getDatalist} >
                                                     {item.second.map((val, j) => {
                                                         return (
                                                             <Radio.Button value={val} key={j + 1}>{val}</Radio.Button>
