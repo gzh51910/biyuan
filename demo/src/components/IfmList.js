@@ -8,6 +8,7 @@ function IfmList({ datalist }) {
     function goto(id) {
         let aaa = datalist.find(item => item.id === id);
         console.log(aaa);
+        // console.log(props);
     }
 
     return (

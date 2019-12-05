@@ -28,7 +28,7 @@ class IfmTabs extends Component {
                         <Tabs.DefaultTabBar {...props} page={5} />
                     )}
                 >
-                    <IfmList datalist={datalist} />
+                    <IfmList datalist={datalist} {...this.props} />
                 </Tabs>
             </div>
         );

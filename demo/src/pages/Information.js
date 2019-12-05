@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { news } from "@/api";
 import IfmTabs from "@@/IfmTabs";
-
-import IfmTabsData from "../api/IfmTabsData";
+import {local} from '../api'
+ import IfmTabsData from "../api/IfmTabsData";
 
 class Information extends Component {
     state = {
@@ -24,7 +24,7 @@ class Information extends Component {
         let { tabs } = this.state;
         return (
             <div>
-                <IfmTabs tabs={tabs} />
+                <IfmTabs tabs={tabs} {...this.props} />
             </div>
         );
     }
