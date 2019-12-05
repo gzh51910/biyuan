@@ -3,19 +3,12 @@
 }
 
 .logina {
-    // display: flex;
+
     // flex-direction: column;
     // justify-content: space-between;
-    margin: vw(50);
-
-    // .xb {
+    margin: vw(70);
 
 
-
-    //     width: vw(80);
-    //     height: vw(80);
-
-    // }
 
 
     .loginhead {
@@ -53,4 +46,29 @@
         }
     }
 
+    .login {
+        background: #ffc600;
+        border: 1px solid #ffc600;
+        width: 95%;
+        height: vw(80);
+        border-radius: vw(40);
+    }
+
+    .tongyi {
+        display: inline-block;
+        margin-left: vw(40);
+        text-align: center;
+
+        .xieyi {
+
+            color: #ffc600;
+        }
+
+    }
+
+    .formdata {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }

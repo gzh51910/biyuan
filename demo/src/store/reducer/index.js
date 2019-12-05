@@ -1,10 +1,11 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 
 
 
 
 let rootReducer = combineReducers({
-    // cart:cartReducer,
-    // common:commonReducer
+    cart: function () { return {} },
+
+    // common: commonReducer
 })
 export default rootReducer;

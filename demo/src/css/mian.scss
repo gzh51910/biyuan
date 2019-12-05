@@ -1,0 +1,21 @@
+@function vw($px) {
+    @return ($px / 750) * 100vw;
+}
+
+.minea {
+    .minepic {
+        margin-top: vw(20);
+        margin-left: vw(270);
+
+    }
+
+    .listmine {
+        width: 60%;
+        margin: auto;
+        text-align: center;
+        font-size: vw(40);
+        border: none;
+
+
+    }
+}

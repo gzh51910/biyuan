@@ -1,5 +1,5 @@
 .logina {
-  margin: 6.66667vw;
+  margin: 9.33333vw;
 }
 
 .logina .loginhead {
@@ -35,4 +35,28 @@
 
 .logina .box .yanzhengma {
   color: #ffc600;
+}
+
+.logina .login {
+  background: #ffc600;
+  border: 1px solid #ffc600;
+  width: 95%;
+  height: 10.66667vw;
+  border-radius: 5.33333vw;
+}
+
+.logina .tongyi {
+  display: inline-block;
+  margin-left: 5.33333vw;
+  text-align: center;
+}
+
+.logina .tongyi .xieyi {
+  color: #ffc600;
+}
+
+.logina .formdata {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
