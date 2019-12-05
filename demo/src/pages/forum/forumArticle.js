@@ -1,21 +1,51 @@
 import React, { Component } from 'react';
 import { log } from 'util';
 import { Icon } from "antd";
+import { local } from '../../api'
 import '../../css/forumArticle.css';
 class forumArticle extends Component {
     state = {
-        fname: "",
-        id: 0
+        id: 0,
+        msg:{}
     };
     componentDidMount() {
-        let { fname, id } = this.props.match.params;
-        // this.getArticle(fname,id);
+        let { id } = this.props.match.params;
+        this.getArticle(id);
     }
-    getArticle = (fname, id) => {
-        this.setState({
-            fname,
+    getArticle = async(id) => {
+        let {data:{data}}=await local.get('/home/article/',{
             id
         })
+        data.cate_names=data.cate_names.split('-')[1];
+        data.time=this.getTime(data.time);
+        this.setState({
+            msg:data
+        })
+    }
+    //转化时间戳
+    getTime = (time) => {
+        let date = new Date().getTime();
+        let offset=date/1000-time;
+        let d = parseInt(offset  / 60 / 60 / 24);
+        let h = parseInt(offset  / 60 / 60 % 24);
+        let f = parseInt(offset  / 60 % 60);
+        let s = parseInt(offset  % 60);
+        let res = "";
+        if(d!=0){
+            res=d+"天";
+        }else{
+            if(h!=0){
+                res=h+"小时"
+            }else{
+                if(f!=0){
+                    res=f+"分钟"
+                }else{
+                    res=s+"秒"
+                }
+            }
+        }
+        res+="前";
+        return res;
     }
     goback = () => {
         this.props.history.goBack();
@@ -26,6 +56,7 @@ class forumArticle extends Component {
         // }
     }
     render() {
+        let {msg,content}=this.state;
         return (
             <div className="forumArticle-container">
                 <div className="forumArticle-header">
@@ -34,31 +65,30 @@ class forumArticle extends Component {
                 </div>
                 <div className="forumArticle-box">
                     <div className="forumArticle-topinfo">
-                        <img src="http://statics.coingogo.com/uploads/avatars/VSsFuApnLBKMOJ5hyshqQW6XULu42PQT.jpg"></img>
+                        <img src={msg.img}></img>
                         <div className="forumArticle-topinfo-msg">
-                            <p>光头说币</p>
+                            <p>{msg.username}</p>
                             <p>发帖64·评论167·源点3264</p>
                         </div>
                     </div>
                     <div className="forumArticle-content">
-                        <div className="forumArticle-content-title">【光头说币】数字货币行情分析</div>
+                        <div className="forumArticle-content-title">{msg.title}</div>
                         <div className="forumArticle-content-msg">
-                            <span className="forumArticle-content-msg-time">323天前</span>
-                            <span className="forumArticle-content-msg-menu">比特币</span>
+                            <span className="forumArticle-content-msg-time">{msg.time}</span>
+                            <span className="forumArticle-content-msg-menu">{msg.cate_names}</span>
                             <div className="forumArticle-content-msg-num">
                                 <Icon type="eye" />
-                                <span className="forumArticle-content-msg-num-seen">409972</span>
+                                <span className="forumArticle-content-msg-num-seen">{msg.view_count}</span>
                                 <Icon type="like" />
-                                <span className="forumArticle-content-msg-num-good">65</span>
+                                <span className="forumArticle-content-msg-num-good">{msg.like_count}</span>
                                 <Icon type="message" />
-                                <span className="forumArticle-content-msg-num-discuss">526</span>
+                                <span className="forumArticle-content-msg-num-discuss">{msg.comment_count}</span>
                             </div>
                         </div>
                         <div className="forumArticle-content-line">
                             <div></div>
                         </div>
-                        <div className="forumArticle-content-text">
-                            
+                        <div className="forumArticle-content-text" dangerouslySetInnerHTML={{__html:msg.content}} >
                         </div>
                     </div>
                 </div>
