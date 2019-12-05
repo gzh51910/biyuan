@@ -71,7 +71,7 @@ class Login extends React.Component {
                     <h3 className="zhuce">注册</h3>
                     <p className="dakai">App打开</p>
                 </header>
-                <Form style={{ width: 300 }} className="formdata">
+                <Form className="formdata">
 
                     <Form.Item >
                         {getFieldDecorator('phone', {

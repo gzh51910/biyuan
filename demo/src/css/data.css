@@ -1,8 +1,10 @@
 .bishuju {
-  margin-top: 2.66667vw;
+  line-height: 13.33333vw;
+  height: 13.33333vw;
 }
 
-.touxiang {
+.bishuju .touxiang {
+  margin-top: 2.66667vw;
   width: 8vw;
   height: 8vw;
 }
@@ -51,6 +53,7 @@
 }
 
 .listhead .zhangdie {
+  background: white;
   width: 90%;
   height: 20vw;
 }

@@ -3,13 +3,19 @@
 }
 
 .bishuju {
-    margin-top: vw(20);
+    // margin-top: vw(20);
+
+    line-height: vw(100);
+    height: vw(100);
+
+    .touxiang {
+        margin-top: vw(20);
+        width: vw(60);
+        height: vw(60);
+    }
 }
 
-.touxiang {
-    width: vw(60);
-    height: vw(60);
-}
+
 
 .coindata {
     color: black;
@@ -59,7 +65,7 @@
     border-bottom: 1px solid gainsboro;
 
     .zhangdie {
-
+        background: white;
         width: 90%;
         height: vw(150);
 
