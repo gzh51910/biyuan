@@ -1,11 +1,24 @@
-import React from "react";
+import React, { Component } from "react";
+import { Tabs } from "antd-mobile";
+import NewsflashList from "@@/NewsflashList";
+import Weibo from "@@/Weibo";
 
-function Newsflash(props) {
-    return (
-        <div>
-            <h1>快讯</h1>
-        </div>
-    );
+class Newsflash extends Component {
+    state = {
+        tabs: [{ title: "快讯" }, { title: "微博" }]
+    };
+    render() {
+        let { tabs } = this.state;
+
+        return (
+            <div>
+                <Tabs tabs={tabs}>
+                    <NewsflashList />
+                    <Weibo />
+                </Tabs>
+            </div>
+        );
+    }
 }
 
 export default Newsflash;

@@ -24,6 +24,7 @@ const formItemLayout = {
     },
   },
 };
+
 @connect()
 @Form.create()
 class Login extends Component {
@@ -36,7 +37,7 @@ class Login extends Component {
     user.Authorization = headers.authorization;
     localStorage.setItem('user',JSON.stringify(user))
     localStorage.setItem('Authorization',JSON.stringify(user.Authorization))
-    this.props.history.push('/')
+    window.location.reload()
   }
   handleSubmit = e => {
     e.preventDefault();
@@ -47,6 +48,7 @@ class Login extends Component {
     })
   }
   render() {
+    console.log( window.location.href);
     const { getFieldDecorator } = this.props.form;
     return (
  
@@ -60,11 +62,11 @@ class Login extends Component {
           // validateStatus="validating"
           help=""
         >
-          {getFieldDecorator('user', {
+          {getFieldDecorator('username', {
             rules: [
               { required: true, max: 11, pattern: /^[1][3,4,5,7,8][0-9]{9}$/ }],
           })(
-            <Input placeholder="账户" id="user" />)}
+            <Input placeholder="账户" id="username" />)}
         </Form.Item>
         <Form.Item
           label="密码" hasFeedback

@@ -1,4 +1,11 @@
 
+// loginForm 登录后台的login
+.login-form{
+    min-width: 100%;
+    position: fixed;
+    top: 50%;
+    transform: translate3d(0,-50%,0);
+}
 .ant-layout-sider-trigger {
     position: relative;
 
@@ -14,5 +21,23 @@
     height: 100%;
     img {
         width:auto; height:100%
+    }
+}
+
+// listTitle
+.listTitle{
+    font-size: 16px;
+    .ant-col{
+        font-weight:bold;
+        font-size: 16px;
+    }
+ 
+}
+
+
+// Userlist
+.userlist{
+    .gutter-row{
+        text-align: center;
     }
 }

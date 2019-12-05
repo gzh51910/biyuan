@@ -1,3 +1,10 @@
+.login-form {
+  min-width: 100%;
+  position: fixed;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
 .ant-layout-sider-trigger {
   position: relative;
 }
@@ -14,4 +21,17 @@
 .logo img {
   width: auto;
   height: 100%;
+}
+
+.listTitle {
+  font-size: 16px;
+}
+
+.listTitle .ant-col {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.userlist .gutter-row {
+  text-align: center;
 }

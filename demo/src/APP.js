@@ -7,10 +7,15 @@ import "./App.scss";
 import Home from "~/Home";
 import News from "~/News";
 import data from "~/data";
-import forum from "~/forum";
+import forum from "~/forum/forum";
 import mine from "~/mine";
+<<<<<<< HEAD
 import Login from '~/Login';
 import loginargument from '~/loginargument';
+=======
+import forumArticle from "~/forum/forumArticle";
+
+>>>>>>> 9da75025a2c67e309894fe58356e13d886ad6143
 import { Menu, Icon } from "antd";
 
 class App extends Component {
@@ -68,6 +73,7 @@ class App extends Component {
   render() {
     return (
       <div className="container-app">
+<<<<<<< HEAD
 
         <Switch>
           <Route path="/home" component={Home} />
@@ -82,6 +88,21 @@ class App extends Component {
           <Redirect to="/notfound" />
         </Switch>
         <div className="footer">
+=======
+        
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route path="/news" component={News} />
+            <Route path="/data" component={data} />
+            <Route path="/forum" component={forum} />
+            <Route path="/mine" component={mine} />
+            <Route path="/foruminfo/:id:fname" component={forumArticle}/>
+            <Route path="/notfound" render={() => <div>404页面</div>} />
+            <Redirect from="/" to="/home" exact />
+            <Redirect to="/notfound" />
+          </Switch>
+          <div className="footer">
+>>>>>>> 9da75025a2c67e309894fe58356e13d886ad6143
           <Menu
             onClick={this.goto}
             selectedKeys={[this.state.currentPath]}

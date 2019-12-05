@@ -1,11 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
+import { news } from "@/api";
+import IfmTabs from "@@/IfmTabs";
 
-function Information(props) {
-    return (
-        <div>
-            <h1>资讯</h1>
-        </div>
-    );
+import IfmTabsData from "../api/IfmTabsData";
+
+class Information extends Component {
+    state = {
+        tabs: []
+    };
+
+    async componentDidMount() {
+        // let res = await news.get();
+        let { data } = IfmTabsData;
+        data.map(item => (item.title = item.name));
+
+        let all = { title: "全部" };
+        this.setState({
+            tabs: [all, ...data]
+        });
+    }
+
+    render() {
+        let { tabs } = this.state;
+        return (
+            <div>
+                <IfmTabs tabs={tabs} />
+            </div>
+        );
+    }
 }
 
 export default Information;

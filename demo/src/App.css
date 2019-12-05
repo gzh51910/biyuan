@@ -3,6 +3,10 @@ body {
   overflow: scroll;
 }
 
+img {
+  width: 100%;
+}
+
 .container-app {
   margin-bottom: 34px;
   background-color: #ffffff;
@@ -44,10 +48,10 @@ body {
   line-height: 34px;
 }
 
-.footer .am-tabs-default-bar-tab-active {
+.am-tabs-default-bar-tab-active {
   color: #ffc600 !important;
 }
 
-.footer .am-tabs-default-bar-underline {
+.am-tabs-default-bar-underline {
   border-color: #ffc600 !important;
 }

@@ -31,21 +31,57 @@ let mapState = (state) => {
 let mapDispatch = (dispatch) => {
     return {
         LOGIN(user) {
-            dispatch({ type: 'LOGIN' ,payload:{user}})
+            dispatch({ type: 'LOGIN', payload: { user } })
         },
-        LOGOUT(state){
-            dispatch({ type: 'LOGOUT' ,payload:{user}})
+        LOGOUT(state) {
+            dispatch({ type: 'LOGOUT', payload: { user } })
         }
     }
 }
-@connect(mapState,mapDispatch)
+@connect(mapState, mapDispatch)
 @withTest
 class App extends Component {
     state = {
-        currentPath: '/home',
+        currentPath: localStorage.currentPath?localStorage.currentPath:'/home',
         collapsed: false,
+        // Authorization : localStorage.Authorization,
         menu: [
             {
+                text: "用户管理",
+                Icon: "usergroup-delete",
+                path: '/home',
+                list2: [{
+                    name: "普通用户",
+                    type: "reader",
+                    path: '/Reader'
+                }, {
+                    name: "新媒体人",
+                    type: "/author",
+                    path: '/Writers'
+                }, {
+                    name: "文章审核员",
+                    type: "inspector",
+                    path: 'Reade124r'
+                }]
+            },
+            {
+                text: "内容管理",
+                Icon: "file-search",
+                path: '1',
+                list2: [{
+                    name: "资讯",
+                    type: "News",
+                    path: '/News'
+                }, {
+                    name: "快讯",
+                    type: "FNews",
+                    path: '/FNews'
+                }, {
+                    name: "微博",
+                    type: "WeiBo",
+                    path: '/WeiBo'
+                }]
+            }, {
                 text: "主页",
                 Icon: "home",
                 path: '/home'
@@ -59,66 +95,28 @@ class App extends Component {
                 text: "论坛管理",
                 Icon: "desktop",
                 path: '/home3'
-            }, {
-                text: "用户管理",
-                Icon: "usergroup-delete",
-                path: '/home5',
-                list2: [{
-                    name: "普通用户",
-                    type: "reader",
-                    path:'/Reader'
-                }, {
-                    name: "新媒体人",
-                    type: "/author",
-                    path:'Writers'
-                }, {
-                    name: "文章审核员",
-                    type: "inspector",
-                    path:'Reader5'
-                }]
-            },
-            {
-                text: "文章管理",
-                Icon: "file-search",
-                path: '1',
-                list2: [{
-                    name: "资讯",
-                    type: "News",
-                    path:'/News'
-                }, {
-                    name: "快讯",
-                    type: "FNews",
-                    path:'/FNews'
-                }, {
-                    name: "微博",
-                    type: "WeiBo",
-                    path:'/WeiBo'
-                }]
             }
 
         ],
-      
-        Routelist:[
+        Routelist: [
             {
-                path:"/home",
-                component:Home,   
-            },
-            {
-                path:'/Reader',
-                component:Reader
-            },
-            {
-                path:'/Writers',
-                component:Writers
+                path: "/home",
+                component: Home,
             }, {
-                path:'/FNews',
-                component:FNews
+                path: '/Reader',
+                component: Reader
             }, {
-                path:'/News',
-                component:News
+                path: '/Writers',
+                component: Writers
             }, {
-                path:'/WeiBo',
-                component:WeiBo
+                path: '/FNews',
+                component: FNews
+            }, {
+                path: '/News',
+                component: News
+            }, {
+                path: '/WeiBo',
+                component: WeiBo
             }
         ]
     }
@@ -127,19 +125,18 @@ class App extends Component {
         let { history } = this.props;
         this.setState({
             currentPath: path
-        })  
+        })
+        localStorage.setItem("currentPath",path);
         history.push(path)
-        console.log(11);
-        
     }
     // 左边菜单栏显示隐藏
     onCollapse = collapsed => {
         this.setState({ collapsed: !this.state.collapsed, });
-    };
-    render() {  
-        let Authorization=localStorage.Authorization
+    };  
+    render() {
+      let  {currentPath}=this.state
         return (
-            Authorization?
+            this.props.Authorization?
                 <Layout >
                     <Header style={{
                         background: "#58bc58"
@@ -151,7 +148,7 @@ class App extends Component {
                             collapsible
                             onCollapse={this.onCollapse}>
                             <Menu theme="dark"
-                                defaultSelectedKeys={['1']}
+                                defaultSelectedKeys={[currentPath]}
                                 mode="inline"
                                 onClick={this.goto}
                                 ref="mymenu" >
@@ -171,17 +168,17 @@ class App extends Component {
                                                     </span>
                                                 }>  {ele.list2.map(item => <Menu.Item key={item.path}>{item.name}</Menu.Item>)}
                                             </SubMenu>
-                                        } }) }
+                                        }
+                                    })}
                             </Menu>
                         </Sider>
                         <Content style={{ margin: '0 16px' }}>
-                            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+                            <div style={{ padding: 8, background: '#fff', minHeight: 360 }}>
                                 <Switch>
-                                 {this.state.Routelist.map(ele=>{
-                                     return ( <Route {...ele} key={ele.path} />)
-                                 })}
-                                    <Route path="/notfound" render={() => <div>404页面</div>} />
-                                    <Redirect to="/notfound" />
+                                     <Route path="/notfound"  render={() => <div>404页面</div>} />
+                                    {this.state.Routelist.map(ele => <Route {...ele} key={ele.path} />)}
+                                    {/* <Redirect to="/notfound" /> */}
+                                    <Redirect to={currentPath?currentPath:"/home"} exact/>
                                 </Switch>
                             </div>
                         </Content>

@@ -83,86 +83,44 @@
 }
 
 .container-forum .forum-menu {
-  overflow: auto;
+  background-color: #fff;
 }
 
-.container-forum .forum-menu .ant-menu {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
-  background: #fff;
-  border-bottom: 2px solid #e6e6e6;
-  width: 592px;
-}
-
-.container-forum .forum-menu .ant-menu-item {
-  display: flex !important;
-  flex-flow: column nowrap;
-  align-items: center;
-  justify-content: end;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-item-selected {
-  color: #ffc600 !important;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-horizontal {
-  line-height: 34px;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-active {
-  color: #ffc600 !important;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-selected {
-  color: #ffc600 !important;
-  border: 0 !important;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-title:hover {
-  color: #ffc600 !important;
-}
-
-.container-forum .forum-menu .ant-menu-submenu-title {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.container-forum .forum-menu::-webkit-scrollbar {
-  display: none;
-}
-
-.forumMenuSecond {
+.container-forum .forum-menu .ant-tabs-nav-scroll {
   overflow: scroll !important;
-  width: 100%;
-  top: 265px !important;
 }
 
-.forumMenuSecond .ant-menu-sub {
-  width: 1000px;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: start;
-  align-items: center;
-  background-color: #FFF1BF;
-}
-
-.forumMenuSecond .ant-menu-item {
+.container-forum .forum-menu .ant-tabs-bar {
   margin: 0 !important;
 }
 
-.forumMenuSecond .ant-menu-item-selected {
-  color: #ffc600 !important;
-  border-bottom: 2px solid #ffc600 !important;
-  background-color: #FFF1BF !important;
+.container-forum .forum-menu .ant-tabs-tabpane {
+  overflow: scroll;
+  width: 100% !important;
+  top: 45px;
+  z-index: 999;
+  left: 0;
 }
 
-.forumMenuSecond::-webkit-scrollbar {
-  display: none;
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group {
+  display: flex !important;
+  flex-flow: row nowrap;
+  text-align: center;
+}
+
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper {
+  display: flex !important;
+}
+
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper .ant-radio-button {
+  display: none !important;
+}
+
+.container-forum .forum-menu .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper span {
+  display: flex !important;
+  white-space: nowrap !important;
+}
+
+.container-forum .forumListWrap {
+  transition: 0.3s;
 }
