@@ -10,15 +10,13 @@ import {
 
 //     };
 // }
+import { Empty } from 'antd';
 
 
 class Home extends Component {
     render() {
-      
-        
-        return (<div >
-            欢迎管理员登陆， </div>
-        );
+            return (<Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        )
     }
 }
 

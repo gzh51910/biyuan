@@ -5,11 +5,16 @@ import { Icon } from "antd";
 import "../css/IfmList.scss";
 
 function IfmList({ datalist }) {
+    function goto(id) {
+        let aaa = datalist.find(item => item.id === id);
+        console.log(aaa);
+    }
+
     return (
         <div>
             {datalist.map(item => {
                 return (
-                    <div key={item.id}>
+                    <div key={item.id} onClick={goto.bind(this, item.id)}>
                         <WhiteSpace size="xs" />
                         <Card full>
                             <Flex
@@ -19,7 +24,7 @@ function IfmList({ datalist }) {
                             >
                                 <div className="tit">
                                     <h3>
-                                        <strong>{item.title}</strong>{" "}
+                                        <strong>{item.title}</strong>
                                     </h3>
                                     <p>
                                         <span>{item.username}</span>
