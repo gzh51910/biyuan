@@ -8,6 +8,7 @@ let homeRouter = require('./home');
 let forumRouter = require('./forum');
 let userRouter = require('./user');
 // let regRouter = require('./reg');
+let proxyRouter = require('./proxy');
 
 // 跨域解决方案CORS
 Router.use((req,res,next)=>{
@@ -39,7 +40,7 @@ Router.use((req,res,next)=>{
 Router.use(express.json(),express.urlencoded({extended:false}));
 
 
-
+Router.use('/proxy',proxyRouter)
 Router.use('/goods',goodsRouter)
 Router.use('/home',homeRouter)
 Router.use('/login',loginRouter)

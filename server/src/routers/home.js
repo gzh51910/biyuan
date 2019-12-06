@@ -21,10 +21,6 @@ Router.get('/news', async (req, qqq) => {
     let {
         page,
         parent,
-<<<<<<< HEAD
-=======
-      
->>>>>>> dming
     } = req.query
     console.log(11);
     
@@ -71,7 +67,6 @@ Router.get('/news', async (req, qqq) => {
                 right,
                 content,
                 created_at
-<<<<<<< HEAD
             }
             return result
         })
@@ -129,8 +124,6 @@ Router.get('/news/all', async (req, qqq) => {
                 right,
                 content,
                 created_at
-=======
->>>>>>> dming
             }
             return result
         })
@@ -148,36 +141,36 @@ Router.get('/news/all', async (req, qqq) => {
 // parent 为自媒体目录的id值 
 // page 为页数
 // psize 为数量
-Router.get('/flash', async (req, qqq) => {
-    let {
-        page,
-        parent,
-        psize
-    } = req.query
-    request({
-        url: 'http://m.coingogo.com/ajax/flash/index.ashx',
-        method: 'post',
-        timeout: 1000,
-        headers: {
-            'Host': 'm.coingogo.com',
-            'User-Agent': 'PostmanRuntime/7.20.1'
-        },
-        formData: {
-            page,
-            parent,
-            psize: 10
-        }
-    }, function (err, res, body) {
-        body2 = JSON.parse(body)
-        let {
-            data
-        } = body2
+// Router.get('/flash', async (req, qqq) => {
+//     let {
+//         page,
+//         parent,
+//         psize
+//     } = req.query
+//     request({
+//         url: 'http://m.coingogo.com/ajax/flash/index.ashx',
+//         method: 'post',
+//         timeout: 1000,
+//         headers: {
+//             'Host': 'm.coingogo.com',
+//             'User-Agent': 'PostmanRuntime/7.20.1'
+//         },
+//         formData: {
+//             page,
+//             parent,
+//             psize: 10
+//         }
+//     }, function (err, res, body) {
+//         body2 = JSON.parse(body)
+//         let {
+//             data
+//         } = body2
 
-        qqq.send(formatData({
-            data
-        }))
-    })
-})
+//         qqq.send(formatData({
+//             data
+//         }))
+//     })
+// })
 
 
 
@@ -411,6 +404,50 @@ Router.get('/coin', async (req, qqq) => {
        )
     })
 })
+
+
+
+
+
+
+
+// 测试pc端能否用数据
+Router.get('/flash', async (req, qqq) => {
+    let {
+        page,
+        type,
+        psize
+    } = req.query
+    request({
+        url: 'https://www.coingogo.com/flash/default/list',
+        method: 'get',
+        timeout: 1000,
+        headers: {
+            'Host': 'www.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        params: {
+            page,
+            type,
+            // psize: 10
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+
+        qqq.send(formatData({
+            data
+        }))
+    })
+})
+
+
+
+
+
+
 
 
 module.exports = Router
