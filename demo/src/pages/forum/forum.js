@@ -14,8 +14,6 @@ const { TabPane } = Tabs;
 
 
 function mapStateToProps({forumList}) {
-    console.log('forumList',forumList);
-    
     return {
         catid:forumList.catid,
         forumList:forumList.forumList
@@ -96,12 +94,10 @@ class forum extends Component {
         let {forumList} = this.props;
         let curFlist = forumList.filter(item=>item.catid==catid)[0];
         if(curFlist){
-            console.log('true',curFlist);
             this.setState({
                 flist:curFlist.flist
             })
         }else{
-            console.log('flase',curFlist);
             let {data:{data}}=await local.get('/home/forumlist/',{
                 page:0,
                 catid
@@ -133,14 +129,13 @@ class forum extends Component {
     }
     //一级菜单获取值
     callback = key => {
-        document.body.scrollTop = 230;
         if (key == 1) {
             this.setState({
                 forumListStyle: { 'marginTop': 0 },
                 catid:0
             })
-            
         } else {
+            document.body.scrollTop = 230;
             this.setState({
                 forumListStyle: { 'marginTop': "33px" }
             })
@@ -186,8 +181,6 @@ class forum extends Component {
     )
     render() {
         let {catid}=this.props;
-        console.log('props:',this.props);
-        
         let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle } = this.state;
         return (
             <div className="container-forum">
