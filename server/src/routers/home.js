@@ -21,8 +21,10 @@ Router.get('/news', async (req, qqq) => {
     let {
         page,
         parent,
-        psize
+      
     } = req.query
+    console.log(11);
+    
     request({
         url: 'http://m.coingogo.com/ajax/news/all.ashx',
         method: 'post',
@@ -65,10 +67,11 @@ Router.get('/news', async (req, qqq) => {
                 view_count,
                 right,
                 content,
-                created_atx
+                created_at
             }
             return result
         })
+
         qqq.send(formatData({
             data: datalist
         }))
