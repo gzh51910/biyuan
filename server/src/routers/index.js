@@ -12,7 +12,7 @@ let userRouter = require('./user');
 // 跨域解决方案CORS
 Router.use((req,res,next)=>{
     // 支持CORS跨域，只需要设置响应头
-    res.header('Access-Control-Allow-Origin','*');
+    // res.header('Access-Control-Allow-Origin','*');
     let currentOrigin = req.get('Origin');
     let allowOrigin = ['http://10.3.136.139:1910','http://localhost:8080','http://localhost:5858','http://182.92.109.17:1180']
     if(allowOrigin.includes(currentOrigin)){
