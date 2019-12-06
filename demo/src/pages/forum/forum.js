@@ -7,14 +7,21 @@ import { Carousel } from 'antd-mobile';
 import ForumList from './forumList';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { log } from 'util';
+
+
 const { TabPane } = Tabs;
 // const { SubMenu } = Menu;
-function mapStateToProps(state) {
-    return {
 
+
+function mapStateToProps({forumList}) {
+    console.log('forumList',forumList);
+    
+    return {
+        catid:forumList.catid,
+        forumList:forumList.forumList
     };
 }
-
+@connect(mapStateToProps)
 class forum extends Component {
     state = {
         forumBanner: [
@@ -86,16 +93,33 @@ class forum extends Component {
         return res;
     }
     getforum = async (catid)=>{
-        let {data:{data}}=await local.get('/home/forumlist/',{
-            page:0,
-            catid
-        })
-        data.map(item=>{
-            item.created_at=this.getTime(item.created_at);
-        })
-        this.setState({
-            flist:data
-        })
+        let {forumList} = this.props;
+        let curFlist = forumList.filter(item=>item.catid==catid)[0];
+        if(curFlist){
+            console.log('true',curFlist);
+            this.setState({
+                flist:curFlist.flist
+            })
+        }else{
+            console.log('flase',curFlist);
+            let {data:{data}}=await local.get('/home/forumlist/',{
+                page:0,
+                catid
+            })
+            data.map(item=>{
+                item.created_at=this.getTime(item.created_at);
+            })
+    
+            let fdata={};
+            fdata.catid=catid;
+            fdata.flist=data;
+            this.props.dispatch({type:'ADD_FORUMLIST',payload:fdata});
+    
+            this.setState({
+                flist:data
+            })
+        }
+        
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
@@ -115,6 +139,7 @@ class forum extends Component {
                 forumListStyle: { 'marginTop': 0 },
                 catid:0
             })
+            
         } else {
             this.setState({
                 forumListStyle: { 'marginTop': "33px" }
@@ -127,11 +152,14 @@ class forum extends Component {
         this.setState({
             forumListStyle: { 'marginTop': "33px" },
             catid:e.target.value
-        })
+        });
+        // this.props.dispatch({type:'CHANGE_CATID',payload:this.state.catid});
     }
     componentDidUpdate(prevProps, prevState) {
         if (prevState.catid != this.state.catid) {
             this.getforum(this.state.catid);
+            let catid = this.state.catid;
+            this.props.dispatch({type:'CHANGE_CATID',payload:catid});
         }
     }
     //滚动监听
@@ -157,6 +185,9 @@ class forum extends Component {
         </Sticky>
     )
     render() {
+        let {catid}=this.props;
+        console.log('props:',this.props);
+        
         let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle } = this.state;
         return (
             <div className="container-forum">
