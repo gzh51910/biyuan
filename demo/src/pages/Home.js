@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon,Carousel } from 'antd';
-import Forum from './forum/forum';
+import ForumMenu from './forum/forumMenu';
 import '../css/base.css';
 import '../css/home.css';
 function mapStateToProps(state) {
@@ -99,7 +99,7 @@ class Home extends Component {
                 </section>
                 <main>
                     <div className="home-forum">
-                        <Forum/>
+                        <ForumMenu/>
                     </div>
                 </main>
             </div>

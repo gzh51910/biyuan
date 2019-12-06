@@ -122,5 +122,5 @@
 }
 
 .container-forum .forumListWrap {
-  transition: 0.3s;
+  min-height: 133.33333vw;
 }
