@@ -118,7 +118,8 @@ class App extends Component {
                 path: '/WeiBo',
                 component: WeiBo
             }
-        ]
+        ],
+        role:'最高层'
     }
     // 跳转组件
     goto = ({ key: path }) => {
@@ -141,7 +142,7 @@ class App extends Component {
                     <Header style={{
                         background: "#58bc58"
                     }}>
-                        <HeaderState />
+                        <HeaderState role={this.state.role} />
                     </Header>
                     <Layout>
                         <Sider collapsed={this.state.collapsed}

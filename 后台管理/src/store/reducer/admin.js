@@ -25,7 +25,6 @@ const reducer = function (state = initState, {
 
         // 退出
         case "LOGOUT":
-                // localStorage.removeItem('user');
             return {
                 ...state,
                 user:{}

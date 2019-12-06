@@ -19,12 +19,21 @@ for (let i = 0; i < 23; i++) {
             `最有魅力的第${i + 1}个女生`
     });
 }
-const IconText = ({ type, text }) => (
-    <span>
-        <Icon type={type} style={{ marginRight: 8 }} />
-        {text}
-    </span>
-);
+
+let mapState = (state) => {
+    let newsdatalist = state.news
+    return newsdatalist
+}
+let mapDispatch = (dispatch) => {
+    return {
+        GETALL_NEWS(newsdatalist) {
+            dispatch({type:'GETALL_NEWS',payload:newsdatalist
+            })
+        }
+    }
+}
+@connect(mapState,mapDispatch)
+
 class News extends Component {
     state = {
         textType: [
@@ -60,19 +69,32 @@ class News extends Component {
         ],
 
     }
-    async componentDidMount() {
-        let { data } = await local.get('/home/news', {
 
+    IconText = ({ type, text }) => (
+        <span>
+            <Icon type={type} style={{ marginRight: 8 }} />
+            {text}
+        </span>
+    );
+    async componentDidMount() {
+        let { data:{data} } = await local.get('/home/news/all', {
+            page:0
         })
+        console.log(data);
+        
+        this.props.GETALL_NEWS(data)
+        console.log("data", this.props);
+    
+
+        
     }
     render() {
         console.log(this.props);
-
+            let {newsdatalist}=this.props
         return (<List
             header={
                 <div>
                     <b>资讯板块</b>
-
                 </div>
             }
             itemLayout="vertical"
@@ -89,9 +111,9 @@ class News extends Component {
                 <List.Item
                     key={item.title}
                     actions={[
-                        <IconText type="star-o" text="156" key="list-vertical-star-o" />,
-                        <IconText type="like-o" text="156" key="list-vertical-like-o" />,
-                        <IconText type="message" text="2" key="list-vertical-message" />,
+                        <this.IconText type="star-o" text="156" key="list-vertical-star-o" />,
+                        <this.IconText type="like-o" text="156" key="list-vertical-like-o" />,
+                        <this.IconText type="message" text="2" key="list-vertical-message" />,
                     ]}
                     extra={
                         <aside>
@@ -104,7 +126,7 @@ class News extends Component {
                 >
                     <List.Item.Meta
                         avatar={<Avatar style={{ width: "80px", height: "80px" }} src={item.avatar} />}
-                        title={<a href={item.href}>{item.title}</a>}
+                        title={<p>{item.title}</p>}
                         description={item.description}
                     />
                     {item.content}
