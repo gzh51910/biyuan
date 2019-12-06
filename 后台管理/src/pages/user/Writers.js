@@ -5,30 +5,45 @@ import {
     connect
 } from 'react-redux';
 
-// import UserList from '../../components/UserList'
-import { Row, Col, Button ,PageHeader } from 'antd';
+import UserList from './UserList'
+import { Row, Col, Button, PageHeader, Input, Divider, Menu, Dropdown ,Empty} from 'antd';
+import TableForm from './TableForm'
+import { local } from '../../api'
+
 // function mapStateToProps(state) {
 //     return {
 
 //     };
 // }
 
-let mapState=(state)=>{
-    let writer = state.writer
-    return writer
+let mapState = (state) => {
+    let reader = state.reader
+    return reader
 }
-let mapDispatch=(dispatch)=>{
+let mapDispatch = (dispatch) => {
     return {
-        DIPATCH_READER_USER(user) {
-            dispatch({ type: 'DIPATCH_READER_USER', payload: { user } })
-        },
-        REMOVE_READER_USER(user_id) {
-            dispatch({ type: 'REMOVE_READER_USER', payload: { user_id } })
+        GETALL_READER_USER(list) {
+            dispatch({
+                type: "GETALL_READER_USER", payload:
+                    list
+            })
         }
     }
 }
+
 @connect(mapState,mapDispatch)
+
+
 class Writers extends Component {
+
+
+    
+    async componentDidMount() {
+
+        let { data } = await local.get("/goods", {})
+        //    获取数据
+        this.props.GETALL_READER_USER(data.data)
+    }
 
     render() {
         // console.log(this.props);
@@ -36,38 +51,34 @@ class Writers extends Component {
         return(
        <main className='userlist' >
            <PageHeader
-             title="媒体"
+             title="媒体作家管理"
              />
-            <Row gutter={8} className="listTitle" type="flex"  align="middle">
-                <Col className="gutter-row"  span={1}>
-                    #
+              <Row gutter={2} className="listTitle" type="flex" align="middle">
+                <Col className="gutter-row title" span={8} offset={5}>
+                    <Input placeholder="input search text" onBlur={(e) => this.getFindText(e)} />
                 </Col>
-                <Col className="gutter-row" span={2}>
-                    用户头像
+                <Col className="gutter-row" span={3} >
+                    <Dropdown overlay={
+                    <Menu>
+                        <Menu.Item onClick={({  key }) => this.getKey({  key })} key="username">用户id查找</Menu.Item>
+                        <Menu.Item onClick={({  key }) => this.getKey({  key })} key="phone">手机查找</Menu.Item>
+                        <Menu.Item onClick={({  key }) => this.getKey({  key })} key="email">邮箱查找</Menu.Item>
+                        <Menu.Item onClick={({  key }) => this.getKey({  key })} key="name">名称查找</Menu.Item>
+                        <Menu.Item onClick={({  key }) => this.getKey({  key })} key="status">使用状态查找</Menu.Item>
+                        <Menu.Item onClick={({  key }) => this.getKey({  key })} key="level">等级查找</Menu.Item>
+                    </Menu>}>
+                        <Button
+                        >
+                            查找用户
+                        </Button>
+                    </Dropdown>
                 </Col>
-                <Col className="gutter-row" span={2}>
-                用户Id
+                <Col className="gutter-row" span={3} >
+                    <TableForm text="添加用户"></TableForm>
                 </Col>
-                <Col className="gutter-row" span={2}>
-                用户名称
-                </Col>
-                <Col className="gutter-row" span={3}>
-                    用户等级
-                </Col>
-                <Col className="gutter-row" span={3}>
-                    使用状态
-                </Col>
-                <Col className="gutter-row" span={3}>
-                    注册手机
-                 </Col>
-                <Col className="gutter-row" span={3}>
-                    注册邮箱
-              </Col>
-                <Col className="gutter-row" span={4}>
-                    操作
-             </Col>
             </Row>
-          {/* <UserList list={this.props.writerlist} /> */}
+            <Divider />
+          <UserList  />
 
          
             </main>
