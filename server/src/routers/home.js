@@ -21,10 +21,9 @@ Router.get('/news', async (req, qqq) => {
     let {
         page,
         parent,
-        psize
     } = req.query
     request({
-        url: 'http://m.coingogo.com/ajax/news/all.ashx',
+        url: 'http://m.coingogo.com/ajax/news/cate_news.ashx',
         method: 'post',
         // timeout: 100,
         headers: {
@@ -74,6 +73,64 @@ Router.get('/news', async (req, qqq) => {
         }))
     })
 })
+// 资讯的全部
+// http://m.coingogo.com/ajax/news/all.ashx
+Router.get('/news/all', async (req, qqq) => {
+    let {
+        page,
+    } = req.query
+    request({
+        url: 'http://m.coingogo.com/ajax/news/all.ashx',
+        method: 'post',
+        // timeout: 100,
+        headers: {
+            'Host': 'm.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        formData: {
+            page,
+            parent:0,
+            psize: 12
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+        let datalist = data.map(ele => {
+            let {
+                id,
+                avatar,
+                from,
+                image,
+                title,
+                username,
+                view_count,
+                right,
+                content,
+                created_at
+            } = ele
+            avatar = `https://statics.coingogo.com/uploads/avatars/${avatar}`
+            result = {
+                id,
+                avatar,
+                from,
+                image,
+                title,
+                username,
+                view_count,
+                right,
+                content,
+                created_at
+            }
+            return result
+        })
+        qqq.send(formatData({
+            data: datalist
+        }))
+    })
+})
+
 
 // 快讯
 // 原网站的也很简单没做处理

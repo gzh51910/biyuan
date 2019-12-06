@@ -5,7 +5,7 @@ import {
     connect
 } from 'react-redux';
 import { List, Avatar, Icon, Button } from 'antd';
-
+import { local } from '../../api'
 import CheckBox from './CheckBox'
 const listData = [];
 for (let i = 0; i < 23; i++) {
@@ -16,7 +16,7 @@ for (let i = 0; i < 23; i++) {
         description:
             'Ant Design, a design language for background applications, is refined by Ant UED Team.',
         content:
-            `最有魅力的第${i+1}个女生`
+            `最有魅力的第${i + 1}个女生`
     });
 }
 const IconText = ({ type, text }) => (
@@ -29,27 +29,41 @@ class News extends Component {
     state = {
         textType: [
             {
-                name: "自媒体", directory: "0", type: "自媒体"
+                name: "自媒体", type: "自媒体",
+                id: "43"
             }, {
-                name: "数字币", directory: "0", type: "数字币"
+                name: "数字币", type: "数字币",
+                id: "1",
             }, {
-                name: "区块链", directory: "0", type: "区块链"
+                name: "区块链", type: "区块链",
+                id: "6",
             }, {
-                name: "行情", directory: "0", type: "行情"
+                name: "行情", type: "行情",
+                id: "7",
             }, {
-                name: "交易所", directory: "0", type: "交易所"
+                name: "交易所", type: "交易所",
+                id: "8",
             }, {
-                name: "挖矿区", directory: "0", type: "挖矿区"
+                name: "挖矿区", type: "挖矿区",
+                id: "9",
             }, {
-                name: "钱包区", directory: "0", type: "钱包区"
+                name: "钱包区", type: "钱包区",
+                id: "10"
             }, {
-                name: "综合区", directory: "0", type: "综合区"
+                name: "综合区", type: "综合区",
+                id: "11"
             }, {
-                name: "项目评级", directory: "0", type: "项目评级"
+                name: "项目评级", type: "项目评级",
+                id: "46"
             },
 
         ],
 
+    }
+    async componentDidMount() {
+        let { data } = await local.get('/home/news', {
+
+        })
     }
     render() {
         console.log(this.props);
