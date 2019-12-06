@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import axios from 'axios'
 import pic from '../img/logo.png';
 import { connect } from 'react-redux';

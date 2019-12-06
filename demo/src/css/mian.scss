@@ -3,19 +3,36 @@
 }
 
 .minea {
-    .minepic {
-        margin-top: vw(20);
-        margin-left: vw(270);
+    // width: 100%;
 
+    .peoplepic {
+        line-height: vw(300);
+        height: vw(300);
+        display: flex;
+        justify-content: center;
+        border-bottom-right-radius: 40%;
+        border-bottom-left-radius: 40%;
+
+        border-right-style:inset .peoplepicaa {
+
+            align-items: center;
+        }
     }
 
-    .listmine {
-        width: 60%;
-        margin: auto;
-        text-align: center;
-        font-size: vw(40);
-        border: none;
+    .listcontent {
+        display: flex;
+        justify-content: center;
+        height: vw(300);
 
+        .listmine {
+            width: 60%;
 
+            text-align: center;
+            font-size: vw(40);
+            border: none;
+            align-items: center;
+
+        }
     }
+
 }
