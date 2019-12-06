@@ -6,7 +6,7 @@ let loginRouter = require('./login');
 let goodsRouter = require('./goods');
 let homeRouter = require('./home');
 let forumRouter = require('./forum');
-// let userRouter = require('./user');
+let userRouter = require('./user');
 // let regRouter = require('./reg');
 
 // 跨域解决方案CORS
@@ -44,6 +44,7 @@ Router.use('/goods',goodsRouter)
 Router.use('/home',homeRouter)
 Router.use('/login',loginRouter)
 Router.use('/forum',forumRouter)
+Router.use('/user',userRouter)
 // token验证
 Router.get('/verify',(req,res)=>{
     // 获取请求头上的token

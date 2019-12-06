@@ -81,7 +81,7 @@ class App extends Component {
           <Route path="/reg" component={reg} />
           <Route path="/login" component={login} />
           <Route path="/loginargument" component={loginargument} />
-          <Route path="/foruminfo/:id:fname" component={forumArticle} />
+          <Route path="/foruminfo/:id" component={forumArticle} />
           <Route path="/notfound" render={() => <div>404页面</div>} />
           <Redirect from="/" to="/home" exact />
           <Redirect to="/notfound" />

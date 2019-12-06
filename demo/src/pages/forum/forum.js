@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fapi,biyuan } from '../../api'
+import { local } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Icon, Tabs, Radio, Spin } from "antd";
@@ -50,7 +50,6 @@ class forum extends Component {
             }
         ],
         //菜单默认值
-        fname: "最新",
         catid:0,
         //分类列表
         flist: [],
@@ -61,28 +60,46 @@ class forum extends Component {
         forumListStyle: {},
         loading: true,
     }
-    getmsg = async (fname) => {
-        this.setState({
-            loading: true
-        })
-        let { data: [{ flist }] } = await fapi.get({
-            fname
-        });
-        this.setState({
-            flist,
-            loading: false
-        })
+    //转化时间戳
+    getTime = (time) => {
+        let date = new Date().getTime();
+        let offset=date/1000-time;
+        let d = parseInt(offset  / 60 / 60 / 24);
+        let h = parseInt(offset  / 60 / 60 % 24);
+        let f = parseInt(offset  / 60 % 60);
+        let s = parseInt(offset  % 60);
+        let res = "";
+        if(d!=0){
+            res=d+"天";
+        }else{
+            if(h!=0){
+                res=h+"小时"
+            }else{
+                if(f!=0){
+                    res=f+"分钟"
+                }else{
+                    res=s+"秒"
+                }
+            }
+        }
+        res+="前";
+        return res;
     }
     getforum = async (catid)=>{
-        let data=await biyuan.get({
+        let {data:{data}}=await local.get('/home/forumlist/',{
             page:0,
             catid
         })
-        console.log("数据",data);
+        data.map(item=>{
+            item.created_at=this.getTime(item.created_at);
+        })
+        this.setState({
+            flist:data
+        })
     }
     componentDidMount() {
         window.addEventListener('scroll', this.handleScroll, true);
-        this.getmsg(this.state.fname);
+        // this.getmsg(this.state.fname);
         this.getforum(0);
     }
     componentWillUnmount(){
@@ -95,35 +112,26 @@ class forum extends Component {
         document.body.scrollTop = 230;
         if (key == 1) {
             this.setState({
-                fname: "最新",
-                forumListStyle: { 'marginTop': 0 }
+                forumListStyle: { 'marginTop': 0 },
+                catid:0
             })
         } else {
             this.setState({
                 forumListStyle: { 'marginTop': "33px" }
             })
         }
-        // this.getCatid(this.state.fname);
     }
     //二级菜单获取值
     getDatalist = e => {
         document.body.scrollTop = 230;
         this.setState({
-            fname: e.target.value,
-            forumListStyle: { 'marginTop': "33px" }
-        })
-        this.getCatid(this.state.fname);
-    }
-    //获取catid
-    getCatid=(fname)=>{
-        var catid=this.state.catidList.fname;
-        this.setState({
-            catid
+            forumListStyle: { 'marginTop': "33px" },
+            catid:e.target.value
         })
     }
     componentDidUpdate(prevProps, prevState) {
-        if (prevState.fname != this.state.fname) {
-            this.getmsg(this.state.fname);
+        if (prevState.catid != this.state.catid) {
+            this.getforum(this.state.catid);
         }
     }
     //滚动监听
@@ -149,7 +157,7 @@ class forum extends Component {
         </Sticky>
     )
     render() {
-        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle,fname } = this.state;
+        let { forumBanner, forumMenu, menuStyle, forumListStyle, flist,menuwrapStyle } = this.state;
         return (
             <div className="container-forum">
                 <header className="forum-header">
@@ -200,7 +208,7 @@ class forum extends Component {
                                                     onChange={this.getDatalist} >
                                                     {item.second.map((val, j) => {
                                                         return (
-                                                            <Radio.Button value={val} key={j + 1}>{val}</Radio.Button>
+                                                            <Radio.Button value={val.id} key={val.id}>{val.text}</Radio.Button>
                                                         )
                                                     })}
 
@@ -219,7 +227,7 @@ class forum extends Component {
                         <Spin></Spin>
                         :<ForumList flist={flist} />
                     } */}
-                    <ForumList flist={flist} fname={fname}/>
+                    <ForumList flist={flist} />
                 </div>
             </div>
         );

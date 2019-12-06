@@ -14,6 +14,8 @@ const colName = 'user';
 // 前端注册reg
 
 Router.post('/reg', async (req, res) => {
+    console.log(req.body);
+    
     const colName = 'user'
     let {
         phone,
@@ -37,13 +39,13 @@ Router.post('/reg', async (req, res) => {
             status,
             avatar
         })
-        res.send({
+        res.send(formatData({
             data
-        })
+        }))
     } else {
-        res.send({
-            msg
-        })
+        res.send(formatData({
+          msg
+        }))
 
     }
 })

@@ -14,7 +14,6 @@ export const coinindex = coinindexApi;
 export default {
     local,
     biyuan,
-
     coinindex,
     news,
     fapi
