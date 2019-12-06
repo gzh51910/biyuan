@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { log } from 'util';
 import { Icon } from "antd";
 import { local } from '../../api'
 import '../../css/forumArticle.css';
+
+function mapStateToProps({forumList}) {
+    console.log('forumList',forumList);
+    
+    return {
+        fArticleList:forumList.fArticleList
+    };
+}
+
+
+@connect(mapStateToProps)
 class forumArticle extends Component {
     state = {
         id: 0,
@@ -13,14 +25,28 @@ class forumArticle extends Component {
         this.getArticle(id);
     }
     getArticle = async(id) => {
-        let {data:{data}}=await local.get('/home/article/',{
-            id
-        })
-        data.cate_names=data.cate_names.split('-')[1];
-        data.time=this.getTime(data.time);
-        this.setState({
-            msg:data
-        })
+        let {fArticleList} = this.props;
+        let curMsg = fArticleList.filter(item=>item.id==id)[0];
+        if(curMsg){
+            this.setState({
+                msg:curMsg.msg
+            })
+            
+        }else{
+            let {data:{data}}=await local.get('/home/article/',{
+                id
+            })
+            data.cate_names=data.cate_names.split('-')[1];
+            data.time=this.getTime(data.time);
+            this.setState({
+                msg:data
+            })
+
+            let articleList={};
+            articleList.id=id;
+            articleList.msg=data;
+            this.props.dispatch({type:'ADD_FORUMARTICLE',payload:articleList});
+        }
     }
     //转化时间戳
     getTime = (time) => {
@@ -101,4 +127,6 @@ class forumArticle extends Component {
         )
     }
 }
-export default forumArticle;
+export default connect(
+    mapStateToProps,
+)(forumArticle);

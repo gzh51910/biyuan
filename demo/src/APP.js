@@ -6,6 +6,7 @@ import { Route, withRouter, Switch, Redirect } from "react-router-dom";
 import "./App.scss";
 import Home from "~/Home";
 import News from "~/News";
+import Details from "~/Details";
 import data from "~/data";
 import forum from "~/forum/forum";
 import mine from "~/mine";
@@ -72,6 +73,7 @@ class App extends Component {
         <Switch>
           <Route path="/home" component={Home} />
           <Route path="/news" component={News} />
+          <Route path="/details" component={Details} />
           <Route path="/data" component={data} />
           <Route path="/forum" component={forum} />
           <Route path="/mine" component={mine} />

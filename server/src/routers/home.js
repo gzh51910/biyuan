@@ -21,7 +21,13 @@ Router.get('/news', async (req, qqq) => {
     let {
         page,
         parent,
+<<<<<<< HEAD
+=======
+      
+>>>>>>> dming
     } = req.query
+    console.log(11);
+    
     request({
         url: 'http://m.coingogo.com/ajax/news/cate_news.ashx',
         method: 'post',
@@ -65,6 +71,7 @@ Router.get('/news', async (req, qqq) => {
                 right,
                 content,
                 created_at
+<<<<<<< HEAD
             }
             return result
         })
@@ -122,9 +129,12 @@ Router.get('/news/all', async (req, qqq) => {
                 right,
                 content,
                 created_at
+=======
+>>>>>>> dming
             }
             return result
         })
+
         qqq.send(formatData({
             data: datalist
         }))
