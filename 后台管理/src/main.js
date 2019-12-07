@@ -7,12 +7,12 @@ import store from './store'
 import App from './APP'
 render(
   <Provider store={store}>
-    {/* <HashRouter> */}
-    <BrowserRouter>
+    <HashRouter>
+    {/* <BrowserRouter> */}
       {/* <Route component={App}/> */}
         <App/>
-        </BrowserRouter>
-    {/* </HashRouter> */}
+        {/* </BrowserRouter> */}
+    </HashRouter>
     </Provider>,
     document.querySelector('#app')
 )

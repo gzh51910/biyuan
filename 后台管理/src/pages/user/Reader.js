@@ -46,21 +46,9 @@ class Reader extends Component {
         console.log(data);
         this.props.GETALL_READER_USER(data.data)
     }
-     componentDidMount() {
-
-        this.getdata()
-        console.log(123);
-        
-    }
-    getdata= async()=>{
-        let { data } = await local.get("/goods", {})
-        //    获取数据
-        this.props.GETALL_READER_USER(data.data)
-    }
-
-
+ 
     render() {
-        console.log(this.props);
+        console.log(1);
         
         return (<main className='userlist' >
             <PageHeader title="用户管理" />
@@ -94,5 +82,4 @@ class Reader extends Component {
         );
     }
 }
-
 export default Reader;
