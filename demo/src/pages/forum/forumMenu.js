@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { local,forum } from '../../api'
+import { local,fapi } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Tabs, Radio, Spin } from "antd";
@@ -58,6 +58,7 @@ class forumMenu extends Component {
         },
         forumListStyle: {},
         loading: false,
+        menuwrapStyle:{height:"auto"}
     }
     //转化时间戳
     getTime = (time) => {
@@ -95,7 +96,7 @@ class forumMenu extends Component {
             this.setState({
                 loading: true
             })
-            let { data: { data } } = await local.get('/home/forumlist/', {
+            let { data:{data}  } = await local.get('/home/forumlist/', {
                 page: 0,
                 catid
             })
@@ -152,11 +153,13 @@ class forumMenu extends Component {
         let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
         if (scrollTop >= 230) {
             this.setState({
-                menuStyle: { position: "fixed" }
+                menuStyle: { position: "fixed" },
+                menuwrapStyle:{height:76}
             })
         } else {
             this.setState({
-                menuStyle: { position: "static" }
+                menuStyle: { position: "static" },
+                menuwrapStyle:{height:'auto'}
             })
         }
     }
@@ -169,13 +172,14 @@ class forumMenu extends Component {
         </Sticky>
     )
     render() {
-        let { loading, forumMenu, menuStyle, forumListStyle, flist } = this.state;
+        let { loading, forumMenu, menuStyle, forumListStyle, flist ,menuwrapStyle} = this.state;
         return (
             <div className="container-forumMenu" >
-                <StickyContainer>
+                <StickyContainer >
                     <Tabs defaultActiveKey="1"
                         onChange={this.callback}
                         renderTabBar={this.renderTabBar}
+                        style={menuwrapStyle}
                     >
                         {forumMenu.map((item, i) => {
                             return (
