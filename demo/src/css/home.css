@@ -1,18 +1,19 @@
-html, body {
+html,
+body {
   overflow-y: scroll;
 }
 
 header {
   width: 100%;
   height: 3rem;
-  border-bottom: 2px solid #e1e1e1;
   display: flex !important;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
 }
 
-header .header-left, header .header-right {
+header .header-left,
+header .header-right {
   width: 5.514rem;
   height: 100%;
   display: flex;
@@ -20,7 +21,8 @@ header .header-left, header .header-right {
   align-items: center;
 }
 
-header .header-left svg, header .header-right svg {
+header .header-left svg,
+header .header-right svg {
   width: 5.33333vw;
   height: 6.4vw;
 }

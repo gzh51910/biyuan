@@ -72,11 +72,12 @@ Router.post('/user', async (req, res) => {
         phone,
         psw
     } = req.body;
-
+    let msg = '失败，';
     let data = await mongodb.find(colName, {
         phone,
         psw
     });
+
     // 处理不让密码暴露
     if (data.length > 0) {
         let Authorization = token.create({

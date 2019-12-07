@@ -72,7 +72,7 @@ class Login extends React.Component {
         alert(data.msg)
         if (data.msg == "success") {
             // 跳转到login界面
-            this.props.history.push(`/mine`)
+            this.props.history.push(`/login`)
         }
     }
 
