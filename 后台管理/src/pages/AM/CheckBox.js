@@ -104,21 +104,22 @@ class UpdateForm extends Component {
   render() {
     const { visible, confirmLoading, } = this.state;
     const { getFieldDecorator } = this.props.form;
+    const { content } = this.props;
+    console.log(this.props.content);
+
     // const { avatar, email, level, name, phone, psw, status, username, _id } = this.props.ele;
     return (
       <div>
         <Button type="primary" onClick={this.showModal}>
           {this.props.text}
         </Button>
-        <Modal
+        <Modal width="90%"
           title={this.props.text}
           visible={visible}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
           footer={null}>
-
-
-
+            <div dangerouslySetInnerHTML={{ __html:  content } } />
           <Button type="primary">
             通过
               </Button>

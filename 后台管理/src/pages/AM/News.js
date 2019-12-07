@@ -4,21 +4,10 @@ import React, {
 import {
     connect
 } from 'react-redux';
-import { List, Avatar, Icon, Button } from 'antd';
+import { List, Avatar, Icon, Button, Collapse } from 'antd';
+const { Panel } = Collapse;
 import { local } from '../../api'
 import CheckBox from './CheckBox'
-const listData = [];
-for (let i = 0; i < 23; i++) {
-    listData.push({
-        href: 'http://ant.design',
-        title: `ant design part ${i}`,
-        avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-        description:
-            'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-        content:
-            `最有魅力的第${i + 1}个女生`
-    });
-}
 
 let mapState = (state) => {
     let newsdatalist = state.news
@@ -27,12 +16,13 @@ let mapState = (state) => {
 let mapDispatch = (dispatch) => {
     return {
         GETALL_NEWS(newsdatalist) {
-            dispatch({type:'GETALL_NEWS',payload:newsdatalist
+            dispatch({
+                type: 'GETALL_NEWS', payload: newsdatalist
             })
         }
     }
 }
-@connect(mapState,mapDispatch)
+@connect(mapState, mapDispatch)
 
 class News extends Component {
     state = {
@@ -77,20 +67,17 @@ class News extends Component {
         </span>
     );
     async componentDidMount() {
-        let { data:{data} } = await local.get('/home/news/all', {
-            page:0
+        let { data } = await local.get('/home/news/all', {
+            page: 0
         })
-        console.log(data);
-        
-        this.props.GETALL_NEWS(data)
-        console.log("data", this.props);
-    
 
-        
+        this.props.GETALL_NEWS(data.data)
+        console.log("data", this.props)
+        // listData=newsdatalist?newsdatalist:listData
+
     }
     render() {
-        console.log(this.props);
-            let {newsdatalist}=this.props
+        let { newsDatalist } = this.props
         return (<List
             header={
                 <div>
@@ -105,31 +92,31 @@ class News extends Component {
                 },
                 pageSize: 4,
             }}
-            dataSource={listData}
+            dataSource={newsDatalist}
             itemLayout="vertical"
             renderItem={item => (
                 <List.Item
                     key={item.title}
-                    actions={[
-                        <this.IconText type="star-o" text="156" key="list-vertical-star-o" />,
-                        <this.IconText type="like-o" text="156" key="list-vertical-like-o" />,
-                        <this.IconText type="message" text="2" key="list-vertical-message" />,
-                    ]}
+                    // actions={[
+                    //     <this.IconText type="star-o" text="156" key="list-vertical-star-o" />,
+                    //     <this.IconText type="like-o" text="156" key="list-vertical-like-o" />,
+                    //     <this.IconText type="message" text="2" key="list-vertical-message" />,
+                    // ]}
                     extra={
                         <aside>
                             <Button type="danger"
                             // onClick={this.remove.bind(this, ele._id)}
                             >删  除
                          </Button>
-                            <CheckBox text="阅读审核" /></aside>
+                            <CheckBox content={item.content} text="阅读审核" />
+                        </aside>
                     }
                 >
                     <List.Item.Meta
                         avatar={<Avatar style={{ width: "80px", height: "80px" }} src={item.avatar} />}
                         title={<p>{item.title}</p>}
-                        description={item.description}
+                        description={<p>作者：{item.username}</p>}
                     />
-                    {item.content}
                 </List.Item>
             )}
         />

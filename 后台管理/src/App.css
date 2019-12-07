@@ -32,3 +32,8 @@
 .userlist .gutter-row {
   text-align: center;
 }
+
+#news_content {
+  max-height: 150px;
+  overflow: auto;
+}
