@@ -121,6 +121,10 @@
   white-space: nowrap !important;
 }
 
+.container-forum .forum-menu .ant-tabs-tab-next, .container-forum .forum-menu .ant-tabs-tab-prev {
+  display: none !important;
+}
+
 .container-forum .forumListWrap {
-  transition: 0.3s;
+  min-height: 160vw;
 }

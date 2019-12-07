@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon,Carousel } from 'antd';
+import ForumMenu from './forum/forumMenu';
+import Newsflash from '~/Newsflash'
+import Information from '~/Information'
 import '../css/base.css';
 import '../css/home.css';
 function mapStateToProps(state) {
@@ -97,7 +100,17 @@ class Home extends Component {
                     <Icon type="right" />
                 </section>
                 <main>
-                    
+                    <div className="home-newsflash">
+                        <Newsflash/>
+                        <p>更多快讯 ></p>
+                    </div>
+                    <div className="home-information">
+                        <Information/>
+                        <p>更多资讯 ></p>
+                    </div>
+                    <div className="home-forum">
+                        <ForumMenu/>
+                    </div>
                 </main>
             </div>
         );

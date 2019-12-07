@@ -1,10 +1,15 @@
 import React from 'react';
-import {Row,Col} from 'antd';
+import { Row, Col, Avatar } from 'antd';
 
-function HeaderState({datalist,history}){
-    
+function HeaderState({ role }) {
+
     return (
-        <div className="logo"><img src="http://m.coingogo.com/wap/image/login_logo.png" alt=""/></div>
+        <div className="logo"><img src='../' alt="" />
+            <div>  <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+              <span>level:{role}</span><b></b>
+            </div>
+            
+        </div>
 
     )
 }

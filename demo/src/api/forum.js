@@ -3,7 +3,7 @@ import { fapi } from '.';
 
 // 创建axios实例
 const nsg = axios.create({
-    baseURL: 'http://localhost:3435'
+    baseURL: 'http://localhost:3435/home/forumlist'
 });
 
 // 二次封装(简化操作,维护方便)

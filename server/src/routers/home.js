@@ -21,10 +21,11 @@ Router.get('/news', async (req, qqq) => {
     let {
         page,
         parent,
-        psize
     } = req.query
+    console.log(11);
+    
     request({
-        url: 'http://m.coingogo.com/ajax/news/all.ashx',
+        url: 'http://m.coingogo.com/ajax/news/cate_news.ashx',
         method: 'post',
         // timeout: 100,
         headers: {
@@ -74,6 +75,65 @@ Router.get('/news', async (req, qqq) => {
         }))
     })
 })
+// 资讯的全部
+// http://m.coingogo.com/ajax/news/all.ashx
+Router.get('/news/all', async (req, qqq) => {
+    let {
+        page,
+    } = req.query
+    request({
+        url: 'http://m.coingogo.com/ajax/news/all.ashx',
+        method: 'post',
+        // timeout: 100,
+        headers: {
+            'Host': 'm.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        formData: {
+            page,
+            parent:0,
+            psize: 12
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+        let datalist = data.map(ele => {
+            let {
+                id,
+                avatar,
+                from,
+                image,
+                title,
+                username,
+                view_count,
+                right,
+                content,
+                created_at
+            } = ele
+            avatar = `https://statics.coingogo.com/uploads/avatars/${avatar}`
+            result = {
+                id,
+                avatar,
+                from,
+                image,
+                title,
+                username,
+                view_count,
+                right,
+                content,
+                created_at
+            }
+            return result
+        })
+
+        qqq.send(formatData({
+            data: datalist
+        }))
+    })
+})
+
 
 // 快讯
 // 原网站的也很简单没做处理
@@ -81,36 +141,36 @@ Router.get('/news', async (req, qqq) => {
 // parent 为自媒体目录的id值 
 // page 为页数
 // psize 为数量
-Router.get('/flash', async (req, qqq) => {
-    let {
-        page,
-        parent,
-        psize
-    } = req.query
-    request({
-        url: 'http://m.coingogo.com/ajax/flash/index.ashx',
-        method: 'post',
-        timeout: 1000,
-        headers: {
-            'Host': 'm.coingogo.com',
-            'User-Agent': 'PostmanRuntime/7.20.1'
-        },
-        formData: {
-            page,
-            parent,
-            psize: 10
-        }
-    }, function (err, res, body) {
-        body2 = JSON.parse(body)
-        let {
-            data
-        } = body2
+// Router.get('/flash', async (req, qqq) => {
+//     let {
+//         page,
+//         parent,
+//         psize
+//     } = req.query
+//     request({
+//         url: 'http://m.coingogo.com/ajax/flash/index.ashx',
+//         method: 'post',
+//         timeout: 1000,
+//         headers: {
+//             'Host': 'm.coingogo.com',
+//             'User-Agent': 'PostmanRuntime/7.20.1'
+//         },
+//         formData: {
+//             page,
+//             parent,
+//             psize: 10
+//         }
+//     }, function (err, res, body) {
+//         body2 = JSON.parse(body)
+//         let {
+//             data
+//         } = body2
 
-        qqq.send(formatData({
-            data
-        }))
-    })
-})
+//         qqq.send(formatData({
+//             data
+//         }))
+//     })
+// })
 
 
 
@@ -344,6 +404,50 @@ Router.get('/coin', async (req, qqq) => {
        )
     })
 })
+
+
+
+
+
+
+
+// 测试pc端能否用数据
+Router.get('/flash', async (req, qqq) => {
+    let {
+        page,
+        type,
+        psize
+    } = req.query
+    request({
+        url: 'https://www.coingogo.com/flash/default/list',
+        method: 'get',
+        timeout: 1000,
+        headers: {
+            'Host': 'www.coingogo.com',
+            'User-Agent': 'PostmanRuntime/7.20.1'
+        },
+        params: {
+            page,
+            type,
+            // psize: 10
+        }
+    }, function (err, res, body) {
+        body2 = JSON.parse(body)
+        let {
+            data
+        } = body2
+
+        qqq.send(formatData({
+            data
+        }))
+    })
+})
+
+
+
+
+
+
 
 
 module.exports = Router

@@ -1,6 +1,5 @@
 // ant
 import { Row, Col, Button, PageHeader, Input, Divider, Menu, Dropdown } from 'antd';
-const ButtonGroup = Button.Group;
 
 import React, {
     Component

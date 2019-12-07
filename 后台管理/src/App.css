@@ -9,16 +9,13 @@
   position: relative;
 }
 
-.ant-layout-header > div {
+.ant-layout-header .logo {
   display: flex;
   justify-content: space-between;
-}
-
-.logo {
   height: 100%;
 }
 
-.logo img {
+.ant-layout-header .logo img {
   width: auto;
   height: 100%;
 }

@@ -4,10 +4,10 @@ import { Icon } from "antd";
 
 import "../css/IfmList.scss";
 
-function IfmList({ datalist }) {
+function IfmList({ datalist, history }) {
     function goto(id) {
-        let aaa = datalist.find(item => item.id === id);
-        console.log(aaa);
+        let detailsData = datalist.find(item => item.id === id);
+        history.push({ pathname: "/details", state: { ...detailsData } });
     }
 
     return (

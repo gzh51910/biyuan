@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { news } from "@/api";
 import IfmTabs from "@@/IfmTabs";
 
 import IfmTabsData from "../api/IfmTabsData";
@@ -10,11 +9,10 @@ class Information extends Component {
     };
 
     async componentDidMount() {
-        // let res = await news.get();
         let { data } = IfmTabsData;
         data.map(item => (item.title = item.name));
 
-        let all = { title: "全部" };
+        let all = { title: "全部", id: 0 };
         this.setState({
             tabs: [all, ...data]
         });
@@ -24,7 +22,7 @@ class Information extends Component {
         let { tabs } = this.state;
         return (
             <div>
-                <IfmTabs tabs={tabs} />
+                <IfmTabs tabs={tabs} {...this.props} />
             </div>
         );
     }
