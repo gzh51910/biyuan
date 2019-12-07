@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { local } from '../../api'
+import { local,forum } from '../../api'
 import { connect } from 'react-redux';
 import '../../css/forum.css';
 import { Tabs, Radio, Spin } from "antd";
