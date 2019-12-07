@@ -103,14 +103,14 @@ class forumMenu extends Component {
             this.setState({
                 loading: true
             })
-            let { data:{data}  } = await local.get('/home/forumlist/', {
-                page: 0,
-                catid
-            })
-            // let { data } = await fapi.get({
+            // let { data:{data}  } = await local.get('/home/forumlist/', {
             //     page: 0,
             //     catid
             // })
+            let { data } = await fapi.get({
+                page: 0,
+                catid
+            })
             data.map(item => {
                 item.created_at = this.getTime(item.created_at);
             })
@@ -145,7 +145,7 @@ class forumMenu extends Component {
                 menuwrapStyle:{height:'auto'},
             })
         } else {
-            document.body.scrollTop=230;
+            // document.body.scrollTop=230;
             this.setState({
                 defaultValue:key,
                 catid:key
@@ -154,7 +154,7 @@ class forumMenu extends Component {
     }
     //二级菜单获取值
     getDatalist = e => {
-        document.body.scrollTop=230;
+        // document.body.scrollTop=230;
         this.setState({
             catid: e.target.value
         });
