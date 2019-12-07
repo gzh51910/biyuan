@@ -103,14 +103,14 @@ class forumMenu extends Component {
             this.setState({
                 loading: true
             })
-            // let { data:{data}  } = await local.get('/home/forumlist/', {
-            //     page: 0,
-            //     catid
-            // })
-            let { data } = await fapi.get({
+            let { data:{data}  } = await local.get('/home/forumlist/', {
                 page: 0,
                 catid
             })
+            // let { data } = await fapi.get({
+            //     page: 0,
+            //     catid
+            // })
             data.map(item => {
                 item.created_at = this.getTime(item.created_at);
             })
