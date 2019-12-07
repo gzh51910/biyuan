@@ -28,7 +28,7 @@ class App extends Component {
       {
         icon: "profile",
         name: "news",
-        path: "/news",
+        path: "/news/information",
         text: "资讯"
       },
       {

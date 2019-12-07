@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Icon,Carousel } from 'antd';
 import ForumMenu from './forum/forumMenu';
+import Newsflash from '~/Newsflash'
+import Information from '~/Information'
 import '../css/base.css';
 import '../css/home.css';
 function mapStateToProps(state) {
@@ -98,6 +100,8 @@ class Home extends Component {
                     <Icon type="right" />
                 </section>
                 <main>
+                    <Newsflash/>
+                    <Information/>
                     <div className="home-forum">
                         <ForumMenu/>
                     </div>

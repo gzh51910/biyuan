@@ -2,8 +2,9 @@ import React from "react";
 import { Flex, WingBlank, WhiteSpace } from "antd-mobile";
 import { Icon } from "antd";
 
-function Details({ location }) {
-    console.log(location);
+function Details({ history, location }) {
+    console.log(history, location);
+
     let { state } = location;
     return (
         <div>
@@ -12,7 +13,9 @@ function Details({ location }) {
                 <Flex justify="between">
                     <Icon
                         type="left"
-                        onClick={() => {}}
+                        onClick={() => {
+                            history.goBack();
+                        }}
                         style={{ fontSize: "7vw" }}
                     />
                     <Icon type="export" style={{ fontSize: "7vw" }} />
@@ -20,6 +23,8 @@ function Details({ location }) {
                 <WhiteSpace size="lg" />
 
                 <h2 style={{ fontWeight: "bold" }}>{state.title}</h2>
+                <p>{state.from}</p>
+                {/* <h5>{state.content}</h5> */}
                 <h1>Details</h1>
             </WingBlank>
         </div>
