@@ -100,8 +100,14 @@ class Home extends Component {
                     <Icon type="right" />
                 </section>
                 <main>
-                    <Newsflash/>
-                    <Information/>
+                    <div className="home-newsflash">
+                        <Newsflash/>
+                        <p>更多快讯 ></p>
+                    </div>
+                    <div className="home-information">
+                        <Information/>
+                        <p>更多资讯 ></p>
+                    </div>
                     <div className="home-forum">
                         <ForumMenu/>
                     </div>

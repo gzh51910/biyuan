@@ -92,6 +92,13 @@ main{
     flex: 1;
     background: #f5f5f5;
     width: 100%;
+    .home-newsflash, .home-information{
+        >p{
+            text-align: center;
+            line-height: 12vw;
+            background-color: #fff;
+        }
+    }
     .home-forum{
         background: #fff;
         .ant-tabs-nav-scroll{
