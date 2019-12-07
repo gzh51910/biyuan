@@ -1,7 +1,7 @@
 import React from "react";
 import '../css/login.scss';
 import { Form, Input, Button, Row, Col } from "antd";
-import { local } from '../api'
+import { local, lApi } from '../api'
 const FormItem = Form.Item;
 
 class Login extends React.Component {
@@ -15,10 +15,9 @@ class Login extends React.Component {
     // 点击登录
     logininto = () => {
         this.props.form.validateFields((err, values) => {
-            let { phone, psw } = values
+            let { phone, psw } = values;
             if (!err) {
-                let msg = this.loginsucess(phone, psw)
-
+                this.loginsucess(phone, psw)
             }
         })
     }
@@ -28,9 +27,18 @@ class Login extends React.Component {
             phone,
             psw
         })
-        alert(data.msg)
-        if (data.msg == "success") {
-            // 跳转到login界面
+        // let { data } = await lApi.post({
+        //     phone,
+        //     psw
+        // })
+
+        // alert(data.msg);
+        console.log('data:', data.msg);
+
+        if (data.msg == '登录成功') {
+            // 跳转到login界面  
+
+            console.log('登录成功111');
             this.props.history.push(`/mine`)
         }
     }
