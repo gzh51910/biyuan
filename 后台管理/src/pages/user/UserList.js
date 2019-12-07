@@ -40,9 +40,24 @@ class Userlist extends Component {
           current: page,
         });
       }
-      
+      componentDidMount() {
+
+        this.getdata()
+        console.log(123);
+        
+    }
+    getdata= async()=>{
+        let { data } = await local.get("/goods", {
+            page:1, pagesize:8
+        })
+        //    获取数据
+        this.props.GETALL_READER_USER(data.data)
+    }
    
     render() {
+        console.log(2);
+        console.log(this.props);
+        
         let { list, menulist } = this.props
         console.log(this.props.list.length!=0);
         

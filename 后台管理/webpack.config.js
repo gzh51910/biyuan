@@ -2,9 +2,9 @@
 const path = require('path');
 module.exports = {
     entry: './src/main.js',
-    output:{
-        publicPath:"./"
-       },
+    // output:{
+    //     publicPath:"./"
+    //    },
     devServer: {
         contentBase: path.join(__dirname, './public'),
         port: 5858
