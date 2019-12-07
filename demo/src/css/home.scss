@@ -147,6 +147,9 @@ main {
                 }
             }
         }
+        .ant-tabs-tab-next,.ant-tabs-tab-prev{
+            display: none!important;
+        }
     }
     .forumListWrap{
         min-height: vw(1000);

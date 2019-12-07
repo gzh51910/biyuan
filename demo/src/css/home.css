@@ -148,6 +148,10 @@ main .home-forum .ant-tabs-tabpane .ant-radio-group .ant-radio-button-wrapper sp
   white-space: nowrap !important;
 }
 
+main .home-forum .ant-tabs-tab-next, main .home-forum .ant-tabs-tab-prev {
+  display: none !important;
+}
+
 main .forumListWrap {
   min-height: 133.33333vw;
 }

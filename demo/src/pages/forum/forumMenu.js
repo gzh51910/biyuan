@@ -145,7 +145,7 @@ class forumMenu extends Component {
                 menuwrapStyle:{height:'auto'},
             })
         } else {
-            document.body.scrollTop=230;
+            // document.body.scrollTop=230;
             this.setState({
                 defaultValue:key,
                 catid:key
@@ -154,7 +154,7 @@ class forumMenu extends Component {
     }
     //二级菜单获取值
     getDatalist = e => {
-        document.body.scrollTop=230;
+        // document.body.scrollTop=230;
         this.setState({
             catid: e.target.value
         });
