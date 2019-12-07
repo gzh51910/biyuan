@@ -106,9 +106,12 @@ $activeColor: #ffc600;
                 }
             }
         }
+        .ant-tabs-tab-next,.ant-tabs-tab-prev{
+            display: none!important;
+        }
     }
     .forumListWrap{
-        min-height: vw(1000);
+        min-height: vw(1200);
     }
 }
 
