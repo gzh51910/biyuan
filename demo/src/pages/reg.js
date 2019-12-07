@@ -45,7 +45,7 @@ class Login extends React.Component {
             let { captcha, phone, psw } = values
             if (!err && this.state.captcha == captcha) {
                 let msg = this.loginto(phone, psw)
-                
+
             }
         });
     }
@@ -70,12 +70,12 @@ class Login extends React.Component {
             phone, psw
         })
         alert(data.msg)
-        if(data.msg=="success"){
-    // 跳转到login界面
-            this.props.history.push(`/mine`)
+        if (data.msg == "success") {
+            // 跳转到login界面
+            this.props.history.push(`/login`)
         }
     }
-    
+
     render() {
         const { getFieldDecorator } = this.props.form;//es6语法解构赋值，getFieldDecorator 此方法可以帮助你获取表单数据，初始化表单数据，校验表单数据，具体用法如下代码所示
         return (

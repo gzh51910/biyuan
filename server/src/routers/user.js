@@ -15,7 +15,7 @@ const colName = 'user';
 
 Router.post('/reg', async (req, res) => {
     console.log(req.body);
-    
+
     const colName = 'user'
     let {
         phone,
@@ -44,7 +44,7 @@ Router.post('/reg', async (req, res) => {
         }))
     } else {
         res.send(formatData({
-          msg
+            msg
         }))
 
     }

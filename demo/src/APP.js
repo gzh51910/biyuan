@@ -10,7 +10,9 @@ import Details from "~/Details";
 import data from "~/data";
 import forum from "~/forum/forum";
 import mine from "~/mine";
+import leftlist from '~/leftlist';
 import reg from '~/reg';
+import login from '~/login';
 import loginargument from '~/loginargument';
 import forumArticle from "~/forum/forumArticle";
 import { Menu, Icon } from "antd";
@@ -76,8 +78,10 @@ class App extends Component {
           <Route path="/details" component={Details} />
           <Route path="/data" component={data} />
           <Route path="/forum" component={forum} />
+          <Route path="/leftlist" component={leftlist} />
           <Route path="/mine" component={mine} />
           <Route path="/reg" component={reg} />
+          <Route path="/login" component={login} />
           <Route path="/loginargument" component={loginargument} />
           <Route path="/foruminfo/:id" component={forumArticle} />
           <Route path="/notfound" render={() => <div>404页面</div>} />

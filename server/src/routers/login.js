@@ -72,40 +72,37 @@ Router.post('/user', async (req, res) => {
         phone,
         psw
     } = req.body;
-
+    let msg = '失败，';
     let data = await mongodb.find(colName, {
         phone,
         psw
     });
+
     // 处理不让密码暴露
     if (data.length > 0) {
-        let Authorization = token.create({
-            username
-        });
+        // let Authorization = token.create({
+        //     username
+        // });
         let {
-            email,
             phone,
-            username,
-            name,
+            psw,
             level,
             status,
             avatar
         } = data[0]
         data = [{
-            email,
             phone,
-            username,
-            name,
+            psw,
             level,
             status,
             avatar
         }]
-        console.log(111, Authorization);
+        // console.log(111, Authorization);
         // 登录成功创建一个token
         res.set({
             // 让浏览器运行获取自定义响应头（必须设置Access-Control-Expose-Headers响应头，才能在前端js中获取自定义的响应头）
             'Access-Control-Expose-Headers': 'Authorization',
-            'Authorization': Authorization
+            // 'Authorization': Authorization
         });
         res.send(formatData({
             data,
