@@ -136,9 +136,8 @@ class App extends Component {
     };  
     render() {
       let  {currentPath}=this.state
-      let Authorization=localStorage.getItem("Authorization")
         return (
-            Authorization?
+            this.props.Authorization?
                 <Layout >
                     <Header style={{
                         background: "#58bc58"

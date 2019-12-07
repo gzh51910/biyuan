@@ -8,14 +8,14 @@ let homeRouter = require('./home');
 let forumRouter = require('./forum');
 let userRouter = require('./user');
 // let regRouter = require('./reg');
-let proxyRouter = require('./proxy');
+// let proxyRouter = require('./proxy');
 
 // 跨域解决方案CORS
 Router.use((req,res,next)=>{
     // 支持CORS跨域，只需要设置响应头
     // res.header('Access-Control-Allow-Origin','*');
     let currentOrigin = req.get('Origin');
-    let allowOrigin = ['http://182.92.109.17:4564','http://182.92.109.17:4565']
+    let allowOrigin = ['http://182.92.109.17:4564','http://182.92.109.17:4565','http://localhost:5858']
     if(allowOrigin.includes(currentOrigin)){
         res.set({
             'Access-Control-Allow-Origin':currentOrigin,
@@ -40,7 +40,7 @@ Router.use((req,res,next)=>{
 Router.use(express.json(),express.urlencoded({extended:false}));
 
 
-Router.use('/proxy',proxyRouter)
+// Router.use('/proxy',proxyRouter)
 Router.use('/goods',goodsRouter)
 Router.use('/home',homeRouter)
 Router.use('/login',loginRouter)

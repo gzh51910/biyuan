@@ -1,5 +1,6 @@
 // ant
 import { Row, Col, Button, PageHeader, Input, Divider, Menu, Dropdown } from 'antd';
+const ButtonGroup = Button.Group;
 
 import React, {
     Component
@@ -45,17 +46,18 @@ class Reader extends Component {
         console.log(data);
         this.props.GETALL_READER_USER(data.data)
     }
+     componentDidMount() {
 
-
-
-
-
-    async componentDidMount() {
-
+        this.getdata()
+        console.log(123);
+        
+    }
+    getdata= async()=>{
         let { data } = await local.get("/goods", {})
         //    获取数据
         this.props.GETALL_READER_USER(data.data)
     }
+
 
     render() {
         console.log(this.props);

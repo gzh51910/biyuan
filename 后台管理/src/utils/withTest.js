@@ -12,26 +12,20 @@ export function withTest(InnerComponent) {
         constructor(props) {
             super(props);
         }
+        state = {
+            Authorization: ''
+        }
         componentDidMount() {
-            // let Authorization=null
-            try {
-       var        Authorization=JSON.parse(localStorage.getItem('Authorization'))
-               console.log("try",Authorization);
-               
-            } catch (error) {
-                let {
-                    history
-                } = this.props;
-                history.push("/login")
-                console.log(22);
-            }
-            console.log(Authorization);
-            
-            if (Authorization) {
+            this.setState({
+                Authorization : JSON.parse(localStorage.getItem('Authorization'))
+            })
+            let user = JSON.parse(localStorage.getItem('user'));
+            this.props.LOGIN(user)
+            console.log(this.props);
+            //    console.log(user);
+            if (this.state.Authorization) {
                 // 登录则放行
                 // 验证
-                let user = JSON.parse(localStorage.getItem('user'));
-                this.props.LOGIN(user)
                 let baseURL = local.baseURL
                 let data = axios.get(`${baseURL}/verify`, {
                     headers: {
@@ -50,11 +44,6 @@ export function withTest(InnerComponent) {
                             history
                         } = this.props;
                         history.push("/")
-                    }else{
-                        let {
-                            history
-                        } = this.props;
-                        history.push("/home")
                     }
                 })
             } else {

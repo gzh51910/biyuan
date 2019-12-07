@@ -1,5 +1,5 @@
 import { Modal, Button } from 'antd';
-import { Form, Input } from 'antd';
+import { Form, Input, Row, Col } from 'antd';
 import React, {
   Component
 } from 'react';
@@ -37,13 +37,6 @@ class TableForm extends Component {
       visible: true,
     });
   };
-  // 消息框
-  openMessage = () => {
-    message.loading({ content: 'Loading...', key });
-    setTimeout(() => {
-      message.success({ content: 'Loaded!', key, duration: 2 });
-    }, 1000);
-  };
 
   // 检查密码
   checkPsd(rule, value, callback) {
@@ -54,7 +47,7 @@ class TableForm extends Component {
       callback();
     }
   }
-  // 表单更新数据提交
+  // 表单提交
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -70,10 +63,11 @@ class TableForm extends Component {
     let { data } = await local.post("/goods", {
       Rpsw,email,name,phone,psw,username
     })   
-    // alert(data.msg)
+    alert(data.msg)
     return data
   }
   handleCancel = () => {
+    console.log('Clicked cancel button');
     this.setState({
       visible: false,
     });

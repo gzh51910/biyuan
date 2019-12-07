@@ -1,4 +1,4 @@
-import { Row, Col, Button, Avatar,Pagination,Divider  } from 'antd';
+import { Row, Col, Button, Avatar,Pagination,Divider ,Empty } from 'antd';
 import UpdateForm from './UpdateForm'
 const ButtonGroup = Button.Group;
 import React, {
@@ -18,6 +18,12 @@ let mapDispatch = (dispatch) => {
     return {
         REMOVE_READER_USER(_id) {
             dispatch({ type: 'REMOVE_READER_USER', payload: { _id } })
+        },
+        GETALL_READER_USER(list) {
+            dispatch({
+                type: "GETALL_READER_USER", payload:
+                    list
+            })
         }
     }
 }
@@ -34,9 +40,14 @@ class Userlist extends Component {
           current: page,
         });
       }
+      
+   
     render() {
         let { list, menulist } = this.props
+        console.log(this.props.list.length!=0);
+        
         return (
+            this.props.list.length!=0?
             <div className="userlist" >
                 <Row gutter={8} className="listTitle" type="flex" align="middle">
                     {menulist.map(item => <Col key={item.text} className="gutter-row" span={item.span}> {item.text}</Col>)}
@@ -68,6 +79,7 @@ class Userlist extends Component {
                 <Divider></Divider>
                 <Pagination onChange={(page)=>this.onChange(page)} total={list.length} hideOnSinglePage={true} />
             </div>
+            :<Empty image={Empty.PRESENTED_IMAGE_SIMPLE}/>
         )
     }
 }

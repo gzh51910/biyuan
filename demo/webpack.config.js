@@ -4,7 +4,9 @@ const path = require('path');
 // const context = [`/coinindex`]
 module.exports = {
     entry: './src/main.js',
-
+    // output:{
+    //     publicPath:"./"
+    //    },
     devServer: {
 
 
