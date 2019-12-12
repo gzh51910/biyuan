@@ -118,15 +118,14 @@ class UpdateForm extends Component {
           visible={visible}
           confirmLoading={confirmLoading}
           onCancel={this.handleCancel}
-          footer={null}>
-            <div dangerouslySetInnerHTML={{ __html:  content } } />
-          <Button type="primary">
-            通过
-              </Button>
-          <Button type="danger">
-            不通过
-              </Button>
-
+          footer={<div>
+            <Button type="primary">
+              阅读通过
+            </Button>
+            <Button type="danger">
+              回去重写
+            </Button></div>}>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
 
         </Modal>
       </div>

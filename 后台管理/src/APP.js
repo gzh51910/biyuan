@@ -138,13 +138,13 @@ class App extends Component {
       let  {currentPath}=this.state
         return (
             this.props.Authorization?
-                <Layout >
+                <Layout  >
                     <Header style={{
                         background: "#58bc58"
                     }}>
                         <HeaderState role={this.state.role} />
                     </Header>
-                    <Layout>
+                    <Layout id='main'>
                         <Sider collapsed={this.state.collapsed}
                             collapsible
                             onCollapse={this.onCollapse}>

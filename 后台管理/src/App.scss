@@ -1,4 +1,8 @@
 // loginForm 登录后台的login
+
+#main{
+    height: 700px;
+}
 .login-form {
     min-width: 100%;
     position: fixed;
@@ -50,7 +54,3 @@
 
 
 // news
-#news_content{
-    max-height: 150px;
-    overflow: auto;
-}

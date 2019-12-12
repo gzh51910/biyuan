@@ -1,3 +1,7 @@
+#main {
+  height: 700px;
+}
+
 .login-form {
   min-width: 100%;
   position: fixed;
@@ -31,9 +35,4 @@
 
 .userlist .gutter-row {
   text-align: center;
-}
-
-#news_content {
-  max-height: 150px;
-  overflow: auto;
 }

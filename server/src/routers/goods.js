@@ -22,7 +22,6 @@ Router.get('/', async (req, res) => {
     let {
         page = 1, pagesize = 8,
     } = req.query;
-    // console.log(type,page,pagesize);
     // 根据分页和每页数量计算跳过的索引值
     let index = (page - 1) * pagesize
     // let type="地板"
@@ -34,7 +33,6 @@ Router.get('/', async (req, res) => {
         limit: pagesize
     });
     // let data = await mongodb.find(colName,{type});
-    // console.log(data);
     res.send(formatData({
         data
     }))
@@ -51,7 +49,7 @@ Router.post('/', async (req, res) => {
         username,
         name
     } = req.body;
-    let msg = '失败，';
+    var msg = '失败，';
     let emailData = await mongodb.find(colName, {
         email
     })
@@ -70,7 +68,12 @@ Router.post('/', async (req, res) => {
     if (usernameData.length > 0) {
         msg += "账号被人使用"
     }
-    if (!(emailData.length && phoneData.length && usernameData.length) > 0) {
+    if (emailData.length > 0 || phoneData.length > 0 || usernameData.length > 0) {
+
+        res.send({
+            msg
+        })
+    } else {
         let level = "1"
         let status = '正常',
             avatar = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
@@ -87,25 +90,18 @@ Router.post('/', async (req, res) => {
         res.send({
             msg: "注册成功"
         })
-    } else {
-        res.send({
-            msg
-        })
 
     }
 })
 
 // 删除用户
 Router.delete('/:_id', async (req, res) => {
-    console.log(111);
     let {
         _id
     } = req.params;
-    console.log(2222, _id);
     let data = await mongodb.remove(colName, {
         _id
     });
-    console.log(data);
     if (data.length > 0) {
         res.send(formatData({
             data
@@ -145,12 +141,8 @@ Router.patch('/:_id', async (req, res) => {
     res.send(formatData({
         data
     }))
-
 })
-
-
 // 根据类型查询使用匹配正则查询 {key string}
-
 Router.get('/:key', async (req, res) => {
     let {
         key
@@ -160,15 +152,10 @@ Router.get('/:key', async (req, res) => {
     } = req.query
 
 
-    // if (key = "username") {
-        let result = {};
+    let result = {};
 
-        result[`${key}`] = RegExp(FindText)
-        console.log("RegExp(FindText)",RegExp(FindText));
-        var data = await mongodb.find(colName, result)
-    // }
-  
-
+    result[`${key}`] = RegExp(FindText)
+    var data = await mongodb.find(colName, result)
     res.send({
         data
     })
